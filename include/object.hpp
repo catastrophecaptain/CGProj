@@ -13,22 +13,37 @@ enum class Category
     SHOOTER,
     BULLET,
     WALL,
-    BOX
+    BOX,
+    AMBIENCE,
 };
 class Object
 {
 public:
+    Object(Engine *engine, Category category, bool fixed = false) : _engine(engine), _fixed(fixed), _category(category){};
     virtual ~Object(){};
-    virtual void renew() = 0;
+    virtual void renew() {};
     virtual void plot() = 0;
-    virtual bool isfixed()
+    virtual bool isFixed()
     {
         return _fixed;
-    };
-    virtual std::vector<Segment> getsegments() = 0;
-    virtual std::vector<Box> getboxs() = 0;
-    virtual void collidedby(Object *other) = 0;
-    virtual Category getcategory() = 0;
+    }
+    virtual std::vector<Segment> getSegments()
+    {
+        return std::vector<Segment>();
+    }
+    virtual std::vector<Box> getBoxs()
+    {
+        return std::vector<Box>();
+    }
+    virtual void collidedBy(Object *other)
+    {
+        return;
+    }
+    virtual Category getCategory()
+    {
+        return _category;
+    }
     Engine *_engine;
     bool _fixed;
+    Category _category;
 };
