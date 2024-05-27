@@ -38,7 +38,7 @@ public:
     std::unique_ptr<PerspectiveCamera> _camera;
     std::unique_ptr<DirectionalLight> _light_directional;
     std::unique_ptr<PointLight> _light_point;
-    Command *_command;
+    Command *_command = nullptr;
     friend class Object;
     friend class Command;
     friend class Ambience;

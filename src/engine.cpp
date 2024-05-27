@@ -13,10 +13,6 @@ Engine::~Engine()
     {
         delete object;
     }
-    for (auto object : _objects_move)
-    {
-        delete object;
-    }
     delete _command;
 };
 void Engine::start()
@@ -36,6 +32,9 @@ void Engine::getCommand()
 };
 void Engine::renew()
 {
+    glClearColor(_clearColor.r, _clearColor.g, _clearColor.b, _clearColor.a);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glEnable(GL_DEPTH_TEST);
     cameraRenew();
     for (auto object : _objects)
     {

@@ -1,6 +1,7 @@
 #include "engine.hpp"
 
-Options getOptions(int argc, char* argv[]) {
+Options getOptions(int argc, char *argv[])
+{
     Options options;
     options.windowTitle = "CSGO";
     options.windowWidth = 1280;
@@ -14,8 +15,24 @@ Options getOptions(int argc, char* argv[]) {
 
     return options;
 }
-int main(int argc, char* argv[]) {
+int main(int argc, char *argv[])
+{
     Options options = getOptions(argc, argv);
-    Engine engine(options);
-    engine.run();
+    try
+    {
+        Engine engine(options);
+        engine.run();
+    }
+    catch (std::exception &e)
+    {
+        std::cerr << e.what() << std::endl;
+        return EXIT_FAILURE;
+    }
+    catch (...)
+    {
+        std::cerr << "Unknown Error" << std::endl;
+        return EXIT_FAILURE;
+    }
+
+    return EXIT_SUCCESS;
 }
