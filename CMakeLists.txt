@@ -58,18 +58,18 @@ set(TINYGLTF_INSTALL OFF CACHE INTERNAL "" FORCE)
 add_subdirectory(./external/tinygltf)
 set_target_properties(tinygltf PROPERTIES FOLDER "lib")
 
-set(ASSIMP_LIB ${CMAKE_SOURCE_DIR}/external/assimp/lib/assimp-vc143-mt.lib)
+# set(ASSIMP_LIB ${CMAKE_SOURCE_DIR}/external/assimp/lib/assimp-vc143-mt.lib)
 
 file(GLOB SOURCE_FILES "src/*.cpp")
 file(GLOB BASE_SOURCE_FILES "base/src/*.cpp")
 
 include_directories(${CMAKE_SOURCE_DIR}/include)
 include_directories(${CMAKE_SOURCE_DIR}/base/include)
-include_directories(${CMAKE_SOURCE_DIR}/external/assimp/include)
+# include_directories(${CMAKE_SOURCE_DIR}/external/assimp/include)
 add_executable(${PROJECT_NAME} ${SOURCE_FILES} ${BASE_SOURCE_FILES})
 set_target_properties(${PROJECT_NAME} PROPERTIES FOLDER "app")
 
-target_link_libraries(${PROJECT_NAME}  ${CMAKE_SOURCE_DIR}/external/assimp/lib/assimp-vc143-mt.lib)
+# target_link_libraries(${PROJECT_NAME}  ${CMAKE_SOURCE_DIR}/external/assimp/lib/assimp-vc143-mt.lib)
 target_link_libraries(${PROJECT_NAME}  glfw)
 target_link_libraries(${PROJECT_NAME}  glad)
 target_link_libraries(${PROJECT_NAME}  glm)

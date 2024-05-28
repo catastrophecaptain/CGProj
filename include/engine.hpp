@@ -2,7 +2,7 @@
 #include "base/application.h"
 #include "base/camera.h"
 #include "base/light.h"
-
+#include "base/glsl_program.h"
 #include <vector>
 #include <memory>
 class Object;
@@ -32,16 +32,22 @@ public:
     virtual void handleInput() override;
     virtual void renderFrame() override;
     bool checkCollision(Object *fixed, Object *move);
+    int addShader(const std::string &vertexShader, const std::string &fragmentShader);
+    void initShaders();
+    void initlights();
     std::vector<Object *> _objects;
     std::vector<Object *> _objects_move;
+    std::vector<std::unique_ptr<GLSLProgram>> _shaders;
     EngineStage _stage;
     std::unique_ptr<PerspectiveCamera> _camera;
     std::unique_ptr<DirectionalLight> _light_directional;
     std::unique_ptr<PointLight> _light_point;
+    std::unique_ptr<AmbientLight> _light_ambient;
     Command *_command = nullptr;
     friend class Object;
     friend class Command;
     friend class Ambience;
+    friend class Shooter;
 
     // 只是为了测试
     void cameraRenew();

@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <base/transform.h>
 class Engine;
 class Segment
 {
@@ -43,6 +44,8 @@ public:
     {
         return _category;
     }
+    void normalizingShader(int index,Transform *transform=nullptr);
+    
     Engine *_engine;
     bool _fixed;
     Category _category;
