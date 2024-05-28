@@ -13,7 +13,7 @@ void Object::normalizingShader(int index,Transform * model)
     shader->setUniformFloat("directionalLight.intensity", _engine->_light_directional->intensity);
     shader->setUniformVec3("directionalLight.color", _engine->_light_directional->color);
     shader->setUniformVec3("spotLight.position", _engine->_light_point->transform.position);
-    shader->setUniformVec3("spotLight.direction", _engine->_light_point->transform.getFront());
+    // shader->setUniformVec3("spotLight.direction", _engine->_light_point->transform.getFront());
     shader->setUniformFloat("spotLight.intensity", _engine->_light_point->intensity);
     shader->setUniformVec3("spotLight.color",_engine-> _light_point->color);
     shader->setUniformFloat("spotLight.kc", _engine->_light_point->kc);

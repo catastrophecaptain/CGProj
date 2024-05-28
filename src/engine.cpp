@@ -207,7 +207,7 @@ void Engine::initShaders()
         vec3 calcSpotLight(vec3 normal,vec3 viewDir)
         {
             vec3 lightDir = normalize(spotLight.position - fPosition);
-            float theta = acos(-dot(lightDir, normalize(spotLight.direction)));
+            // float theta = acos(-dot(lightDir, normalize(spotLight.direction)));
             vec3 reflectDir = normalize(lightDir+viewDir);
             vec3 diffuse = spotLight.color * max(dot(lightDir, normal), 0.0f) * material_temp.kd;
             vec3 specular = spotLight.color * pow(max(dot(reflectDir, normal), 0.0f), material_temp.ns) * material_temp.ks;
