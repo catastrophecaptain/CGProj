@@ -30,7 +30,7 @@ void Engine::start()
     _stage = EngineStage::START;
     initShaders();
     initlights();
-    // Ambience *ambience = new Ambience(this);
+    Ambience *ambience = new Ambience(this);
     Shooter *shooter = new Shooter(this);
     // Example *example = new Example(this);
 };
@@ -230,7 +230,7 @@ void Engine::initShaders()
     )";
     std::vector<std::string> fsCode_bodies;
     fsCode_bodies.push_back("material_temp.kd = texture(mapKd, fTexCoord).rgb;");
-    fsCode_bodies.push_back("");
+    // fsCode_bodies.push_back("");
     // fsCode_body.push_back("material.ka = texture(mapKa, fTexCoord).rgb;");
     // fsCode_body.push_back("material.ks = texture(mapKs, fTexCoord).rgb;");
     for (auto fsCode_body : fsCode_bodies)
@@ -272,11 +272,11 @@ void Engine::initlights()
     _light_ambient->intensity = 0.1f;
     _light_directional.reset(new DirectionalLight());
     _light_directional->color = {1.0f, 1.0f, 1.0f};
-    _light_directional->intensity = 0.5f;
+    _light_directional->intensity = 1.0f;
     _light_directional->transform.rotation = glm::angleAxis(glm::radians(45.0f), glm::vec3(1.0f, 0.0f, 0.0f));
     _light_point.reset(new PointLight());
     _light_point->color = {1.0f, 1.0f, 1.0f};
-    _light_point->intensity = 0.5f;
+    _light_point->intensity = 1.0f;
     _light_point->transform.position = {0.0f, 0.0f, 0.0f};
     _light_point->kc = 1.0f;
     _light_point->kl = 0.0f;
