@@ -34,7 +34,6 @@ void Shooter::plot()
     shader->setUniformInt("mapKd", 0);
     shader->setUniformVec3("material.ks", glm::vec3(1.0, 1.0, 1.0));
     shader->setUniformVec3("material.ka", glm::vec3(1.0, 1.0, 1.0));
-    shader->setUniformVec3("material.kd", glm::vec3(0.2, 0.2, 0.2));
     shader->setUniformFloat("material.ns", 314);
     _material[0]->bind(0);
     _model[_model_current_index*2]->draw();

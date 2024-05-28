@@ -10,7 +10,7 @@ class Box
 };
 enum class Category
 {
-    ENEMY,
+    GHOST,
     SHOOTER,
     BULLET,
     WALL,

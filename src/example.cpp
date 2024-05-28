@@ -3,7 +3,7 @@
 #include <base/glsl_program.h>
 #include <base/texture.h>
 
-Example::Example(Engine *engine) : Object(engine, Category::ENEMY)
+Example::Example(Engine *engine) : Object(engine, Category::GHOST)
 {
     engine->addObject(this);
     const char *vsCode =

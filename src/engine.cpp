@@ -6,6 +6,7 @@
 #include "example.hpp"
 #include <base/light.h>
 #include "shooter.hpp"
+#include "ghost.hpp"
 Engine::Engine(const Options &options) : Application(options)
 {
     start();
@@ -31,7 +32,8 @@ void Engine::start()
     initShaders();
     initlights();
     Ambience *ambience = new Ambience(this);
-    Shooter *shooter = new Shooter(this);
+    // Shooter *shooter = new Shooter(this);
+    Ghost *ghost = new Ghost(this);
     // Example *example = new Example(this);
 };
 void Engine::getCommand()
@@ -269,7 +271,7 @@ void Engine::initlights()
 {
     _light_ambient.reset(new AmbientLight());
     _light_ambient->color = {0.1f, 0.1f, 0.1f};
-    _light_ambient->intensity = 0.1f;
+    _light_ambient->intensity = 0.2f;
     _light_directional.reset(new DirectionalLight());
     _light_directional->color = {1.0f, 1.0f, 1.0f};
     _light_directional->intensity = 1.0f;
