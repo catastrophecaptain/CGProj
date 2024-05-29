@@ -9,6 +9,7 @@
 #include "map.hpp"
 Engine::Engine(const Options &options) : Application(options)
 {
+    _command = new Command(this);
     start();
 };
 Engine::~Engine()
@@ -33,8 +34,8 @@ void Engine::start()
     initlights();
     Ambience *ambience = new Ambience(this);
     Shooter *shooter = new Shooter(this);
-    // Ghost *ghost = new Ghost(this);
-    // Map *map = new Map(this);
+     Ghost *ghost = new Ghost(this);
+     Map *map = new Map(this);
     // Example *example = new Example(this);
 };
 void Engine::getCommand()
@@ -46,6 +47,7 @@ void Engine::renew()
     glClearColor(_clearColor.r, _clearColor.g, _clearColor.b, _clearColor.a);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glEnable(GL_DEPTH_TEST);
+    _command->handleInput();
     cameraRenew();
     for (auto object : _objects)
     {

@@ -1,0 +1,360 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						3,
+						4,
+						6,
+						7,
+						8,
+						9
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.20"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				},
+				{
+					"build" : "external/glfw",
+					"childIndexes" : 
+					[
+						2
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-external.glfw-Debug-7fa446912e1f6f2c9d4d.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.4"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "external/glfw",
+					"targetIndexes" : 
+					[
+						7
+					]
+				},
+				{
+					"build" : "external/glfw/src",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-external.glfw.src-Debug-bef68817ccc5d7cb558e.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.4"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "external/glfw/src",
+					"targetIndexes" : 
+					[
+						2,
+						8
+					]
+				},
+				{
+					"build" : "external/glad",
+					"jsonFile" : "directory-external.glad-Debug-37f0033dbad014580c42.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.15"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 2,
+					"source" : "external/glad",
+					"targetIndexes" : 
+					[
+						1
+					]
+				},
+				{
+					"build" : "external/glm",
+					"childIndexes" : 
+					[
+						5
+					],
+					"jsonFile" : "directory-external.glm-Debug-a6dc993d5209625b6587.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.2"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 3,
+					"source" : "external/glm"
+				},
+				{
+					"build" : "external/glm/glm",
+					"jsonFile" : "directory-external.glm.glm-Debug-32a2ad45a04345e60681.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.2"
+					},
+					"parentIndex" : 4,
+					"projectIndex" : 3,
+					"source" : "external/glm/glm"
+				},
+				{
+					"build" : "external/tinyobjloader",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-external.tinyobjloader-Debug-89aa1568ef9e72cc76a8.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.2"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 4,
+					"source" : "external/tinyobjloader",
+					"targetIndexes" : 
+					[
+						6
+					]
+				},
+				{
+					"build" : "external/imgui",
+					"jsonFile" : "directory-external.imgui-Debug-2a2d9b1bc1af99bd2db9.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 5,
+					"source" : "external/imgui",
+					"targetIndexes" : 
+					[
+						3
+					]
+				},
+				{
+					"build" : "external/stb",
+					"jsonFile" : "directory-external.stb-Debug-3a45b2b4c02dd1217348.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.15"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 6,
+					"source" : "external/stb",
+					"targetIndexes" : 
+					[
+						4
+					]
+				},
+				{
+					"build" : "external/tinygltf",
+					"jsonFile" : "directory-external.tinygltf-Debug-cdf9e2a523dacc71ee19.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.6"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 7,
+					"source" : "external/tinygltf",
+					"targetIndexes" : 
+					[
+						5
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "CSGO",
+					"targetIndexes" : 
+					[
+						0
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						1,
+						2
+					],
+					"name" : "GLFW",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						2,
+						7,
+						8
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						3
+					],
+					"name" : "glad",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						1
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						4,
+						5
+					],
+					"name" : "glm",
+					"parentIndex" : 0
+				},
+				{
+					"directoryIndexes" : 
+					[
+						6
+					],
+					"name" : "tinyobjloader",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						6
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						7
+					],
+					"name" : "imgui",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						3
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						8
+					],
+					"name" : "stb",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						4
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						9
+					],
+					"name" : "tinygltf",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						5
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "CSGO::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-CSGO-Debug-243d9c18cc357bbc1d05.json",
+					"name" : "CSGO",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "glad::@55512df44c152ef9a2ca",
+					"jsonFile" : "target-glad-Debug-a96cef98fa844641dcde.json",
+					"name" : "glad",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "glfw::@ca12bac854c2ac6b2230",
+					"jsonFile" : "target-glfw-Debug-e89c4df6765561fadcf2.json",
+					"name" : "glfw",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 7,
+					"id" : "imgui::@408438dda4a3eccc02b1",
+					"jsonFile" : "target-imgui-Debug-795a460e81ee44f5cf78.json",
+					"name" : "imgui",
+					"projectIndex" : 5
+				},
+				{
+					"directoryIndex" : 8,
+					"id" : "stb::@75eb285bbb843d317cb7",
+					"jsonFile" : "target-stb-Debug-bdb8aea7ea3670453c8e.json",
+					"name" : "stb",
+					"projectIndex" : 6
+				},
+				{
+					"directoryIndex" : 9,
+					"id" : "tinygltf::@008c538ffcdc266c3524",
+					"jsonFile" : "target-tinygltf-Debug-424c6e84a858fdb5559b.json",
+					"name" : "tinygltf",
+					"projectIndex" : 7
+				},
+				{
+					"directoryIndex" : 6,
+					"id" : "tinyobjloader::@1d01870daa05c476c342",
+					"jsonFile" : "target-tinyobjloader-Debug-e53e2e5c42f12f6bab66.json",
+					"name" : "tinyobjloader",
+					"projectIndex" : 4
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "uninstall::@691b517da5fa0f694cd4",
+					"jsonFile" : "target-uninstall-Debug-0ac6ee8617f93ae5108a.json",
+					"name" : "uninstall",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "update_mappings::@ca12bac854c2ac6b2230",
+					"jsonFile" : "target-update_mappings-Debug-3872ba0178f85215344f.json",
+					"name" : "update_mappings",
+					"projectIndex" : 1
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/Users/apple/Desktop/CGProject/cmake-build-debug",
+		"source" : "/Users/apple/Desktop/CGProject"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 6
+	}
+}
