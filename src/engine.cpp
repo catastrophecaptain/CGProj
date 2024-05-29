@@ -3,7 +3,6 @@
 #include <command.hpp>
 #include <iostream>
 #include "ambience.hpp"
-#include "example.hpp"
 #include <base/light.h>
 #include "shooter.hpp"
 #include "ghost.hpp"
@@ -34,8 +33,8 @@ void Engine::start()
     initlights();
     Ambience *ambience = new Ambience(this);
     Shooter *shooter = new Shooter(this);
-    Ghost *ghost = new Ghost(this);
-    Map *map = new Map(this);
+    // Ghost *ghost = new Ghost(this);
+    // Map *map = new Map(this);
     // Example *example = new Example(this);
 };
 void Engine::getCommand()
