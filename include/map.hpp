@@ -16,7 +16,7 @@ struct MapMaterial
 class Map : public Object
 {
     public:
-    Map(Engine *engine,std::string _material_path="texture/ghost/T_Ghost.png",std::string _model_path="obj/map/map.obj");
+    Map(Engine *engine,std::string _material_path="texture/ghost/T_Ghost.png",std::string _model_path="obj/map/map_final.obj");
     void init(std::string _material_path,std::string _model_path);
     void plot() override;
     void static setShaderIndex(int index);

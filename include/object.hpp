@@ -13,7 +13,6 @@ enum class Category
     GHOST,
     SHOOTER,
     BULLET,
-    WALL,
     BOX,
     AMBIENCE,
     MAP

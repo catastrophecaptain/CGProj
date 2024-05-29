@@ -1,6 +1,8 @@
 #include <map.hpp>
 #include <engine.hpp>
 #include <tiny_obj_loader.h>
+#include <random>
+#include <algorithm>
 Map::Map(Engine *engine, std::string _material_path, std::string _model_path) : Object(engine, Category::GHOST)
 {
     engine->addObject(this);
@@ -73,15 +75,15 @@ void Map::init(std::string _material_path, std::string _model_path)
         Model *temp = new Model(vertices, indices);
         _models.push_back(std::unique_ptr<Model>(temp));
         MapMaterial *temp2 = new MapMaterial();
-        temp2->ka.r = materials[shape.mesh.material_ids[0]].ambient[0];
-        temp2->ka.g = materials[shape.mesh.material_ids[0]].ambient[1];
-        temp2->ka.b = materials[shape.mesh.material_ids[0]].ambient[2];
-        temp2->kd.r = materials[shape.mesh.material_ids[0]].diffuse[0];
-        temp2->kd.g = materials[shape.mesh.material_ids[0]].diffuse[1];
-        temp2->kd.b = materials[shape.mesh.material_ids[0]].diffuse[2];
-        temp2->ks.r = materials[shape.mesh.material_ids[0]].specular[0];
-        temp2->ks.g = materials[shape.mesh.material_ids[0]].specular[1];
-        temp2->ks.b = materials[shape.mesh.material_ids[0]].specular[2];
+        temp2->ka.r = std::max(0.0,materials[shape.mesh.material_ids[0]].ambient[0]+(std::rand()%400-200)/1000.0);
+        temp2->ka.g = std::max(0.0,materials[shape.mesh.material_ids[0]].ambient[1]+(std::rand()%400-200)/1000.0);
+        temp2->ka.b = std::max(0.0,materials[shape.mesh.material_ids[0]].ambient[2]+(std::rand()%400-200)/1000.0);
+        temp2->kd.r = std::max(0.0,materials[shape.mesh.material_ids[0]].diffuse[0]+(std::rand()%400-200)/1000.0);
+        temp2->kd.g = std::max(0.0,materials[shape.mesh.material_ids[0]].diffuse[1]+(std::rand()%400-200)/1000.0);
+        temp2->kd.b = std::max(0.0,materials[shape.mesh.material_ids[0]].diffuse[2]+(std::rand()%400-200)/1000.0);
+        temp2->ks.r = std::max(0.0,materials[shape.mesh.material_ids[0]].specular[0]+(std::rand()%400-200)/1000.0);
+        temp2->ks.g = std::max(0.0,materials[shape.mesh.material_ids[0]].specular[1]+(std::rand()%400-200)/1000.0);
+        temp2->ks.b = std::max(0.0,materials[shape.mesh.material_ids[0]].specular[2]+(std::rand()%400-200)/1000.0);
         temp2->ns = materials[shape.mesh.material_ids[0]].shininess;
         _materials.push_back(std::unique_ptr<MapMaterial>(temp2));
     }

@@ -33,8 +33,8 @@ void Engine::start()
     initShaders();
     initlights();
     Ambience *ambience = new Ambience(this);
-    // Shooter *shooter = new Shooter(this);
-    // Ghost *ghost = new Ghost(this);
+    Shooter *shooter = new Shooter(this);
+    Ghost *ghost = new Ghost(this);
     Map *map = new Map(this);
     // Example *example = new Example(this);
 };
@@ -242,7 +242,7 @@ void Engine::initShaders()
         std::string fsCode = fsCode_head + fsCode_body + fsCode_tail;
         addShader(vsCode, fsCode);
     }
-    const char* map_vsCode =
+    const char *map_vsCode =
         "#version 330 core\n"
         "layout(location = 0) in vec3 aPosition;\n"
         "layout(location = 1) in vec3 aNormal;\n"
@@ -261,7 +261,7 @@ void Engine::initShaders()
         "    gl_Position = projection * view * model * vec4(aPosition, 1.0f);\n"
         "}\n";
 
-    const char* map_fsCode = R"(
+    const char *map_fsCode = R"(
         #version 330 core
         in vec3 fPosition;
         in vec3 fNormal;
@@ -329,7 +329,7 @@ void Engine::initShaders()
             color = vec4(ambient+diffuse_specular, 1.0f);
         }
     )";
-    int map_index=addShader(map_vsCode, map_fsCode);
+    int map_index = addShader(map_vsCode, map_fsCode);
     Map::setShaderIndex(map_index);
     //     const char *vsCode =
     //     "#version 330 core\n"
@@ -376,7 +376,7 @@ void Engine::initlights()
 }
 void Engine::cameraRenew()
 {
-    constexpr float cameraMoveSpeed = 50.0f;
+    constexpr float cameraMoveSpeed = 100.0f;
     constexpr float cameraRotateSpeed = 0.02f;
 
     if (_input.keyboard.keyStates[GLFW_KEY_ESCAPE] != GLFW_RELEASE)
