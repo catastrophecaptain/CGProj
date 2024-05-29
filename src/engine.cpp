@@ -7,6 +7,7 @@
 #include <base/light.h>
 #include "shooter.hpp"
 #include "ghost.hpp"
+#include "map.hpp"
 Engine::Engine(const Options &options) : Application(options)
 {
     start();
@@ -33,7 +34,8 @@ void Engine::start()
     initlights();
     Ambience *ambience = new Ambience(this);
     // Shooter *shooter = new Shooter(this);
-    Ghost *ghost = new Ghost(this);
+    // Ghost *ghost = new Ghost(this);
+    Map *map = new Map(this);
     // Example *example = new Example(this);
 };
 void Engine::getCommand()
@@ -240,7 +242,95 @@ void Engine::initShaders()
         std::string fsCode = fsCode_head + fsCode_body + fsCode_tail;
         addShader(vsCode, fsCode);
     }
+    const char* map_vsCode =
+        "#version 330 core\n"
+        "layout(location = 0) in vec3 aPosition;\n"
+        "layout(location = 1) in vec3 aNormal;\n"
+        "layout(location = 2) in vec2 aTexCoord;\n"
 
+        "out vec3 fPosition;\n"
+        "out vec3 fNormal;\n"
+
+        "uniform mat4 model;\n"
+        "uniform mat4 view;\n"
+        "uniform mat4 projection;\n"
+
+        "void main() {\n"
+        "    fPosition = vec3(model * vec4(aPosition, 1.0f));\n"
+        "    fNormal = mat3(transpose(inverse(model))) * aNormal;\n"
+        "    gl_Position = projection * view * model * vec4(aPosition, 1.0f);\n"
+        "}\n";
+
+    const char* map_fsCode = R"(
+        #version 330 core
+        in vec3 fPosition;
+        in vec3 fNormal;
+        out vec4 color;
+
+        struct Material {
+            vec3 ka;
+            vec3 kd;
+            vec3 ks;
+            float ns;
+        };
+        struct DirectionalLight {
+            vec3 direction;
+            float intensity;
+            vec3 color;
+        };
+        struct SpotLight {
+            vec3 position;
+            vec3 direction;
+            float intensity;
+            vec3 color;
+            // float angle;
+            float kc;
+            float kl;
+            float kq;
+        };
+        struct AmbientLight {
+            vec3 color;
+            float intensity;
+        };
+        uniform vec3 cameraPos;
+        uniform Material material;
+        uniform DirectionalLight directionalLight;
+        uniform SpotLight spotLight;
+        uniform AmbientLight ambientLight;
+
+        vec3 calcDirectionalLight(vec3 normal,vec3 viewDir) 
+        {
+            vec3 lightDir = normalize(-directionalLight.direction);
+            vec3 reflectDir = normalize(lightDir+viewDir);
+            vec3 diffuse = directionalLight.color * max(dot(lightDir, normal), 0.0f) * material.kd;
+            vec3 specular = directionalLight.color * pow(max(dot(reflectDir, normal), 0.0f), material.ns) * material.ks;
+            return directionalLight.intensity * (diffuse + specular);
+        }
+        vec3 calcSpotLight(vec3 normal,vec3 viewDir)
+        {
+            vec3 lightDir = normalize(spotLight.position - fPosition);
+            // float theta = acos(-dot(lightDir, normalize(spotLight.direction)));
+            // if (theta > spotLight.angle) {
+            //     return vec3(0.0f, 0.0f, 0.0f);
+            // }
+            vec3 reflectDir = normalize(lightDir+viewDir);
+            vec3 diffuse = spotLight.color * max(dot(lightDir, normal), 0.0f) * material.kd;
+            vec3 specular = spotLight.color * pow(max(dot(reflectDir, normal), 0.0f), material.ns) * material.ks;
+            float distance = length(spotLight.position - fPosition);
+            float attenuation = 1.0f / (spotLight.kc + spotLight.kl * distance + spotLight.kq * distance * distance);
+            return spotLight.intensity * attenuation * (diffuse + specular);
+        }
+        void main()
+        {
+            vec3 viewDir = normalize(cameraPos - fPosition);
+            vec3 normal = normalize(fNormal);
+            vec3 ambient = material.ka * ambientLight.color * ambientLight.intensity;
+            vec3 diffuse_specular = calcDirectionalLight(normal,viewDir)+calcSpotLight(normal,viewDir);
+            color = vec4(ambient+diffuse_specular, 1.0f);
+        }
+    )";
+    int map_index=addShader(map_vsCode, map_fsCode);
+    Map::setShaderIndex(map_index);
     //     const char *vsCode =
     //     "#version 330 core\n"
     //     "layout(location = 0) in vec3 aPosition;\n"
@@ -270,8 +360,8 @@ void Engine::initShaders()
 void Engine::initlights()
 {
     _light_ambient.reset(new AmbientLight());
-    _light_ambient->color = {0.1f, 0.1f, 0.1f};
-    _light_ambient->intensity = 0.2f;
+    _light_ambient->color = {1.0f, 1.0f, 1.0f};
+    _light_ambient->intensity = 0.5f;
     _light_directional.reset(new DirectionalLight());
     _light_directional->color = {1.0f, 1.0f, 1.0f};
     _light_directional->intensity = 1.0f;
@@ -286,7 +376,7 @@ void Engine::initlights()
 }
 void Engine::cameraRenew()
 {
-    constexpr float cameraMoveSpeed = 5.0f;
+    constexpr float cameraMoveSpeed = 50.0f;
     constexpr float cameraRotateSpeed = 0.02f;
 
     if (_input.keyboard.keyStates[GLFW_KEY_ESCAPE] != GLFW_RELEASE)

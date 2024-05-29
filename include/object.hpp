@@ -16,6 +16,7 @@ enum class Category
     WALL,
     BOX,
     AMBIENCE,
+    MAP
 };
 class Object
 {

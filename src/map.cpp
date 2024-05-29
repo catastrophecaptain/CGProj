@@ -1,0 +1,113 @@
+#include <map.hpp>
+#include <engine.hpp>
+#include <tiny_obj_loader.h>
+Map::Map(Engine *engine, std::string _material_path, std::string _model_path) : Object(engine, Category::GHOST)
+{
+    engine->addObject(this);
+    init(_engine->_assetRootDir + _material_path, _engine->_assetRootDir + _model_path);
+}
+void Map::init(std::string _material_path, std::string _model_path)
+{
+    tinyobj::attrib_t attrib;
+    std::vector<tinyobj::shape_t> shapes;
+    std::vector<tinyobj::material_t> materials;
+
+    std::string warn, err;
+
+    std::string::size_type index = _model_path.find_last_of("/");
+    std::string mtlBaseDir = _model_path.substr(0, index + 1);
+
+    if (!tinyobj::LoadObj(
+            &attrib, &shapes, &materials, &warn, &err, _model_path.c_str(), mtlBaseDir.c_str()))
+    {
+        throw std::runtime_error("load " + _model_path + " failure: " + err);
+    }
+
+    if (!warn.empty())
+    {
+        std::cerr << "Loading model " + _model_path + " warnings: " << std::endl;
+        std::cerr << warn << std::endl;
+    }
+
+    if (!err.empty())
+    {
+        throw std::runtime_error("Loading model " + _model_path + " error:\n" + err);
+    }
+
+    for (const auto &shape : shapes)
+    {
+        std::vector<Vertex> vertices;
+        std::vector<uint32_t> indices;
+        std::unordered_map<Vertex, uint32_t> uniqueVertices;
+
+        for (const auto &index : shape.mesh.indices)
+        {
+            Vertex vertex{};
+
+            vertex.position.x = attrib.vertices[3 * index.vertex_index + 0];
+            vertex.position.y = attrib.vertices[3 * index.vertex_index + 1];
+            vertex.position.z = attrib.vertices[3 * index.vertex_index + 2];
+
+            if (index.normal_index >= 0)
+            {
+                vertex.normal.x = attrib.normals[3 * index.normal_index + 0];
+                vertex.normal.y = attrib.normals[3 * index.normal_index + 1];
+                vertex.normal.z = attrib.normals[3 * index.normal_index + 2];
+            }
+
+            if (index.texcoord_index >= 0)
+            {
+                vertex.texCoord.x = attrib.texcoords[2 * index.texcoord_index + 0];
+                vertex.texCoord.y = attrib.texcoords[2 * index.texcoord_index + 1];
+            }
+
+            // check if the vertex appeared before to reduce redundant data
+            if (uniqueVertices.count(vertex) == 0)
+            {
+                uniqueVertices[vertex] = static_cast<uint32_t>(vertices.size());
+                vertices.push_back(vertex);
+            }
+
+            indices.push_back(uniqueVertices[vertex]);
+        }
+        Model *temp = new Model(vertices, indices);
+        _models.push_back(std::unique_ptr<Model>(temp));
+        MapMaterial *temp2 = new MapMaterial();
+        temp2->ka.r = materials[shape.mesh.material_ids[0]].ambient[0];
+        temp2->ka.g = materials[shape.mesh.material_ids[0]].ambient[1];
+        temp2->ka.b = materials[shape.mesh.material_ids[0]].ambient[2];
+        temp2->kd.r = materials[shape.mesh.material_ids[0]].diffuse[0];
+        temp2->kd.g = materials[shape.mesh.material_ids[0]].diffuse[1];
+        temp2->kd.b = materials[shape.mesh.material_ids[0]].diffuse[2];
+        temp2->ks.r = materials[shape.mesh.material_ids[0]].specular[0];
+        temp2->ks.g = materials[shape.mesh.material_ids[0]].specular[1];
+        temp2->ks.b = materials[shape.mesh.material_ids[0]].specular[2];
+        temp2->ns = materials[shape.mesh.material_ids[0]].shininess;
+        _materials.push_back(std::unique_ptr<MapMaterial>(temp2));
+    }
+}
+void Map::plot()
+{
+    normalizingShader(_shader_index, &(_transform));
+    auto shader = _engine->_shaders[_shader_index].get();
+    shader->use();
+
+    // shader->setUniformVec3("material.ks", glm::vec3(0.5, 0.5, 0.5));
+    // shader->setUniformVec3("material.ka", glm::vec3(1.0, 1.0, 1.0));
+    // shader->setUniformVec3("material.kd", glm::vec3(0.5, 0.5, 0.5));
+    // shader->setUniformFloat("material.ns", 100.0f);
+
+    for (int i = 0; i < _models.size(); i++)
+    {
+        shader->setUniformVec3("material.ks", _materials[i]->kd);
+        shader->setUniformVec3("material.ka", _materials[i]->kd);
+        shader->setUniformVec3("material.kd", _materials[i]->kd);
+        shader->setUniformFloat("material.ns", _materials[i]->ns);
+        _models[i]->draw();
+    }
+}
+int Map::_shader_index = 1;
+void Map::setShaderIndex(int index)
+{
+    _shader_index = index;
+}

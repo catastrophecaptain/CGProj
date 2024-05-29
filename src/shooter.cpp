@@ -28,7 +28,7 @@ void Shooter::init(std::vector<std::string> _material_path, std::vector<std::str
 }
 void Shooter::plot()
 {
-    normalizingShader(_shader_index,&(_model[_model_current_index]->transform));
+    normalizingShader(_shader_index,&_transform);
     auto shader = _engine->_shaders[_shader_index].get();
     shader->use();
     shader->setUniformInt("mapKd", 0);

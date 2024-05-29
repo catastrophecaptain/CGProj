@@ -49,6 +49,7 @@ public:
     friend class Ambience;
     friend class Shooter;
     friend class Ghost;
+    friend class Map;
 
     // 只是为了测试
     void cameraRenew();
