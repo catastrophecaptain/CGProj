@@ -6,3 +6,4 @@ media/*
 external/assimp/lib/*
 *.zip
 cmake-build-debug/*
+.idea/
