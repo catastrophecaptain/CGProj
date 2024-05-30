@@ -50,10 +50,10 @@ void Command::handleInput() {
     int _num_ghosts = _engine->_ghosts.size();
     glm::vec3 _shooter_pos = _engine->shooter->_transform.position;
     for (auto ghost : _engine->_ghosts) {
-        float _deltaX = ghost->_model->transform.position.x - _shooter_pos.x;
-        float _deltaZ = ghost->_model->transform.position.z - _shooter_pos.z;
+        float _deltaX = ghost->_transform.position.x - _shooter_pos.x;
+        float _deltaZ = ghost->_transform.position.z - _shooter_pos.z;
         if (sqrt(_deltaX * _deltaX + _deltaZ * _deltaZ) <= ghost->_range_radius) {
-            ghost->_move_dir = _shooter_pos - ghost->_model->transform.position;
+            ghost->_move_dir = _shooter_pos - ghost->_transform.position;
         } else {
             ghost->_move_dir = glm::vec3 (0.0f);
         }
@@ -70,7 +70,7 @@ void Command::generateGhost() {
         int y = _num_generator(gen);
         int z = _num_generator(gen);
         float ghost_scale = 6.0f;
-        _engine->_ghosts[i]->_model->transform.scale = glm::vec3(ghost_scale, ghost_scale, ghost_scale);
-        _engine->_ghosts[i]->_model->transform.position = glm::vec3 ((x - 250.0f) * 0.8f, fmod(y, 40.0f) + 20.0f, (z - 250.0f) * 2.5f);
+        _engine->_ghosts[i]->_transform.scale = glm::vec3(ghost_scale, ghost_scale, ghost_scale);
+        _engine->_ghosts[i]->_transform.position = glm::vec3 ((x - 250.0f) * 0.8f, fmod(y, 40.0f) + 20.0f, (z - 250.0f) * 2.5f);
     }
 }

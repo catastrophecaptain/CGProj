@@ -63,7 +63,7 @@ void Engine::renew()
     glEnable(GL_DEPTH_TEST);
     _command->handleInput();
     for (auto ghost : _ghosts) {
-        ghost->_model->transform.position += _deltaTime * ghost->_speed * ghost->_move_dir;
+        ghost->_transform.position += _deltaTime * ghost->_speed * ghost->_move_dir;
     }
     cameraRenew();
     for (auto object : _objects)

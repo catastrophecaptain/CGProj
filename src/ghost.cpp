@@ -1,5 +1,7 @@
 #include <Ghost.hpp>
 #include <engine.hpp>
+std::unique_ptr<Model> Ghost::_model;
+std::unique_ptr<ImageTexture2D> Ghost::_material;
 Ghost::Ghost(Engine *engine, std::string _material_path, std::string _model_path) : Object(engine, Category::GHOST)
 {
     engine->addObject(this);
@@ -7,12 +9,16 @@ Ghost::Ghost(Engine *engine, std::string _material_path, std::string _model_path
 }
 void Ghost::init(std::string _material_path, std::string _model_path)
 {
-    _model.reset(new Model(_model_path));
-    _material.reset(new ImageTexture2D(_material_path));
+    if (!_is_loaded)
+    {
+        Ghost::_model.reset(new Model(_model_path));
+        Ghost::_material.reset(new ImageTexture2D(_material_path));
+        _is_loaded = true;
+    }
 }
 void Ghost::plot()
 {
-    normalizingShader(_shader_index,&(_model->transform));
+    normalizingShader(_shader_index, &(_transform));
     auto shader = _engine->_shaders[_shader_index].get();
     shader->use();
     _material->bind(0);
