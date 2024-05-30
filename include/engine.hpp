@@ -49,7 +49,7 @@ public:
     Command *_command = nullptr;
     // shooter和ghost
     Shooter* shooter;
-    std::vector<Ghost*> _ghosts;
+    // std::vector<Ghost*> _ghosts;
     std::vector<Bullet*> _bullets;
     friend class Object;
     friend class Command;

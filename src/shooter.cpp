@@ -1,9 +1,13 @@
 #include <shooter.hpp>
 #include <engine.hpp>
-Shooter::Shooter(Engine *engine, std::vector<std::string> _material_path, std::vector<std::string> _model_path) : Object(engine, Category::SHOOTER)
+Shooter::Shooter(Engine *engine, glm::vec3 scale, glm::vec3 position, glm::quat rotation,
+                 std::vector<std::string> _material_path, std::vector<std::string> _model_path) : Object(engine, Category::SHOOTER)
 {
-    engine->addObject(this);
+    engine->addObject(this, true);
     init(_material_path, _model_path);
+    _transform.scale = scale;
+    _transform.position = position;
+    _transform.rotation = rotation;
 }
 void Shooter::init(std::vector<std::string> _material_path, std::vector<std::string> _model_path)
 {

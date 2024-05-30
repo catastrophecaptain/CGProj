@@ -5,8 +5,8 @@
 #include "ambience.hpp"
 #include <base/light.h>
 #include <glm/gtc/matrix_transform.hpp>
-//#include "shooter.hpp"
-//#include "ghost.hpp"
+// #include "shooter.hpp"
+// #include "ghost.hpp"
 #include "map.hpp"
 Engine::Engine(const Options &options) : Application(options)
 {
@@ -34,22 +34,28 @@ void Engine::start()
     initShaders();
     initlights();
     Ambience *ambience = new Ambience(this);
-    shooter = new Shooter(this);
-    glm::mat4 scale = glm::mat4 (1.0f);
     float shooter_scale = 8.0f;
-    shooter->_transform.scale = glm::vec3 (shooter_scale, shooter_scale, shooter_scale);
-    shooter->_transform.position = glm::vec3 (0.0f, -1.0f, 7.0f);
+    glm::vec3 scale = glm::vec3(shooter_scale, shooter_scale, shooter_scale);
+    glm::vec3 position = glm::vec3(0.0f, -1.0f, 7.0f);
     float angle = glm::radians(180.0f);
-    shooter->_transform.rotation = glm::angleAxis(angle, glm::vec3(0.0f, 1.0f, 0.0f));
-    addObject(shooter, true);
+    glm::quat rotation = glm::angleAxis(angle, glm::vec3(0.0f, 1.0f, 0.0f));
+    shooter = new Shooter(this, scale, position, rotation);
     int num_ghosts = 10;
-    for (int i = 0; i < num_ghosts; i ++) {
-        Ghost* _new_ghost = new Ghost(this);
-        _ghosts.push_back(_new_ghost);
-        addObject(_new_ghost, true);
+    std::uniform_int_distribution<> _num_generator(1, 500);
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    for (int i = 0; i < num_ghosts; i++)
+    {
+        int x = _num_generator(gen);
+        int y = _num_generator(gen);
+        int z = _num_generator(gen);
+        float ghost_scale = 6.0f;
+        glm::vec3 scale(ghost_scale, ghost_scale, ghost_scale);
+        glm::vec3 position((x - 250.0f) * 0.8f, fmod(y, 40.0f) + 20.0f, (z - 250.0f) * 2.5f);
+        Ghost *ghost = new Ghost(this, scale, position);
     }
     _command->generateGhost();
-     Map *map = new Map(this);
+    Map *map = new Map(this);
     // Example *example = new Example(this);
 };
 void Engine::getCommand()
@@ -62,9 +68,6 @@ void Engine::renew()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glEnable(GL_DEPTH_TEST);
     _command->handleInput();
-    for (auto ghost : _ghosts) {
-        ghost->_transform.position += _deltaTime * ghost->_speed * ghost->_move_dir;
-    }
     cameraRenew();
     for (auto object : _objects)
     {
@@ -407,7 +410,8 @@ void Engine::cameraRenew()
     {
         std::cout << "W" << std::endl;
         _camera->transform.position += _camera->transform.getFront() * cameraMoveSpeed * _deltaTime;
-        if (_command->_view == 0) {
+        if (_command->_view == 0)
+        {
             shooter->_transform.position += _camera->transform.getFront() * cameraMoveSpeed * _deltaTime;
         }
     }
@@ -416,7 +420,8 @@ void Engine::cameraRenew()
     {
         std::cout << "A" << std::endl;
         _camera->transform.position -= _camera->transform.getRight() * cameraMoveSpeed * _deltaTime;
-        if (_command->_view == 0) {
+        if (_command->_view == 0)
+        {
             shooter->_transform.position -= _camera->transform.getRight() * cameraMoveSpeed * _deltaTime;
         }
     }
@@ -425,8 +430,9 @@ void Engine::cameraRenew()
     {
         std::cout << "S" << std::endl;
         _camera->transform.position -= _camera->transform.getFront() * cameraMoveSpeed * _deltaTime;
-        if (_command->_view == 0) {
-            //std::cout<<"0"<<std::endl;
+        if (_command->_view == 0)
+        {
+            // std::cout<<"0"<<std::endl;
             shooter->_transform.position -= _camera->transform.getFront() * cameraMoveSpeed * _deltaTime;
         }
     }
@@ -435,7 +441,8 @@ void Engine::cameraRenew()
     {
         std::cout << "D" << std::endl;
         _camera->transform.position += _camera->transform.getRight() * cameraMoveSpeed * _deltaTime;
-        if (_command->_view == 0) {
+        if (_command->_view == 0)
+        {
             shooter->_transform.position += _camera->transform.getRight() * cameraMoveSpeed * _deltaTime;
         }
     }
@@ -444,10 +451,11 @@ void Engine::cameraRenew()
     {
         std::cout << "mouse move in x direction" << std::endl;
         _camera->transform.rotation = glm::angleAxis(glm::radians(cameraRotateSpeed * (-_input.mouse.move.xNow + _input.mouse.move.xOld)), glm::vec3(0.0f, 1.0f, 0.0f)) * _camera->transform.rotation;
-        if (_command->_view == 0) {
+        if (_command->_view == 0)
+        {
             shooter->_transform.position = _camera->transform.position +
-                                           glm::vec3 (3 * _camera->transform.getFront().x, 3* _camera->transform.getFront().y, 3 * _camera->transform.getFront().z)-
-                                           glm::vec3 (0.0f, 1.0f, 0.0f);
+                                           glm::vec3(3 * _camera->transform.getFront().x, 3 * _camera->transform.getFront().y, 3 * _camera->transform.getFront().z) -
+                                           glm::vec3(0.0f, 1.0f, 0.0f);
             shooter->_transform.rotation = glm::angleAxis(glm::radians(cameraRotateSpeed * (-_input.mouse.move.xNow + _input.mouse.move.xOld)), glm::vec3(0.0f, 1.0f, 0.0f)) * shooter->_transform.rotation;
         }
     }
@@ -456,10 +464,11 @@ void Engine::cameraRenew()
     {
         std::cout << "mouse move in y direction" << std::endl;
         _camera->transform.rotation = glm::angleAxis(glm::radians(cameraRotateSpeed * (-_input.mouse.move.yNow + _input.mouse.move.yOld)), _camera->transform.getRight()) * _camera->transform.rotation;
-        if (_command->_view == 0) {
+        if (_command->_view == 0)
+        {
             shooter->_transform.position = _camera->transform.position +
-                    glm::vec3 (3 * _camera->transform.getFront().x, 3 * _camera->transform.getFront().y, 3 * _camera->transform.getFront().z)-
-                    glm::vec3 (0.0f, 1.0f, 0.0f);
+                                           glm::vec3(3 * _camera->transform.getFront().x, 3 * _camera->transform.getFront().y, 3 * _camera->transform.getFront().z) -
+                                           glm::vec3(0.0f, 1.0f, 0.0f);
             shooter->_transform.rotation = glm::angleAxis(glm::radians(cameraRotateSpeed * (-_input.mouse.move.yNow + _input.mouse.move.yOld)), _camera->transform.getRight()) * shooter->_transform.rotation;
         }
     }

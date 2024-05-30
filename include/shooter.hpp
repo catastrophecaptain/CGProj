@@ -10,7 +10,8 @@
 class Shooter : public Object
 {
 public:
-    Shooter(Engine *engine, std::vector<std::string> _material_path = {"texture/shooter/armColor.png", "texture/shooter/persuadercolor.png"}, std::vector<std::string> _model_path = {"obj/shooter/arm", "obj/shooter/gun"});
+    Shooter(Engine *engine, glm::vec3 scale, glm::vec3 position, glm::quat rotation,
+            std::vector<std::string> _material_path = {"texture/shooter/armColor.png", "texture/shooter/persuadercolor.png"}, std::vector<std::string> _model_path = {"obj/shooter/arm", "obj/shooter/gun"});
     void init(std::vector<std::string> _material_path, std::vector<std::string> _model_path);
     void plot() override;
     void frame_shoot_control();

@@ -2,10 +2,12 @@
 #include <engine.hpp>
 std::unique_ptr<Model> Ghost::_model;
 std::unique_ptr<ImageTexture2D> Ghost::_material;
-Ghost::Ghost(Engine *engine, std::string _material_path, std::string _model_path) : Object(engine, Category::GHOST)
+Ghost::Ghost(Engine *engine, glm::vec3 scale, glm::vec3 position, std::string _material_path, std::string _model_path) : Object(engine, Category::GHOST)
 {
     engine->addObject(this);
     init(_engine->_assetRootDir + _material_path, _engine->_assetRootDir + _model_path);
+    _transform.scale = scale;
+    _transform.position = position;
 }
 void Ghost::init(std::string _material_path, std::string _model_path)
 {
@@ -37,4 +39,19 @@ void Ghost::plot()
     // _Shader->setUniformMat4("view", view);
     // _Shader->setUniformMat4("model", _model->transform.getLocalMatrix());
     _model->draw();
+}
+void Ghost::renew()
+{
+    glm::vec3 _shooter_pos = _engine->shooter->_transform.position;
+    float _deltaX = _transform.position.x - _shooter_pos.x;
+    float _deltaZ = _transform.position.z - _shooter_pos.z;
+    if (sqrt(_deltaX * _deltaX + _deltaZ * _deltaZ) <= _range_radius)
+    {
+        _move_dir = _shooter_pos - _transform.position;
+    }
+    else
+    {
+        _move_dir = glm::vec3(0.0f);
+    }
+    _transform.position += _engine->_deltaTime * _speed * _move_dir;
 }
