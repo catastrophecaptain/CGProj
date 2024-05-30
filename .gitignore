@@ -5,3 +5,4 @@ media/*
 .vscode/
 external/assimp/lib/*
 *.zip
+cmake-build-debug/*
