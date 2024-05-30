@@ -4,9 +4,19 @@
 class Engine;
 class Segment
 {
+    public:
+    glm::vec3 start;
+    glm::vec3 end;
+    Segment(glm::vec3 start,glm::vec3 end):start(start),end(end){};
 };
 class Box
 {
+    public:
+    glm::vec3 min = glm::vec3(std::numeric_limits<float>::max());
+    glm::vec3 max = -glm::vec3(std::numeric_limits<float>::max());
+    Transform transform;
+    Box(glm::vec3 min,glm::vec3 max,Transform transform):min(min),max(max),transform(transform){};
+
 };
 enum class Category
 {
@@ -48,5 +58,6 @@ public:
     
     Engine *_engine;
     bool _fixed;
+    bool _is_plot = true;
     Category _category;
 };

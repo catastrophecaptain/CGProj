@@ -20,6 +20,7 @@ class Map : public Object
     void init(std::string _material_path,std::string _model_path);
     void plot() override;
     void static setShaderIndex(int index);
+    std::vector<Box> getBoxs() override;
     static int _shader_index;
     std::vector<std::unique_ptr<MapMaterial>> _materials;
     std::vector<std::unique_ptr<Model>> _models;

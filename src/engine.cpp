@@ -5,8 +5,8 @@
 #include "ambience.hpp"
 #include <base/light.h>
 #include <glm/gtc/matrix_transform.hpp>
-// #include "shooter.hpp"
-// #include "ghost.hpp"
+#include "shooter.hpp"
+#include "ghost.hpp"
 #include "map.hpp"
 Engine::Engine(const Options &options) : Application(options)
 {
@@ -28,7 +28,7 @@ void Engine::start()
     _input.mouse.move.yNow = _input.mouse.move.yOld = 0.5f * _windowHeight;
     glfwSetCursorPos(_window, _input.mouse.move.xNow, _input.mouse.move.yNow);
     _camera.reset(new PerspectiveCamera(
-        glm::radians(50.0f), 1.0f * _windowWidth / _windowHeight, 0.1f, 1000.0f));
+        glm::radians(50.0f), 1.0f * _windowWidth / _windowHeight, 0.1f, 10000.0f));
     _camera->transform.position.z = 10.0f;
     _stage = EngineStage::START;
     initShaders();
@@ -54,9 +54,8 @@ void Engine::start()
         glm::vec3 position((x - 250.0f) * 0.8f, fmod(y, 40.0f) + 20.0f, (z - 250.0f) * 2.5f);
         Ghost *ghost = new Ghost(this, scale, position);
     }
-    _command->generateGhost();
+    // _command->generateGhost();
     Map *map = new Map(this);
-    // Example *example = new Example(this);
 };
 void Engine::getCommand()
 {
@@ -64,16 +63,17 @@ void Engine::getCommand()
 };
 void Engine::renew()
 {
+    for (auto object : _objects_to_delete)
+    {
+        deleteObject(object);
+        std::cout << "delete object" << std::endl;
+    }
+    _objects_to_delete.clear();
     glClearColor(_clearColor.r, _clearColor.g, _clearColor.b, _clearColor.a);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glEnable(GL_DEPTH_TEST);
     _command->handleInput();
-    cameraRenew();
     for (auto object : _objects)
-    {
-        object->renew();
-    }
-    for (auto object : _objects_move)
     {
         object->renew();
     }
@@ -82,15 +82,13 @@ void Engine::check()
 {
     for (auto object : _objects)
     {
-        if (object->isFixed())
+
+        for (auto object_move : _objects_move)
         {
-            for (auto object_move : _objects_move)
+            if (checkCollision(object, object_move))
             {
-                if (checkCollision(object, object_move))
-                {
-                    object->collidedBy(object_move);
-                    object_move->collidedBy(object);
-                }
+                object->collidedBy(object_move);
+                object_move->collidedBy(object);
             }
         }
     }
@@ -99,13 +97,71 @@ void Engine::plot()
 {
     for (auto object : _objects)
     {
-        object->plot();
+        if (object->_is_plot)
+        {
+            object->plot();
+        }
     }
 };
 bool Engine::checkCollision(Object *fixed, Object *move)
 {
+    std::vector<Box> boxes = fixed->getBoxs();
+    std::vector<Segment> segments = move->getSegments();
+    for (auto box : boxes)
+    {
+        for (auto segment : segments)
+        {
+            if (checkCollision(box, segment))
+            {
+                return true;
+            }
+        }
+    }
     return false;
 };
+bool Engine::checkCollision(Box &box1, Segment &segment2)
+{
+
+    glm::vec3 start = segment2.start;
+    glm::vec3 end = segment2.end;
+    glm::vec3 segment = end - start;
+    if (glm::length(segment) < 0.1f)
+    {
+        return false;
+    }
+    Transform transform = box1.transform;
+    glm::mat4 model = transform.getLocalMatrix();
+    glm::mat4 inv_model = glm::inverse(model);
+    glm::vec4 inv_start = inv_model * glm::vec4(start, 1.0f);
+    glm::vec4 inv_end = inv_model * glm::vec4(end, 1.0f);
+    glm::vec3 dir = glm::normalize(glm::vec3(inv_end - inv_start));
+
+    glm::vec3 inv_dir;
+    for (int i = 0; i < 3; i++)
+    {
+        if (dir[i] == 0.0f)
+        {
+            inv_dir[i] = std::numeric_limits<float>::max() / 100;
+        }
+        else
+        {
+            inv_dir[i] = 1.0f / dir[i];
+        }
+    }
+
+    glm::vec3 t1 = (box1.min - glm::vec3(inv_start)) * inv_dir;
+    glm::vec3 t2 = (box1.max - glm::vec3(inv_start)) * inv_dir;
+    glm::vec3 tmin = glm::min(t1, t2);
+    glm::vec3 tmax = glm::max(t1, t2);
+    float t_enter = glm::max(glm::max(tmin.x, tmin.y), tmin.z);
+    float t_exit = glm::min(glm::min(tmax.x, tmax.y), tmax.z);
+    _t_min = t_enter / glm::length(glm::vec3(transform.rotation * dir));
+    if (t_enter <= t_exit && t_enter < glm::length(glm::vec3(inv_end - inv_start)) && t_exit > 0)
+    {
+        return true;
+    }
+    return false;
+}
 void Engine::handleInput()
 {
     renew();
@@ -136,6 +192,7 @@ void Engine::deleteObject(Object *object)
         if (*it == object)
         {
             _objects.erase(it);
+            delete object;
             break;
         }
     }
@@ -353,31 +410,24 @@ void Engine::initShaders()
     )";
     int map_index = addShader(map_vsCode, map_fsCode);
     Map::setShaderIndex(map_index);
-    //     const char *vsCode =
-    //     "#version 330 core\n"
-    //     "layout(location = 0) in vec3 aPosition;\n"
-    //     "layout(location = 1) in vec3 aNormal;\n"
-    //     "layout(location = 2) in vec2 aTexCoord;\n"
-    //     "out vec2 fTexCoord;\n"
-    //     "uniform mat4 projection;\n"
-    //     "uniform mat4 view;\n"
-    //     "uniform mat4 model;\n"
+    const char *segment_vsCode = R"glsl(
+            #version 330 core
+            layout (location = 0) in vec3 aPos;
+            void main()
+            {
+               gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);
+            }
+            )glsl";
 
-    //     "void main() {\n"
-    //     "    fTexCoord = aTexCoord;\n"
-    //     "    gl_Position = projection * view * model * vec4(aPosition, 1.0f);\n"
-    //     "}\n";
-
-    // const char *fsCode =
-    //     "#version 330 core\n"
-    //     "in vec2 fTexCoord;\n"
-    //     "out vec4 color;\n"
-    //     "uniform sampler2D mapKd;\n"
-    //     "void main() {\n"
-    //     "    color = texture(mapKd, fTexCoord);\n"
-    //     "}\n";
-
-    // addShader(vsCode, fsCode);
+    const char *segment_fsCode = R"glsl(
+            #version 330 core
+            out vec4 FragColor;
+            void main()
+            {
+               FragColor = vec4(1.0, 0.5, 0.2, 1.0);
+            }
+            )glsl";
+    addShader(segment_vsCode,segment_fsCode);
 }
 void Engine::initlights()
 {
@@ -396,81 +446,3 @@ void Engine::initlights()
     _light_point->kl = 0.0f;
     _light_point->kq = 1.0f;
 }
-void Engine::cameraRenew()
-{
-    constexpr float cameraMoveSpeed = 100.0f;
-    constexpr float cameraRotateSpeed = 0.02f;
-
-    if (_input.keyboard.keyStates[GLFW_KEY_ESCAPE] != GLFW_RELEASE)
-    {
-        glfwSetWindowShouldClose(_window, true);
-        return;
-    }
-
-    if (_input.keyboard.keyStates[GLFW_KEY_W] != GLFW_RELEASE)
-    {
-        std::cout << "W" << std::endl;
-        _camera->transform.position += _camera->transform.getFront() * cameraMoveSpeed * _deltaTime;
-        if (_command->_view == 0)
-        {
-            shooter->_transform.position += _camera->transform.getFront() * cameraMoveSpeed * _deltaTime;
-        }
-    }
-
-    if (_input.keyboard.keyStates[GLFW_KEY_A] != GLFW_RELEASE)
-    {
-        std::cout << "A" << std::endl;
-        _camera->transform.position -= _camera->transform.getRight() * cameraMoveSpeed * _deltaTime;
-        if (_command->_view == 0)
-        {
-            shooter->_transform.position -= _camera->transform.getRight() * cameraMoveSpeed * _deltaTime;
-        }
-    }
-
-    if (_input.keyboard.keyStates[GLFW_KEY_S] != GLFW_RELEASE)
-    {
-        std::cout << "S" << std::endl;
-        _camera->transform.position -= _camera->transform.getFront() * cameraMoveSpeed * _deltaTime;
-        if (_command->_view == 0)
-        {
-            // std::cout<<"0"<<std::endl;
-            shooter->_transform.position -= _camera->transform.getFront() * cameraMoveSpeed * _deltaTime;
-        }
-    }
-
-    if (_input.keyboard.keyStates[GLFW_KEY_D] != GLFW_RELEASE)
-    {
-        std::cout << "D" << std::endl;
-        _camera->transform.position += _camera->transform.getRight() * cameraMoveSpeed * _deltaTime;
-        if (_command->_view == 0)
-        {
-            shooter->_transform.position += _camera->transform.getRight() * cameraMoveSpeed * _deltaTime;
-        }
-    }
-
-    if (_input.mouse.move.xNow != _input.mouse.move.xOld)
-    {
-        std::cout << "mouse move in x direction" << std::endl;
-        _camera->transform.rotation = glm::angleAxis(glm::radians(cameraRotateSpeed * (-_input.mouse.move.xNow + _input.mouse.move.xOld)), glm::vec3(0.0f, 1.0f, 0.0f)) * _camera->transform.rotation;
-        if (_command->_view == 0)
-        {
-            shooter->_transform.position = _camera->transform.position +
-                                           glm::vec3(3 * _camera->transform.getFront().x, 3 * _camera->transform.getFront().y, 3 * _camera->transform.getFront().z) -
-                                           glm::vec3(0.0f, 1.0f, 0.0f);
-            shooter->_transform.rotation = glm::angleAxis(glm::radians(cameraRotateSpeed * (-_input.mouse.move.xNow + _input.mouse.move.xOld)), glm::vec3(0.0f, 1.0f, 0.0f)) * shooter->_transform.rotation;
-        }
-    }
-
-    if (_input.mouse.move.yNow != _input.mouse.move.yOld)
-    {
-        std::cout << "mouse move in y direction" << std::endl;
-        _camera->transform.rotation = glm::angleAxis(glm::radians(cameraRotateSpeed * (-_input.mouse.move.yNow + _input.mouse.move.yOld)), _camera->transform.getRight()) * _camera->transform.rotation;
-        if (_command->_view == 0)
-        {
-            shooter->_transform.position = _camera->transform.position +
-                                           glm::vec3(3 * _camera->transform.getFront().x, 3 * _camera->transform.getFront().y, 3 * _camera->transform.getFront().z) -
-                                           glm::vec3(0.0f, 1.0f, 0.0f);
-            shooter->_transform.rotation = glm::angleAxis(glm::radians(cameraRotateSpeed * (-_input.mouse.move.yNow + _input.mouse.move.yOld)), _camera->transform.getRight()) * shooter->_transform.rotation;
-        }
-    }
-};

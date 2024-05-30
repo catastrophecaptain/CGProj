@@ -3,7 +3,7 @@
 #include <tiny_obj_loader.h>
 #include <random>
 #include <algorithm>
-Map::Map(Engine *engine, std::string _material_path, std::string _model_path) : Object(engine, Category::GHOST)
+Map::Map(Engine *engine, std::string _material_path, std::string _model_path) : Object(engine, Category::MAP)
 {
     engine->addObject(this);
     init(_engine->_assetRootDir + _material_path, _engine->_assetRootDir + _model_path);
@@ -112,4 +112,14 @@ int Map::_shader_index = 1;
 void Map::setShaderIndex(int index)
 {
     _shader_index = index;
+}
+std::vector<Box> Map::getBoxs()
+{
+    std::vector<Box> boxs;
+    for (int i = 0; i < _models.size(); i++)
+    {
+        BoundingBox box = _models[i]->getBoundingBox();
+        boxs.push_back(Box(box.min, box.max,_models[i]->transform));
+    }
+    return boxs;
 }

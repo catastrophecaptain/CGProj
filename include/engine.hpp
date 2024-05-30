@@ -3,13 +3,15 @@
 #include "base/camera.h"
 #include "base/light.h"
 #include "base/glsl_program.h"
-#include "shooter.hpp"
-#include "ghost.hpp"
-#include "bullet.hpp"
 #include <vector>
 #include <memory>
+class Bullet;
+class Ghost;
+class Shooter;
 class Object;
 class Command;
+class Segment;
+class Box;
 enum class EngineStage
 {
     HALT,
@@ -35,29 +37,32 @@ public:
     virtual void handleInput() override;
     virtual void renderFrame() override;
     bool checkCollision(Object *fixed, Object *move);
+    bool checkCollision(Box& box1, Segment& segment2);
     int addShader(const std::string &vertexShader, const std::string &fragmentShader);
     void initShaders();
     void initlights();
     std::vector<Object *> _objects;
     std::vector<Object *> _objects_move;
     std::vector<std::unique_ptr<GLSLProgram>> _shaders;
-    EngineStage _stage;
+    EngineStage _stage=EngineStage::START;
     std::unique_ptr<PerspectiveCamera> _camera;
     std::unique_ptr<DirectionalLight> _light_directional;
     std::unique_ptr<PointLight> _light_point;
     std::unique_ptr<AmbientLight> _light_ambient;
+    std::vector<Object *> _objects_to_delete;
     Command *_command = nullptr;
     // shooter和ghost
     Shooter* shooter;
     // std::vector<Ghost*> _ghosts;
     std::vector<Bullet*> _bullets;
+    float _t_min = 0.0;
     friend class Object;
     friend class Command;
     friend class Ambience;
     friend class Shooter;
     friend class Ghost;
     friend class Map;
+    friend class Bullet;
 
     // 只是为了测试
-    void cameraRenew();
 };

@@ -1,13 +1,17 @@
 #include <shooter.hpp>
 #include <engine.hpp>
+#include "glm/gtc/matrix_transform.hpp"
+#include "bullet.hpp"
 Shooter::Shooter(Engine *engine, glm::vec3 scale, glm::vec3 position, glm::quat rotation,
                  std::vector<std::string> _material_path, std::vector<std::string> _model_path) : Object(engine, Category::SHOOTER)
 {
     engine->addObject(this, true);
     init(_material_path, _model_path);
-    _transform.scale = scale;
-    _transform.position = position;
-    _transform.rotation = rotation;
+    _model_transform.scale = scale;
+    _model_transform.position = position;
+    _model_transform.rotation = rotation;
+    change_stage(_engine->_stage);
+    _bounding_box = BoundingBox{glm::vec3(-3.0f, -45.0f, -3.0f), glm::vec3(3.0f, 40.0f, 3.0f)};
 }
 void Shooter::init(std::vector<std::string> _material_path, std::vector<std::string> _model_path)
 {
@@ -32,9 +36,16 @@ void Shooter::init(std::vector<std::string> _material_path, std::vector<std::str
 }
 void Shooter::plot()
 {
-    normalizingShader(_shader_index, &_transform);
+    normalizingShader(_shader_index, &_model_transform);
     auto shader = _engine->_shaders[_shader_index].get();
+    // todo
+    glm::mat4 static_matrix;
+    static_matrix[0] = glm::vec4(1, 0, 0, 0);
+    static_matrix[1] = glm::vec4(0, 1, 0, 0);
+    static_matrix[2] = glm::vec4(0, 0, 1, 0);
+    static_matrix[3] = glm::vec4(0, 0, -10, 1);
     shader->use();
+    shader->setUniformMat4("view", static_matrix);
     shader->setUniformInt("mapKd", 0);
     shader->setUniformVec3("material.ks", glm::vec3(0.2, 0.2, 0.2));
     shader->setUniformVec3("material.ka", glm::vec3(0.2, 0.2, 0.2));
@@ -45,15 +56,6 @@ void Shooter::plot()
     _material[1]->bind(0);
     _model[_model_current_index * 2 + 1]->draw();
     frame_shoot_control();
-    // debug使用
-    // static int times = 0;
-    //     if(times%40==0)
-    //     {
-    //     frame_shoot();
-    //     }else if(times%240<=40){
-    //         frame_shoot();
-    //     }
-    //     times++;
 }
 void Shooter::frame_shoot_control()
 {
@@ -85,4 +87,228 @@ void Shooter::frame_shoot_control()
 void Shooter::frame_shoot()
 {
     _is_shooting = true;
+}
+void Shooter::renew()
+{
+    //     if (_input.keyboard.keyStates[GLFW_KEY_W] != GLFW_RELEASE)
+    // {
+    //     std::cout << "W" << std::endl;
+    //     _camera->transform.position += _camera->transform.getFront() * cameraMoveSpeed * _deltaTime;
+    // }
+
+    // if (_input.keyboard.keyStates[GLFW_KEY_A] != GLFW_RELEASE)
+    // {
+    //     std::cout << "A" << std::endl;
+    //     _camera->transform.position -= _camera->transform.getRight() * cameraMoveSpeed * _deltaTime;
+    // }
+
+    // if (_input.keyboard.keyStates[GLFW_KEY_S] != GLFW_RELEASE)
+    // {
+    //     std::cout << "S" << std::endl;
+    //     _camera->transform.position -= _camera->transform.getFront() * cameraMoveSpeed * _deltaTime;
+    // }
+
+    // if (_input.keyboard.keyStates[GLFW_KEY_D] != GLFW_RELEASE)
+    // {
+    //     std::cout << "D" << std::endl;
+    //     _camera->transform.position += _camera->transform.getRight() * cameraMoveSpeed * _deltaTime;
+    // }
+
+    // if (_input.mouse.move.xNow != _input.mouse.move.xOld)
+    // {
+    //     std::cout << "mouse move in x direction" << std::endl;
+    //     _camera->transform.rotation = glm::angleAxis(glm::radians(cameraRotateSpeed * (-_input.mouse.move.xNow + _input.mouse.move.xOld)), glm::vec3(0.0f, 1.0f, 0.0f)) * _camera->transform.rotation;
+    // }
+
+    // if (_input.mouse.move.yNow != _input.mouse.move.yOld)
+    // {
+    //     std::cout << "mouse move in y direction" << std::endl;
+    //     _camera->transform.rotation = glm::angleAxis(glm::radians(cameraRotateSpeed * (-_input.mouse.move.yNow + _input.mouse.move.yOld)), _camera->transform.getRight()) * _camera->transform.rotation;
+    // }
+    std::cout << _transform.position.x << " " << _transform.position.y << " " << _transform.position.z << std::endl;
+    _transform_old = _transform;
+    bool _is_landed = false;
+    _transform.position.y-=10.0;
+    for(auto it:_engine->_objects)
+    {
+        for(auto box:it->getBoxs())
+        {
+            for(auto segmant:getSegments())
+            {
+                if(it->getCategory()==Category::MAP&&_engine->checkCollision(box,segmant))
+                {
+                    _is_landed=true;
+                }
+
+            }
+        }
+    }
+    _transform=_transform_old;
+    if (_is_landed)
+    {
+        _up_speed = _up_speed < 0 ? 0 : _up_speed;
+    }
+    if (!_is_end)
+    {
+        if (_engine->_input.mouse.move.xNow != _engine->_input.mouse.move.xOld)
+        {
+            _transform.rotation = glm::angleAxis(glm::radians(_angle_speed * (-_engine->_input.mouse.move.xNow + _engine->_input.mouse.move.xOld)), glm::vec3(0.0f, 1.0f, 0.0f)) * _transform.rotation;
+        }
+        if (_engine->_input.mouse.move.yNow != _engine->_input.mouse.move.yOld)
+        {
+            _transform.rotation = glm::angleAxis(glm::radians(_angle_speed * (-_engine->_input.mouse.move.yNow + _engine->_input.mouse.move.yOld)), _transform.getRight()) * _transform.rotation;
+        }
+        if (_is_view_mode)
+        {
+            if (_engine->_input.keyboard.keyStates[GLFW_KEY_W] != GLFW_RELEASE)
+            {
+                _transform.position += _transform.getFront() * _speed * _engine->_deltaTime;
+            }
+            if (_engine->_input.keyboard.keyStates[GLFW_KEY_S] != GLFW_RELEASE)
+            {
+                _transform.position -= _transform.getFront() * _speed * _engine->_deltaTime;
+            }
+            if (_engine->_input.keyboard.keyStates[GLFW_KEY_A] != GLFW_RELEASE)
+            {
+                _transform.position -= _transform.getRight() * _speed * _engine->_deltaTime;
+            }
+            if (_engine->_input.keyboard.keyStates[GLFW_KEY_D] != GLFW_RELEASE)
+            {
+                _transform.position += _transform.getRight() * _speed * _engine->_deltaTime;
+            }
+            if (_engine->_input.mouse.scroll.xOffset != 0)
+            {
+                _engine->_camera->fovy *= std::pow(1.01, _engine->_input.mouse.scroll.xOffset);
+            }
+            if (_engine->_input.mouse.scroll.yOffset != 0)
+            {
+                _engine->_camera->fovy *= std::pow(1.01, _engine->_input.mouse.scroll.yOffset);
+            }
+        }
+        else
+        {
+            if (_engine->_input.keyboard.keyStates[GLFW_KEY_W] != GLFW_RELEASE)
+            {
+                _transform.position += normalize(glm::vec3(_transform.getFront().x, 0, _transform.getFront().z)) * _speed * _engine->_deltaTime;
+            }
+            if (_engine->_input.keyboard.keyStates[GLFW_KEY_S] != GLFW_RELEASE)
+            {
+                _transform.position -= normalize(glm::vec3(_transform.getFront().x, 0, _transform.getFront().z)) * _speed * _engine->_deltaTime;
+            }
+            if (_engine->_input.keyboard.keyStates[GLFW_KEY_A] != GLFW_RELEASE)
+            {
+                _transform.position -= normalize(glm::vec3(_transform.getRight().x, 0, _transform.getRight().z)) * _speed * _engine->_deltaTime;
+            }
+            if (_engine->_input.keyboard.keyStates[GLFW_KEY_D] != GLFW_RELEASE)
+            {
+                _transform.position += normalize(glm::vec3(_transform.getRight().x, 0, _transform.getRight().z)) * _speed * _engine->_deltaTime;
+            }
+            if (_engine->_input.mouse.press.left)
+            {
+                std::cout << "mouse left" << std::endl;
+                frame_shoot();
+                Bullet *bullet = new Bullet(_engine, _transform_old.position, _transform_old.getFront(), 10000.0);
+            }
+            if (_engine->_input.keyboard.keyStates[GLFW_KEY_SPACE] != GLFW_RELEASE && _is_landed)
+            {
+                _up_speed = _up_speed_once;
+            }
+            if (!_is_landed)
+            {
+                
+                _up_speed -= _gravity * _engine->_deltaTime;
+            }
+                _transform.position.y += _up_speed * _engine->_deltaTime;
+        }
+        renew_camera();
+    }
+}
+void Shooter::change_stage(EngineStage stage)
+{
+    switch (stage)
+    {
+    case EngineStage::START:
+        _is_end = false;
+        _is_view_mode = true;
+        break;
+    case EngineStage::RUN:
+        _engine->_camera->fovy = _fovy_init;
+        _is_end = false;
+        _is_view_mode = false;
+        break;
+    case EngineStage::END:
+        _is_end = true;
+        _up_speed = 0;
+        break;
+    }
+}
+void Shooter::renew_camera()
+{
+    _engine->_camera->transform.position = _transform.position;
+    _engine->_camera->transform.rotation = _transform.rotation;
+}
+std::vector<Box> Shooter::getBoxs()
+{
+    std::vector<Box> boxs;
+    boxs.push_back(Box{_bounding_box.min, _bounding_box.max, _engine->_camera->transform});
+    return boxs;
+}
+std::vector<Segment> Shooter::getSegments()
+{
+    std::vector<Segment> segments;
+    glm::vec3 vertex_1[8];
+    Transform _transform_1{_transform};
+    Transform _transform_old_1{_transform_old};
+    _transform_1.rotation=glm::quat{1.0,0.0,0.0,0.0};
+    _transform_old_1.rotation=glm::quat{1.0,0.0,0.0,0.0};
+    vertex_1[0] = _transform_1.getLocalMatrix() * glm::vec4(_bounding_box.min, 1.0f);
+    vertex_1[1] = _transform_1.getLocalMatrix() * glm::vec4(_bounding_box.max, 1.0f);
+    vertex_1[2] = _transform_1.getLocalMatrix() * glm::vec4(_bounding_box.min.x, _bounding_box.min.y, _bounding_box.max.z, 1.0f);
+    vertex_1[3] = _transform_1.getLocalMatrix() * glm::vec4(_bounding_box.min.x, _bounding_box.max.y, _bounding_box.min.z, 1.0f);
+    vertex_1[4] = _transform_1.getLocalMatrix() * glm::vec4(_bounding_box.min.x, _bounding_box.max.y, _bounding_box.max.z, 1.0f);
+    vertex_1[5] = _transform_1.getLocalMatrix() * glm::vec4(_bounding_box.max.x, _bounding_box.min.y, _bounding_box.min.z, 1.0f);
+    vertex_1[6] = _transform_1.getLocalMatrix() * glm::vec4(_bounding_box.max.x, _bounding_box.min.y, _bounding_box.max.z, 1.0f);
+    vertex_1[7] = _transform_1.getLocalMatrix() * glm::vec4(_bounding_box.max.x, _bounding_box.max.y, _bounding_box.min.z, 1.0f);
+    glm::vec3 vertex_2[8];
+    vertex_2[0] = _transform_old_1.getLocalMatrix() * glm::vec4(_bounding_box.min, 1.0f);
+    vertex_2[1] = _transform_old_1.getLocalMatrix() * glm::vec4(_bounding_box.max, 1.0f);
+    vertex_2[2] = _transform_old_1.getLocalMatrix() * glm::vec4(_bounding_box.min.x, _bounding_box.min.y, _bounding_box.max.z, 1.0f);
+    vertex_2[3] = _transform_old_1.getLocalMatrix() * glm::vec4(_bounding_box.min.x, _bounding_box.max.y, _bounding_box.min.z, 1.0f);
+    vertex_2[4] = _transform_old_1.getLocalMatrix() * glm::vec4(_bounding_box.min.x, _bounding_box.max.y, _bounding_box.max.z, 1.0f);
+    vertex_2[5] = _transform_old_1.getLocalMatrix() * glm::vec4(_bounding_box.max.x, _bounding_box.min.y, _bounding_box.min.z, 1.0f);
+    vertex_2[6] = _transform_old_1.getLocalMatrix() * glm::vec4(_bounding_box.max.x, _bounding_box.min.y, _bounding_box.max.z, 1.0f);
+    vertex_2[7] = _transform_old_1.getLocalMatrix() * glm::vec4(_bounding_box.max.x, _bounding_box.max.y, _bounding_box.min.z, 1.0f);
+    for (int i = 0; i < 8; i++)
+    {
+        segments.push_back(Segment{vertex_1[i], vertex_2[i]});
+    }
+    return segments;
+}
+void Shooter::collidedBy(Object *other)
+{
+    switch (other->getCategory())
+    {
+    case Category::GHOST:
+    {
+        if (!_is_end)
+        {
+            _engine->_stage = EngineStage::END;
+        }
+        break;
+    }
+    case Category::BULLET:
+    {
+        break;
+    }
+    case Category::MAP:
+    {
+        std::cout << "collided by map" << std::endl;
+        _transform.position = _transform_old.position;
+        std::cout<<_engine->_t_min<<std::endl;
+    }
+    case Category::SHOOTER:
+    {
+        break;
+    }
+    }
 }

@@ -1,5 +1,6 @@
-#include <Ghost.hpp>
+#include <ghost.hpp>
 #include <engine.hpp>
+#include <shooter.hpp>
 std::unique_ptr<Model> Ghost::_model;
 std::unique_ptr<ImageTexture2D> Ghost::_material;
 Ghost::Ghost(Engine *engine, glm::vec3 scale, glm::vec3 position, std::string _material_path, std::string _model_path) : Object(engine, Category::GHOST)
@@ -46,13 +47,46 @@ void Ghost::renew()
     glm::vec3 _shooter_pos = _engine->shooter->_transform.position;
     float _deltaX = _transform.position.x - _shooter_pos.x;
     float _deltaZ = _transform.position.z - _shooter_pos.z;
-    if (sqrt(_deltaX * _deltaX + _deltaZ * _deltaZ) <= _range_radius)
+    _transform.lookAt(_shooter_pos);
+    _transform.rotation = glm::rotate(_transform.rotation, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+    if (_engine->_stage == EngineStage::RUN)
     {
-        _move_dir = _shooter_pos - _transform.position;
+        if (sqrt(_deltaX * _deltaX + _deltaZ * _deltaZ) <= _range_radius)
+        {
+            _move_dir = _shooter_pos - _transform.position;
+        }
+        else
+        {
+            _move_dir = glm::vec3(0.0f);
+        }
+        _transform.position += _engine->_deltaTime * _speed * _move_dir;
     }
-    else
+        _model->transform = _transform;
+}
+std::vector<Box> Ghost::getBoxs()
+{
+    BoundingBox box = _model->getBoundingBox();
+    std::vector<Box> boxs;
+    boxs.push_back(Box(box.min, box.max, _transform));
+    return boxs;
+}
+std::vector<Segment> Ghost::getSegments()
+{
+    return std::vector<Segment>();
+}
+void Ghost::collidedBy(Object *other)
+{
+    if (other->getCategory() == Category::BULLET)
+
     {
-        _move_dir = glm::vec3(0.0f);
+        if (!_is_to_delete)
+        {
+            _engine->_objects_to_delete.push_back(this);
+            _is_to_delete = true;
+            // std::cout << _transform.getLocalMatrix()[0][0] << " " << _transform.getLocalMatrix()[0][1] << " " << _transform.getLocalMatrix()[0][2] << " " << _transform.getLocalMatrix()[0][3] << std::endl;
+            // std::cout << _transform.getLocalMatrix()[1][0] << " " << _transform.getLocalMatrix()[1][1] << " " << _transform.getLocalMatrix()[1][2] << " " << _transform.getLocalMatrix()[1][3] << std::endl;
+            // std::cout << _transform.getLocalMatrix()[2][0] << " " << _transform.getLocalMatrix()[2][1] << " " << _transform.getLocalMatrix()[2][2] << " " << _transform.getLocalMatrix()[2][3] << std::endl;
+            // std::cout << _transform.getLocalMatrix()[3][0] << " " << _transform.getLocalMatrix()[3][1] << " " << _transform.getLocalMatrix()[3][2] << " " << _transform.getLocalMatrix()[3][3] << std::endl;
+        }
     }
-    _transform.position += _engine->_deltaTime * _speed * _move_dir;
 }
