@@ -39,6 +39,7 @@ void Shooter::plot()
     shader->setUniformVec3("material.ks", glm::vec3(0.2, 0.2, 0.2));
     shader->setUniformVec3("material.ka", glm::vec3(0.2, 0.2, 0.2));
     shader->setUniformFloat("material.ns", 314);
+    shader->setUniformVec3("scale", glm::vec3(2.0f, 2.0f, 2.0f));
     _material[0]->bind(0);
     _model[_model_current_index * 2]->draw();
     _material[1]->bind(0);

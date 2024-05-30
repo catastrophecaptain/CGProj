@@ -211,6 +211,7 @@ void Engine::initShaders()
             vec3 color;
             float intensity;
         };
+        uniform vec3 scale;
         uniform vec3 cameraPos;
         uniform Material material;
         uniform DirectionalLight directionalLight;
@@ -248,7 +249,7 @@ void Engine::initShaders()
             vec3 normal = normalize(fNormal);
             vec3 ambient = material_temp.ka * ambientLight.color * ambientLight.intensity;
             vec3 diffuse_specular = calcDirectionalLight(normal,viewDir)+calcSpotLight(normal,viewDir);
-            color = vec4(ambient + diffuse_specular, 1.0f);
+            color = vec4(scale*(ambient + diffuse_specular), 1.0f);
 
             
         }
@@ -389,8 +390,8 @@ void Engine::initlights()
     _light_directional->transform.rotation = glm::angleAxis(glm::radians(45.0f), glm::vec3(1.0f, 0.0f, 0.0f));
     _light_point.reset(new PointLight());
     _light_point->color = {1.0f, 1.0f, 1.0f};
-    _light_point->intensity = 1.0f;
-    _light_point->transform.position = {0.0f, 0.0f, 0.0f};
+    _light_point->intensity = 400000.0f;
+    _light_point->transform.position = {0.0f, 1000.0f, 100.0f};
     _light_point->kc = 1.0f;
     _light_point->kl = 0.0f;
     _light_point->kq = 1.0f;

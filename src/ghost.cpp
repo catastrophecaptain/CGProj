@@ -28,6 +28,7 @@ void Ghost::plot()
     shader->setUniformVec3("material.ks", glm::vec3(0, 0, 0));
     shader->setUniformVec3("material.ka", glm::vec3(0.2, 0.2, 0.2));
     shader->setUniformFloat("material.ns", 100.0f);
+    shader->setUniformVec3("scale", glm::vec3(1.5f, 1.5f, 1.5f));
     // shader->setUniformFloat("material.ns", 100.0f);
 
     // auto _Shader = _engine->_shaders[0].get();
