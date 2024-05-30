@@ -1,3 +1,6 @@
+#ifndef GHOST_HPP
+#define GHOST_HPP
+
 #include <object.hpp>
 #include <base/model.h>
 #include <memory>
@@ -14,4 +17,9 @@ class Ghost : public Object
     static const int _shader_index=0;
     std::unique_ptr<ImageTexture2D> _material;
     // bool _is_loaded = false;
+    float _speed = 0.7f;
+    glm::vec3 _move_dir = glm::vec3 (0.0f);
+    float _range_radius = 100.0f; // 如果shooter走进这个范围内，ghost就开始向shooter移动
 };
+
+#endif // GHOST_HPP

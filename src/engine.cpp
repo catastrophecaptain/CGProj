@@ -4,8 +4,9 @@
 #include <iostream>
 #include "ambience.hpp"
 #include <base/light.h>
-#include "shooter.hpp"
-#include "ghost.hpp"
+#include <glm/gtc/matrix_transform.hpp>
+//#include "shooter.hpp"
+//#include "ghost.hpp"
 #include "map.hpp"
 Engine::Engine(const Options &options) : Application(options)
 {
@@ -33,8 +34,21 @@ void Engine::start()
     initShaders();
     initlights();
     Ambience *ambience = new Ambience(this);
-    Shooter *shooter = new Shooter(this);
-     Ghost *ghost = new Ghost(this);
+    shooter = new Shooter(this);
+    glm::mat4 scale = glm::mat4 (1.0f);
+    float shooter_scale = 8.0f;
+    shooter->_transform.scale = glm::vec3 (shooter_scale, shooter_scale, shooter_scale);
+    shooter->_transform.position = glm::vec3 (0.0f, -1.0f, 7.0f);
+    float angle = glm::radians(180.0f);
+    shooter->_transform.rotation = glm::angleAxis(angle, glm::vec3(0.0f, 1.0f, 0.0f));
+    addObject(shooter, true);
+    int num_ghosts = 10;
+    for (int i = 0; i < num_ghosts; i ++) {
+        Ghost* _new_ghost = new Ghost(this);
+        _ghosts.push_back(_new_ghost);
+        addObject(_new_ghost, true);
+    }
+    _command->generateGhost();
      Map *map = new Map(this);
     // Example *example = new Example(this);
 };
@@ -48,6 +62,9 @@ void Engine::renew()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glEnable(GL_DEPTH_TEST);
     _command->handleInput();
+    for (auto ghost : _ghosts) {
+        ghost->_model->transform.position += _deltaTime * ghost->_speed * ghost->_move_dir;
+    }
     cameraRenew();
     for (auto object : _objects)
     {
@@ -390,35 +407,60 @@ void Engine::cameraRenew()
     {
         std::cout << "W" << std::endl;
         _camera->transform.position += _camera->transform.getFront() * cameraMoveSpeed * _deltaTime;
+        if (_command->_view == 0) {
+            shooter->_transform.position += _camera->transform.getFront() * cameraMoveSpeed * _deltaTime;
+        }
     }
 
     if (_input.keyboard.keyStates[GLFW_KEY_A] != GLFW_RELEASE)
     {
         std::cout << "A" << std::endl;
         _camera->transform.position -= _camera->transform.getRight() * cameraMoveSpeed * _deltaTime;
+        if (_command->_view == 0) {
+            shooter->_transform.position -= _camera->transform.getRight() * cameraMoveSpeed * _deltaTime;
+        }
     }
 
     if (_input.keyboard.keyStates[GLFW_KEY_S] != GLFW_RELEASE)
     {
         std::cout << "S" << std::endl;
         _camera->transform.position -= _camera->transform.getFront() * cameraMoveSpeed * _deltaTime;
+        if (_command->_view == 0) {
+            //std::cout<<"0"<<std::endl;
+            shooter->_transform.position -= _camera->transform.getFront() * cameraMoveSpeed * _deltaTime;
+        }
     }
 
     if (_input.keyboard.keyStates[GLFW_KEY_D] != GLFW_RELEASE)
     {
         std::cout << "D" << std::endl;
         _camera->transform.position += _camera->transform.getRight() * cameraMoveSpeed * _deltaTime;
+        if (_command->_view == 0) {
+            shooter->_transform.position += _camera->transform.getRight() * cameraMoveSpeed * _deltaTime;
+        }
     }
 
     if (_input.mouse.move.xNow != _input.mouse.move.xOld)
     {
         std::cout << "mouse move in x direction" << std::endl;
         _camera->transform.rotation = glm::angleAxis(glm::radians(cameraRotateSpeed * (-_input.mouse.move.xNow + _input.mouse.move.xOld)), glm::vec3(0.0f, 1.0f, 0.0f)) * _camera->transform.rotation;
+        if (_command->_view == 0) {
+            shooter->_transform.position = _camera->transform.position +
+                                           glm::vec3 (3 * _camera->transform.getFront().x, 3* _camera->transform.getFront().y, 3 * _camera->transform.getFront().z)-
+                                           glm::vec3 (0.0f, 1.0f, 0.0f);
+            shooter->_transform.rotation = glm::angleAxis(glm::radians(cameraRotateSpeed * (-_input.mouse.move.xNow + _input.mouse.move.xOld)), glm::vec3(0.0f, 1.0f, 0.0f)) * shooter->_transform.rotation;
+        }
     }
 
     if (_input.mouse.move.yNow != _input.mouse.move.yOld)
     {
         std::cout << "mouse move in y direction" << std::endl;
         _camera->transform.rotation = glm::angleAxis(glm::radians(cameraRotateSpeed * (-_input.mouse.move.yNow + _input.mouse.move.yOld)), _camera->transform.getRight()) * _camera->transform.rotation;
+        if (_command->_view == 0) {
+            shooter->_transform.position = _camera->transform.position +
+                    glm::vec3 (3 * _camera->transform.getFront().x, 3 * _camera->transform.getFront().y, 3 * _camera->transform.getFront().z)-
+                    glm::vec3 (0.0f, 1.0f, 0.0f);
+            shooter->_transform.rotation = glm::angleAxis(glm::radians(cameraRotateSpeed * (-_input.mouse.move.yNow + _input.mouse.move.yOld)), _camera->transform.getRight()) * shooter->_transform.rotation;
+        }
     }
 };

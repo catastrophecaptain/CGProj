@@ -3,6 +3,9 @@
 #include "base/camera.h"
 #include "base/light.h"
 #include "base/glsl_program.h"
+#include "shooter.hpp"
+#include "ghost.hpp"
+#include "bullet.hpp"
 #include <vector>
 #include <memory>
 class Object;
@@ -44,6 +47,10 @@ public:
     std::unique_ptr<PointLight> _light_point;
     std::unique_ptr<AmbientLight> _light_ambient;
     Command *_command = nullptr;
+    // shooter和ghost
+    Shooter* shooter;
+    std::vector<Ghost*> _ghosts;
+    std::vector<Bullet*> _bullets;
     friend class Object;
     friend class Command;
     friend class Ambience;

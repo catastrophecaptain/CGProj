@@ -55,8 +55,13 @@ build CMakeFiles/CSGO.dir/src/ambience.cpp.o: CXX_COMPILER__CSGO_unscanned_Debug
   INCLUDES = -I/Users/apple/Desktop/CGProject/include -I/Users/apple/Desktop/CGProject/base/include -I/Users/apple/Desktop/CGProject/external/glfw/include -I/Users/apple/Desktop/CGProject/external/glad/./include -I/Users/apple/Desktop/CGProject/external/glm/glm/.. -I/Users/apple/Desktop/CGProject/external/tinyobjloader -I/Users/apple/Desktop/CGProject/external/imgui/. -I/Users/apple/Desktop/CGProject/external/stb/.
   OBJECT_DIR = CMakeFiles/CSGO.dir
   OBJECT_FILE_DIR = CMakeFiles/CSGO.dir/src
-  TARGET_COMPILE_PDB = CMakeFiles/CSGO.dir/
-  TARGET_PDB = /Users/apple/Desktop/CGProject/bin/CSGO.pdb
+
+build CMakeFiles/CSGO.dir/src/bullet.cpp.o: CXX_COMPILER__CSGO_unscanned_Debug /Users/apple/Desktop/CGProject/src/bullet.cpp || cmake_object_order_depends_target_CSGO
+  DEP_FILE = CMakeFiles/CSGO.dir/src/bullet.cpp.o.d
+  FLAGS = -g -std=c++17 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk -mmacosx-version-min=14.1 -fcolor-diagnostics
+  INCLUDES = -I/Users/apple/Desktop/CGProject/include -I/Users/apple/Desktop/CGProject/base/include -I/Users/apple/Desktop/CGProject/external/glfw/include -I/Users/apple/Desktop/CGProject/external/glad/./include -I/Users/apple/Desktop/CGProject/external/glm/glm/.. -I/Users/apple/Desktop/CGProject/external/tinyobjloader -I/Users/apple/Desktop/CGProject/external/imgui/. -I/Users/apple/Desktop/CGProject/external/stb/.
+  OBJECT_DIR = CMakeFiles/CSGO.dir
+  OBJECT_FILE_DIR = CMakeFiles/CSGO.dir/src
 
 build CMakeFiles/CSGO.dir/src/command.cpp.o: CXX_COMPILER__CSGO_unscanned_Debug /Users/apple/Desktop/CGProject/src/command.cpp || cmake_object_order_depends_target_CSGO
   DEP_FILE = CMakeFiles/CSGO.dir/src/command.cpp.o.d
@@ -64,8 +69,6 @@ build CMakeFiles/CSGO.dir/src/command.cpp.o: CXX_COMPILER__CSGO_unscanned_Debug 
   INCLUDES = -I/Users/apple/Desktop/CGProject/include -I/Users/apple/Desktop/CGProject/base/include -I/Users/apple/Desktop/CGProject/external/glfw/include -I/Users/apple/Desktop/CGProject/external/glad/./include -I/Users/apple/Desktop/CGProject/external/glm/glm/.. -I/Users/apple/Desktop/CGProject/external/tinyobjloader -I/Users/apple/Desktop/CGProject/external/imgui/. -I/Users/apple/Desktop/CGProject/external/stb/.
   OBJECT_DIR = CMakeFiles/CSGO.dir
   OBJECT_FILE_DIR = CMakeFiles/CSGO.dir/src
-  TARGET_COMPILE_PDB = CMakeFiles/CSGO.dir/
-  TARGET_PDB = /Users/apple/Desktop/CGProject/bin/CSGO.pdb
 
 build CMakeFiles/CSGO.dir/src/engine.cpp.o: CXX_COMPILER__CSGO_unscanned_Debug /Users/apple/Desktop/CGProject/src/engine.cpp || cmake_object_order_depends_target_CSGO
   DEP_FILE = CMakeFiles/CSGO.dir/src/engine.cpp.o.d
@@ -73,8 +76,6 @@ build CMakeFiles/CSGO.dir/src/engine.cpp.o: CXX_COMPILER__CSGO_unscanned_Debug /
   INCLUDES = -I/Users/apple/Desktop/CGProject/include -I/Users/apple/Desktop/CGProject/base/include -I/Users/apple/Desktop/CGProject/external/glfw/include -I/Users/apple/Desktop/CGProject/external/glad/./include -I/Users/apple/Desktop/CGProject/external/glm/glm/.. -I/Users/apple/Desktop/CGProject/external/tinyobjloader -I/Users/apple/Desktop/CGProject/external/imgui/. -I/Users/apple/Desktop/CGProject/external/stb/.
   OBJECT_DIR = CMakeFiles/CSGO.dir
   OBJECT_FILE_DIR = CMakeFiles/CSGO.dir/src
-  TARGET_COMPILE_PDB = CMakeFiles/CSGO.dir/
-  TARGET_PDB = /Users/apple/Desktop/CGProject/bin/CSGO.pdb
 
 build CMakeFiles/CSGO.dir/src/ghost.cpp.o: CXX_COMPILER__CSGO_unscanned_Debug /Users/apple/Desktop/CGProject/src/ghost.cpp || cmake_object_order_depends_target_CSGO
   DEP_FILE = CMakeFiles/CSGO.dir/src/ghost.cpp.o.d
@@ -82,8 +83,6 @@ build CMakeFiles/CSGO.dir/src/ghost.cpp.o: CXX_COMPILER__CSGO_unscanned_Debug /U
   INCLUDES = -I/Users/apple/Desktop/CGProject/include -I/Users/apple/Desktop/CGProject/base/include -I/Users/apple/Desktop/CGProject/external/glfw/include -I/Users/apple/Desktop/CGProject/external/glad/./include -I/Users/apple/Desktop/CGProject/external/glm/glm/.. -I/Users/apple/Desktop/CGProject/external/tinyobjloader -I/Users/apple/Desktop/CGProject/external/imgui/. -I/Users/apple/Desktop/CGProject/external/stb/.
   OBJECT_DIR = CMakeFiles/CSGO.dir
   OBJECT_FILE_DIR = CMakeFiles/CSGO.dir/src
-  TARGET_COMPILE_PDB = CMakeFiles/CSGO.dir/
-  TARGET_PDB = /Users/apple/Desktop/CGProject/bin/CSGO.pdb
 
 build CMakeFiles/CSGO.dir/src/main.cpp.o: CXX_COMPILER__CSGO_unscanned_Debug /Users/apple/Desktop/CGProject/src/main.cpp || cmake_object_order_depends_target_CSGO
   DEP_FILE = CMakeFiles/CSGO.dir/src/main.cpp.o.d
@@ -91,8 +90,6 @@ build CMakeFiles/CSGO.dir/src/main.cpp.o: CXX_COMPILER__CSGO_unscanned_Debug /Us
   INCLUDES = -I/Users/apple/Desktop/CGProject/include -I/Users/apple/Desktop/CGProject/base/include -I/Users/apple/Desktop/CGProject/external/glfw/include -I/Users/apple/Desktop/CGProject/external/glad/./include -I/Users/apple/Desktop/CGProject/external/glm/glm/.. -I/Users/apple/Desktop/CGProject/external/tinyobjloader -I/Users/apple/Desktop/CGProject/external/imgui/. -I/Users/apple/Desktop/CGProject/external/stb/.
   OBJECT_DIR = CMakeFiles/CSGO.dir
   OBJECT_FILE_DIR = CMakeFiles/CSGO.dir/src
-  TARGET_COMPILE_PDB = CMakeFiles/CSGO.dir/
-  TARGET_PDB = /Users/apple/Desktop/CGProject/bin/CSGO.pdb
 
 build CMakeFiles/CSGO.dir/src/map.cpp.o: CXX_COMPILER__CSGO_unscanned_Debug /Users/apple/Desktop/CGProject/src/map.cpp || cmake_object_order_depends_target_CSGO
   DEP_FILE = CMakeFiles/CSGO.dir/src/map.cpp.o.d
@@ -100,8 +97,6 @@ build CMakeFiles/CSGO.dir/src/map.cpp.o: CXX_COMPILER__CSGO_unscanned_Debug /Use
   INCLUDES = -I/Users/apple/Desktop/CGProject/include -I/Users/apple/Desktop/CGProject/base/include -I/Users/apple/Desktop/CGProject/external/glfw/include -I/Users/apple/Desktop/CGProject/external/glad/./include -I/Users/apple/Desktop/CGProject/external/glm/glm/.. -I/Users/apple/Desktop/CGProject/external/tinyobjloader -I/Users/apple/Desktop/CGProject/external/imgui/. -I/Users/apple/Desktop/CGProject/external/stb/.
   OBJECT_DIR = CMakeFiles/CSGO.dir
   OBJECT_FILE_DIR = CMakeFiles/CSGO.dir/src
-  TARGET_COMPILE_PDB = CMakeFiles/CSGO.dir/
-  TARGET_PDB = /Users/apple/Desktop/CGProject/bin/CSGO.pdb
 
 build CMakeFiles/CSGO.dir/src/object.cpp.o: CXX_COMPILER__CSGO_unscanned_Debug /Users/apple/Desktop/CGProject/src/object.cpp || cmake_object_order_depends_target_CSGO
   DEP_FILE = CMakeFiles/CSGO.dir/src/object.cpp.o.d
@@ -109,8 +104,6 @@ build CMakeFiles/CSGO.dir/src/object.cpp.o: CXX_COMPILER__CSGO_unscanned_Debug /
   INCLUDES = -I/Users/apple/Desktop/CGProject/include -I/Users/apple/Desktop/CGProject/base/include -I/Users/apple/Desktop/CGProject/external/glfw/include -I/Users/apple/Desktop/CGProject/external/glad/./include -I/Users/apple/Desktop/CGProject/external/glm/glm/.. -I/Users/apple/Desktop/CGProject/external/tinyobjloader -I/Users/apple/Desktop/CGProject/external/imgui/. -I/Users/apple/Desktop/CGProject/external/stb/.
   OBJECT_DIR = CMakeFiles/CSGO.dir
   OBJECT_FILE_DIR = CMakeFiles/CSGO.dir/src
-  TARGET_COMPILE_PDB = CMakeFiles/CSGO.dir/
-  TARGET_PDB = /Users/apple/Desktop/CGProject/bin/CSGO.pdb
 
 build CMakeFiles/CSGO.dir/src/shooter.cpp.o: CXX_COMPILER__CSGO_unscanned_Debug /Users/apple/Desktop/CGProject/src/shooter.cpp || cmake_object_order_depends_target_CSGO
   DEP_FILE = CMakeFiles/CSGO.dir/src/shooter.cpp.o.d
@@ -118,8 +111,6 @@ build CMakeFiles/CSGO.dir/src/shooter.cpp.o: CXX_COMPILER__CSGO_unscanned_Debug 
   INCLUDES = -I/Users/apple/Desktop/CGProject/include -I/Users/apple/Desktop/CGProject/base/include -I/Users/apple/Desktop/CGProject/external/glfw/include -I/Users/apple/Desktop/CGProject/external/glad/./include -I/Users/apple/Desktop/CGProject/external/glm/glm/.. -I/Users/apple/Desktop/CGProject/external/tinyobjloader -I/Users/apple/Desktop/CGProject/external/imgui/. -I/Users/apple/Desktop/CGProject/external/stb/.
   OBJECT_DIR = CMakeFiles/CSGO.dir
   OBJECT_FILE_DIR = CMakeFiles/CSGO.dir/src
-  TARGET_COMPILE_PDB = CMakeFiles/CSGO.dir/
-  TARGET_PDB = /Users/apple/Desktop/CGProject/bin/CSGO.pdb
 
 build CMakeFiles/CSGO.dir/base/src/application.cpp.o: CXX_COMPILER__CSGO_unscanned_Debug /Users/apple/Desktop/CGProject/base/src/application.cpp || cmake_object_order_depends_target_CSGO
   DEP_FILE = CMakeFiles/CSGO.dir/base/src/application.cpp.o.d
@@ -127,8 +118,6 @@ build CMakeFiles/CSGO.dir/base/src/application.cpp.o: CXX_COMPILER__CSGO_unscann
   INCLUDES = -I/Users/apple/Desktop/CGProject/include -I/Users/apple/Desktop/CGProject/base/include -I/Users/apple/Desktop/CGProject/external/glfw/include -I/Users/apple/Desktop/CGProject/external/glad/./include -I/Users/apple/Desktop/CGProject/external/glm/glm/.. -I/Users/apple/Desktop/CGProject/external/tinyobjloader -I/Users/apple/Desktop/CGProject/external/imgui/. -I/Users/apple/Desktop/CGProject/external/stb/.
   OBJECT_DIR = CMakeFiles/CSGO.dir
   OBJECT_FILE_DIR = CMakeFiles/CSGO.dir/base/src
-  TARGET_COMPILE_PDB = CMakeFiles/CSGO.dir/
-  TARGET_PDB = /Users/apple/Desktop/CGProject/bin/CSGO.pdb
 
 build CMakeFiles/CSGO.dir/base/src/camera.cpp.o: CXX_COMPILER__CSGO_unscanned_Debug /Users/apple/Desktop/CGProject/base/src/camera.cpp || cmake_object_order_depends_target_CSGO
   DEP_FILE = CMakeFiles/CSGO.dir/base/src/camera.cpp.o.d
@@ -136,8 +125,6 @@ build CMakeFiles/CSGO.dir/base/src/camera.cpp.o: CXX_COMPILER__CSGO_unscanned_De
   INCLUDES = -I/Users/apple/Desktop/CGProject/include -I/Users/apple/Desktop/CGProject/base/include -I/Users/apple/Desktop/CGProject/external/glfw/include -I/Users/apple/Desktop/CGProject/external/glad/./include -I/Users/apple/Desktop/CGProject/external/glm/glm/.. -I/Users/apple/Desktop/CGProject/external/tinyobjloader -I/Users/apple/Desktop/CGProject/external/imgui/. -I/Users/apple/Desktop/CGProject/external/stb/.
   OBJECT_DIR = CMakeFiles/CSGO.dir
   OBJECT_FILE_DIR = CMakeFiles/CSGO.dir/base/src
-  TARGET_COMPILE_PDB = CMakeFiles/CSGO.dir/
-  TARGET_PDB = /Users/apple/Desktop/CGProject/bin/CSGO.pdb
 
 build CMakeFiles/CSGO.dir/base/src/framebuffer.cpp.o: CXX_COMPILER__CSGO_unscanned_Debug /Users/apple/Desktop/CGProject/base/src/framebuffer.cpp || cmake_object_order_depends_target_CSGO
   DEP_FILE = CMakeFiles/CSGO.dir/base/src/framebuffer.cpp.o.d
@@ -145,8 +132,6 @@ build CMakeFiles/CSGO.dir/base/src/framebuffer.cpp.o: CXX_COMPILER__CSGO_unscann
   INCLUDES = -I/Users/apple/Desktop/CGProject/include -I/Users/apple/Desktop/CGProject/base/include -I/Users/apple/Desktop/CGProject/external/glfw/include -I/Users/apple/Desktop/CGProject/external/glad/./include -I/Users/apple/Desktop/CGProject/external/glm/glm/.. -I/Users/apple/Desktop/CGProject/external/tinyobjloader -I/Users/apple/Desktop/CGProject/external/imgui/. -I/Users/apple/Desktop/CGProject/external/stb/.
   OBJECT_DIR = CMakeFiles/CSGO.dir
   OBJECT_FILE_DIR = CMakeFiles/CSGO.dir/base/src
-  TARGET_COMPILE_PDB = CMakeFiles/CSGO.dir/
-  TARGET_PDB = /Users/apple/Desktop/CGProject/bin/CSGO.pdb
 
 build CMakeFiles/CSGO.dir/base/src/fullscreen_quad.cpp.o: CXX_COMPILER__CSGO_unscanned_Debug /Users/apple/Desktop/CGProject/base/src/fullscreen_quad.cpp || cmake_object_order_depends_target_CSGO
   DEP_FILE = CMakeFiles/CSGO.dir/base/src/fullscreen_quad.cpp.o.d
@@ -154,8 +139,6 @@ build CMakeFiles/CSGO.dir/base/src/fullscreen_quad.cpp.o: CXX_COMPILER__CSGO_uns
   INCLUDES = -I/Users/apple/Desktop/CGProject/include -I/Users/apple/Desktop/CGProject/base/include -I/Users/apple/Desktop/CGProject/external/glfw/include -I/Users/apple/Desktop/CGProject/external/glad/./include -I/Users/apple/Desktop/CGProject/external/glm/glm/.. -I/Users/apple/Desktop/CGProject/external/tinyobjloader -I/Users/apple/Desktop/CGProject/external/imgui/. -I/Users/apple/Desktop/CGProject/external/stb/.
   OBJECT_DIR = CMakeFiles/CSGO.dir
   OBJECT_FILE_DIR = CMakeFiles/CSGO.dir/base/src
-  TARGET_COMPILE_PDB = CMakeFiles/CSGO.dir/
-  TARGET_PDB = /Users/apple/Desktop/CGProject/bin/CSGO.pdb
 
 build CMakeFiles/CSGO.dir/base/src/glsl_program.cpp.o: CXX_COMPILER__CSGO_unscanned_Debug /Users/apple/Desktop/CGProject/base/src/glsl_program.cpp || cmake_object_order_depends_target_CSGO
   DEP_FILE = CMakeFiles/CSGO.dir/base/src/glsl_program.cpp.o.d
@@ -163,8 +146,6 @@ build CMakeFiles/CSGO.dir/base/src/glsl_program.cpp.o: CXX_COMPILER__CSGO_unscan
   INCLUDES = -I/Users/apple/Desktop/CGProject/include -I/Users/apple/Desktop/CGProject/base/include -I/Users/apple/Desktop/CGProject/external/glfw/include -I/Users/apple/Desktop/CGProject/external/glad/./include -I/Users/apple/Desktop/CGProject/external/glm/glm/.. -I/Users/apple/Desktop/CGProject/external/tinyobjloader -I/Users/apple/Desktop/CGProject/external/imgui/. -I/Users/apple/Desktop/CGProject/external/stb/.
   OBJECT_DIR = CMakeFiles/CSGO.dir
   OBJECT_FILE_DIR = CMakeFiles/CSGO.dir/base/src
-  TARGET_COMPILE_PDB = CMakeFiles/CSGO.dir/
-  TARGET_PDB = /Users/apple/Desktop/CGProject/bin/CSGO.pdb
 
 build CMakeFiles/CSGO.dir/base/src/instanced_model.cpp.o: CXX_COMPILER__CSGO_unscanned_Debug /Users/apple/Desktop/CGProject/base/src/instanced_model.cpp || cmake_object_order_depends_target_CSGO
   DEP_FILE = CMakeFiles/CSGO.dir/base/src/instanced_model.cpp.o.d
@@ -172,8 +153,6 @@ build CMakeFiles/CSGO.dir/base/src/instanced_model.cpp.o: CXX_COMPILER__CSGO_uns
   INCLUDES = -I/Users/apple/Desktop/CGProject/include -I/Users/apple/Desktop/CGProject/base/include -I/Users/apple/Desktop/CGProject/external/glfw/include -I/Users/apple/Desktop/CGProject/external/glad/./include -I/Users/apple/Desktop/CGProject/external/glm/glm/.. -I/Users/apple/Desktop/CGProject/external/tinyobjloader -I/Users/apple/Desktop/CGProject/external/imgui/. -I/Users/apple/Desktop/CGProject/external/stb/.
   OBJECT_DIR = CMakeFiles/CSGO.dir
   OBJECT_FILE_DIR = CMakeFiles/CSGO.dir/base/src
-  TARGET_COMPILE_PDB = CMakeFiles/CSGO.dir/
-  TARGET_PDB = /Users/apple/Desktop/CGProject/bin/CSGO.pdb
 
 build CMakeFiles/CSGO.dir/base/src/model.cpp.o: CXX_COMPILER__CSGO_unscanned_Debug /Users/apple/Desktop/CGProject/base/src/model.cpp || cmake_object_order_depends_target_CSGO
   DEP_FILE = CMakeFiles/CSGO.dir/base/src/model.cpp.o.d
@@ -181,8 +160,6 @@ build CMakeFiles/CSGO.dir/base/src/model.cpp.o: CXX_COMPILER__CSGO_unscanned_Deb
   INCLUDES = -I/Users/apple/Desktop/CGProject/include -I/Users/apple/Desktop/CGProject/base/include -I/Users/apple/Desktop/CGProject/external/glfw/include -I/Users/apple/Desktop/CGProject/external/glad/./include -I/Users/apple/Desktop/CGProject/external/glm/glm/.. -I/Users/apple/Desktop/CGProject/external/tinyobjloader -I/Users/apple/Desktop/CGProject/external/imgui/. -I/Users/apple/Desktop/CGProject/external/stb/.
   OBJECT_DIR = CMakeFiles/CSGO.dir
   OBJECT_FILE_DIR = CMakeFiles/CSGO.dir/base/src
-  TARGET_COMPILE_PDB = CMakeFiles/CSGO.dir/
-  TARGET_PDB = /Users/apple/Desktop/CGProject/bin/CSGO.pdb
 
 build CMakeFiles/CSGO.dir/base/src/skybox.cpp.o: CXX_COMPILER__CSGO_unscanned_Debug /Users/apple/Desktop/CGProject/base/src/skybox.cpp || cmake_object_order_depends_target_CSGO
   DEP_FILE = CMakeFiles/CSGO.dir/base/src/skybox.cpp.o.d
@@ -190,8 +167,6 @@ build CMakeFiles/CSGO.dir/base/src/skybox.cpp.o: CXX_COMPILER__CSGO_unscanned_De
   INCLUDES = -I/Users/apple/Desktop/CGProject/include -I/Users/apple/Desktop/CGProject/base/include -I/Users/apple/Desktop/CGProject/external/glfw/include -I/Users/apple/Desktop/CGProject/external/glad/./include -I/Users/apple/Desktop/CGProject/external/glm/glm/.. -I/Users/apple/Desktop/CGProject/external/tinyobjloader -I/Users/apple/Desktop/CGProject/external/imgui/. -I/Users/apple/Desktop/CGProject/external/stb/.
   OBJECT_DIR = CMakeFiles/CSGO.dir
   OBJECT_FILE_DIR = CMakeFiles/CSGO.dir/base/src
-  TARGET_COMPILE_PDB = CMakeFiles/CSGO.dir/
-  TARGET_PDB = /Users/apple/Desktop/CGProject/bin/CSGO.pdb
 
 build CMakeFiles/CSGO.dir/base/src/texture.cpp.o: CXX_COMPILER__CSGO_unscanned_Debug /Users/apple/Desktop/CGProject/base/src/texture.cpp || cmake_object_order_depends_target_CSGO
   DEP_FILE = CMakeFiles/CSGO.dir/base/src/texture.cpp.o.d
@@ -199,8 +174,6 @@ build CMakeFiles/CSGO.dir/base/src/texture.cpp.o: CXX_COMPILER__CSGO_unscanned_D
   INCLUDES = -I/Users/apple/Desktop/CGProject/include -I/Users/apple/Desktop/CGProject/base/include -I/Users/apple/Desktop/CGProject/external/glfw/include -I/Users/apple/Desktop/CGProject/external/glad/./include -I/Users/apple/Desktop/CGProject/external/glm/glm/.. -I/Users/apple/Desktop/CGProject/external/tinyobjloader -I/Users/apple/Desktop/CGProject/external/imgui/. -I/Users/apple/Desktop/CGProject/external/stb/.
   OBJECT_DIR = CMakeFiles/CSGO.dir
   OBJECT_FILE_DIR = CMakeFiles/CSGO.dir/base/src
-  TARGET_COMPILE_PDB = CMakeFiles/CSGO.dir/
-  TARGET_PDB = /Users/apple/Desktop/CGProject/bin/CSGO.pdb
 
 build CMakeFiles/CSGO.dir/base/src/texture2d.cpp.o: CXX_COMPILER__CSGO_unscanned_Debug /Users/apple/Desktop/CGProject/base/src/texture2d.cpp || cmake_object_order_depends_target_CSGO
   DEP_FILE = CMakeFiles/CSGO.dir/base/src/texture2d.cpp.o.d
@@ -208,8 +181,6 @@ build CMakeFiles/CSGO.dir/base/src/texture2d.cpp.o: CXX_COMPILER__CSGO_unscanned
   INCLUDES = -I/Users/apple/Desktop/CGProject/include -I/Users/apple/Desktop/CGProject/base/include -I/Users/apple/Desktop/CGProject/external/glfw/include -I/Users/apple/Desktop/CGProject/external/glad/./include -I/Users/apple/Desktop/CGProject/external/glm/glm/.. -I/Users/apple/Desktop/CGProject/external/tinyobjloader -I/Users/apple/Desktop/CGProject/external/imgui/. -I/Users/apple/Desktop/CGProject/external/stb/.
   OBJECT_DIR = CMakeFiles/CSGO.dir
   OBJECT_FILE_DIR = CMakeFiles/CSGO.dir/base/src
-  TARGET_COMPILE_PDB = CMakeFiles/CSGO.dir/
-  TARGET_PDB = /Users/apple/Desktop/CGProject/bin/CSGO.pdb
 
 build CMakeFiles/CSGO.dir/base/src/texture_cubemap.cpp.o: CXX_COMPILER__CSGO_unscanned_Debug /Users/apple/Desktop/CGProject/base/src/texture_cubemap.cpp || cmake_object_order_depends_target_CSGO
   DEP_FILE = CMakeFiles/CSGO.dir/base/src/texture_cubemap.cpp.o.d
@@ -217,8 +188,6 @@ build CMakeFiles/CSGO.dir/base/src/texture_cubemap.cpp.o: CXX_COMPILER__CSGO_uns
   INCLUDES = -I/Users/apple/Desktop/CGProject/include -I/Users/apple/Desktop/CGProject/base/include -I/Users/apple/Desktop/CGProject/external/glfw/include -I/Users/apple/Desktop/CGProject/external/glad/./include -I/Users/apple/Desktop/CGProject/external/glm/glm/.. -I/Users/apple/Desktop/CGProject/external/tinyobjloader -I/Users/apple/Desktop/CGProject/external/imgui/. -I/Users/apple/Desktop/CGProject/external/stb/.
   OBJECT_DIR = CMakeFiles/CSGO.dir
   OBJECT_FILE_DIR = CMakeFiles/CSGO.dir/base/src
-  TARGET_COMPILE_PDB = CMakeFiles/CSGO.dir/
-  TARGET_PDB = /Users/apple/Desktop/CGProject/bin/CSGO.pdb
 
 build CMakeFiles/CSGO.dir/base/src/transform.cpp.o: CXX_COMPILER__CSGO_unscanned_Debug /Users/apple/Desktop/CGProject/base/src/transform.cpp || cmake_object_order_depends_target_CSGO
   DEP_FILE = CMakeFiles/CSGO.dir/base/src/transform.cpp.o.d
@@ -226,8 +195,6 @@ build CMakeFiles/CSGO.dir/base/src/transform.cpp.o: CXX_COMPILER__CSGO_unscanned
   INCLUDES = -I/Users/apple/Desktop/CGProject/include -I/Users/apple/Desktop/CGProject/base/include -I/Users/apple/Desktop/CGProject/external/glfw/include -I/Users/apple/Desktop/CGProject/external/glad/./include -I/Users/apple/Desktop/CGProject/external/glm/glm/.. -I/Users/apple/Desktop/CGProject/external/tinyobjloader -I/Users/apple/Desktop/CGProject/external/imgui/. -I/Users/apple/Desktop/CGProject/external/stb/.
   OBJECT_DIR = CMakeFiles/CSGO.dir
   OBJECT_FILE_DIR = CMakeFiles/CSGO.dir/base/src
-  TARGET_COMPILE_PDB = CMakeFiles/CSGO.dir/
-  TARGET_PDB = /Users/apple/Desktop/CGProject/bin/CSGO.pdb
 
 
 # =============================================================================
@@ -237,15 +204,14 @@ build CMakeFiles/CSGO.dir/base/src/transform.cpp.o: CXX_COMPILER__CSGO_unscanned
 #############################################
 # Link the executable /Users/apple/Desktop/CGProject/bin/CSGO
 
-build /Users/apple/Desktop/CGProject/bin/CSGO: CXX_EXECUTABLE_LINKER__CSGO_Debug CMakeFiles/CSGO.dir/src/ambience.cpp.o CMakeFiles/CSGO.dir/src/command.cpp.o CMakeFiles/CSGO.dir/src/engine.cpp.o CMakeFiles/CSGO.dir/src/ghost.cpp.o CMakeFiles/CSGO.dir/src/main.cpp.o CMakeFiles/CSGO.dir/src/map.cpp.o CMakeFiles/CSGO.dir/src/object.cpp.o CMakeFiles/CSGO.dir/src/shooter.cpp.o CMakeFiles/CSGO.dir/base/src/application.cpp.o CMakeFiles/CSGO.dir/base/src/camera.cpp.o CMakeFiles/CSGO.dir/base/src/framebuffer.cpp.o CMakeFiles/CSGO.dir/base/src/fullscreen_quad.cpp.o CMakeFiles/CSGO.dir/base/src/glsl_program.cpp.o CMakeFiles/CSGO.dir/base/src/instanced_model.cpp.o CMakeFiles/CSGO.dir/base/src/model.cpp.o CMakeFiles/CSGO.dir/base/src/skybox.cpp.o CMakeFiles/CSGO.dir/base/src/texture.cpp.o CMakeFiles/CSGO.dir/base/src/texture2d.cpp.o CMakeFiles/CSGO.dir/base/src/texture_cubemap.cpp.o CMakeFiles/CSGO.dir/base/src/transform.cpp.o | external/glfw/src/libglfw3.a external/glad/libglad.a external/tinyobjloader/libtinyobjloader.a external/imgui/libimgui.a external/stb/libstb.a || external/glad/libglad.a external/glfw/src/libglfw3.a external/imgui/libimgui.a external/stb/libstb.a external/tinyobjloader/libtinyobjloader.a
+build /Users/apple/Desktop/CGProject/bin/CSGO: CXX_EXECUTABLE_LINKER__CSGO_Debug CMakeFiles/CSGO.dir/src/ambience.cpp.o CMakeFiles/CSGO.dir/src/bullet.cpp.o CMakeFiles/CSGO.dir/src/command.cpp.o CMakeFiles/CSGO.dir/src/engine.cpp.o CMakeFiles/CSGO.dir/src/ghost.cpp.o CMakeFiles/CSGO.dir/src/main.cpp.o CMakeFiles/CSGO.dir/src/map.cpp.o CMakeFiles/CSGO.dir/src/object.cpp.o CMakeFiles/CSGO.dir/src/shooter.cpp.o CMakeFiles/CSGO.dir/base/src/application.cpp.o CMakeFiles/CSGO.dir/base/src/camera.cpp.o CMakeFiles/CSGO.dir/base/src/framebuffer.cpp.o CMakeFiles/CSGO.dir/base/src/fullscreen_quad.cpp.o CMakeFiles/CSGO.dir/base/src/glsl_program.cpp.o CMakeFiles/CSGO.dir/base/src/instanced_model.cpp.o CMakeFiles/CSGO.dir/base/src/model.cpp.o CMakeFiles/CSGO.dir/base/src/skybox.cpp.o CMakeFiles/CSGO.dir/base/src/texture.cpp.o CMakeFiles/CSGO.dir/base/src/texture2d.cpp.o CMakeFiles/CSGO.dir/base/src/texture_cubemap.cpp.o CMakeFiles/CSGO.dir/base/src/transform.cpp.o | external/glfw/src/libglfw3.a external/glad/libglad.a external/tinyobjloader/libtinyobjloader.a external/imgui/libimgui.a external/stb/libstb.a || external/glad/libglad.a external/glfw/src/libglfw3.a external/imgui/libimgui.a external/stb/libstb.a external/tinyobjloader/libtinyobjloader.a
   FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk -mmacosx-version-min=14.1
   LINK_LIBRARIES = external/glfw/src/libglfw3.a  external/glad/libglad.a  external/tinyobjloader/libtinyobjloader.a  external/imgui/libimgui.a  external/stb/libstb.a  -framework Cocoa  -framework IOKit  -framework CoreFoundation
   OBJECT_DIR = CMakeFiles/CSGO.dir
   POST_BUILD = :
   PRE_LINK = :
-  TARGET_COMPILE_PDB = CMakeFiles/CSGO.dir/
   TARGET_FILE = /Users/apple/Desktop/CGProject/bin/CSGO
-  TARGET_PDB = /Users/apple/Desktop/CGProject/bin/CSGO.pdb
+  TARGET_PDB = CSGO.dbg
 
 
 #############################################
@@ -416,8 +382,6 @@ build external/glfw/src/CMakeFiles/glfw.dir/context.c.o: C_COMPILER__glfw_unscan
   INCLUDES = -I/Users/apple/Desktop/CGProject/external/glfw/include -I/Users/apple/Desktop/CGProject/external/glfw/src -I/Users/apple/Desktop/CGProject/cmake-build-debug/external/glfw/src
   OBJECT_DIR = external/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = external/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = external/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = external/glfw/src/libglfw3.pdb
 
 build external/glfw/src/CMakeFiles/glfw.dir/init.c.o: C_COMPILER__glfw_unscanned_Debug /Users/apple/Desktop/CGProject/external/glfw/src/init.c || cmake_object_order_depends_target_glfw
   DEFINES = -D_GLFW_COCOA
@@ -426,8 +390,6 @@ build external/glfw/src/CMakeFiles/glfw.dir/init.c.o: C_COMPILER__glfw_unscanned
   INCLUDES = -I/Users/apple/Desktop/CGProject/external/glfw/include -I/Users/apple/Desktop/CGProject/external/glfw/src -I/Users/apple/Desktop/CGProject/cmake-build-debug/external/glfw/src
   OBJECT_DIR = external/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = external/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = external/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = external/glfw/src/libglfw3.pdb
 
 build external/glfw/src/CMakeFiles/glfw.dir/input.c.o: C_COMPILER__glfw_unscanned_Debug /Users/apple/Desktop/CGProject/external/glfw/src/input.c || cmake_object_order_depends_target_glfw
   DEFINES = -D_GLFW_COCOA
@@ -436,8 +398,6 @@ build external/glfw/src/CMakeFiles/glfw.dir/input.c.o: C_COMPILER__glfw_unscanne
   INCLUDES = -I/Users/apple/Desktop/CGProject/external/glfw/include -I/Users/apple/Desktop/CGProject/external/glfw/src -I/Users/apple/Desktop/CGProject/cmake-build-debug/external/glfw/src
   OBJECT_DIR = external/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = external/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = external/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = external/glfw/src/libglfw3.pdb
 
 build external/glfw/src/CMakeFiles/glfw.dir/monitor.c.o: C_COMPILER__glfw_unscanned_Debug /Users/apple/Desktop/CGProject/external/glfw/src/monitor.c || cmake_object_order_depends_target_glfw
   DEFINES = -D_GLFW_COCOA
@@ -446,8 +406,6 @@ build external/glfw/src/CMakeFiles/glfw.dir/monitor.c.o: C_COMPILER__glfw_unscan
   INCLUDES = -I/Users/apple/Desktop/CGProject/external/glfw/include -I/Users/apple/Desktop/CGProject/external/glfw/src -I/Users/apple/Desktop/CGProject/cmake-build-debug/external/glfw/src
   OBJECT_DIR = external/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = external/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = external/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = external/glfw/src/libglfw3.pdb
 
 build external/glfw/src/CMakeFiles/glfw.dir/platform.c.o: C_COMPILER__glfw_unscanned_Debug /Users/apple/Desktop/CGProject/external/glfw/src/platform.c || cmake_object_order_depends_target_glfw
   DEFINES = -D_GLFW_COCOA
@@ -456,8 +414,6 @@ build external/glfw/src/CMakeFiles/glfw.dir/platform.c.o: C_COMPILER__glfw_unsca
   INCLUDES = -I/Users/apple/Desktop/CGProject/external/glfw/include -I/Users/apple/Desktop/CGProject/external/glfw/src -I/Users/apple/Desktop/CGProject/cmake-build-debug/external/glfw/src
   OBJECT_DIR = external/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = external/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = external/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = external/glfw/src/libglfw3.pdb
 
 build external/glfw/src/CMakeFiles/glfw.dir/vulkan.c.o: C_COMPILER__glfw_unscanned_Debug /Users/apple/Desktop/CGProject/external/glfw/src/vulkan.c || cmake_object_order_depends_target_glfw
   DEFINES = -D_GLFW_COCOA
@@ -466,8 +422,6 @@ build external/glfw/src/CMakeFiles/glfw.dir/vulkan.c.o: C_COMPILER__glfw_unscann
   INCLUDES = -I/Users/apple/Desktop/CGProject/external/glfw/include -I/Users/apple/Desktop/CGProject/external/glfw/src -I/Users/apple/Desktop/CGProject/cmake-build-debug/external/glfw/src
   OBJECT_DIR = external/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = external/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = external/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = external/glfw/src/libglfw3.pdb
 
 build external/glfw/src/CMakeFiles/glfw.dir/window.c.o: C_COMPILER__glfw_unscanned_Debug /Users/apple/Desktop/CGProject/external/glfw/src/window.c || cmake_object_order_depends_target_glfw
   DEFINES = -D_GLFW_COCOA
@@ -476,8 +430,6 @@ build external/glfw/src/CMakeFiles/glfw.dir/window.c.o: C_COMPILER__glfw_unscann
   INCLUDES = -I/Users/apple/Desktop/CGProject/external/glfw/include -I/Users/apple/Desktop/CGProject/external/glfw/src -I/Users/apple/Desktop/CGProject/cmake-build-debug/external/glfw/src
   OBJECT_DIR = external/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = external/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = external/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = external/glfw/src/libglfw3.pdb
 
 build external/glfw/src/CMakeFiles/glfw.dir/egl_context.c.o: C_COMPILER__glfw_unscanned_Debug /Users/apple/Desktop/CGProject/external/glfw/src/egl_context.c || cmake_object_order_depends_target_glfw
   DEFINES = -D_GLFW_COCOA
@@ -486,8 +438,6 @@ build external/glfw/src/CMakeFiles/glfw.dir/egl_context.c.o: C_COMPILER__glfw_un
   INCLUDES = -I/Users/apple/Desktop/CGProject/external/glfw/include -I/Users/apple/Desktop/CGProject/external/glfw/src -I/Users/apple/Desktop/CGProject/cmake-build-debug/external/glfw/src
   OBJECT_DIR = external/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = external/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = external/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = external/glfw/src/libglfw3.pdb
 
 build external/glfw/src/CMakeFiles/glfw.dir/osmesa_context.c.o: C_COMPILER__glfw_unscanned_Debug /Users/apple/Desktop/CGProject/external/glfw/src/osmesa_context.c || cmake_object_order_depends_target_glfw
   DEFINES = -D_GLFW_COCOA
@@ -496,8 +446,6 @@ build external/glfw/src/CMakeFiles/glfw.dir/osmesa_context.c.o: C_COMPILER__glfw
   INCLUDES = -I/Users/apple/Desktop/CGProject/external/glfw/include -I/Users/apple/Desktop/CGProject/external/glfw/src -I/Users/apple/Desktop/CGProject/cmake-build-debug/external/glfw/src
   OBJECT_DIR = external/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = external/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = external/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = external/glfw/src/libglfw3.pdb
 
 build external/glfw/src/CMakeFiles/glfw.dir/null_init.c.o: C_COMPILER__glfw_unscanned_Debug /Users/apple/Desktop/CGProject/external/glfw/src/null_init.c || cmake_object_order_depends_target_glfw
   DEFINES = -D_GLFW_COCOA
@@ -506,8 +454,6 @@ build external/glfw/src/CMakeFiles/glfw.dir/null_init.c.o: C_COMPILER__glfw_unsc
   INCLUDES = -I/Users/apple/Desktop/CGProject/external/glfw/include -I/Users/apple/Desktop/CGProject/external/glfw/src -I/Users/apple/Desktop/CGProject/cmake-build-debug/external/glfw/src
   OBJECT_DIR = external/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = external/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = external/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = external/glfw/src/libglfw3.pdb
 
 build external/glfw/src/CMakeFiles/glfw.dir/null_monitor.c.o: C_COMPILER__glfw_unscanned_Debug /Users/apple/Desktop/CGProject/external/glfw/src/null_monitor.c || cmake_object_order_depends_target_glfw
   DEFINES = -D_GLFW_COCOA
@@ -516,8 +462,6 @@ build external/glfw/src/CMakeFiles/glfw.dir/null_monitor.c.o: C_COMPILER__glfw_u
   INCLUDES = -I/Users/apple/Desktop/CGProject/external/glfw/include -I/Users/apple/Desktop/CGProject/external/glfw/src -I/Users/apple/Desktop/CGProject/cmake-build-debug/external/glfw/src
   OBJECT_DIR = external/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = external/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = external/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = external/glfw/src/libglfw3.pdb
 
 build external/glfw/src/CMakeFiles/glfw.dir/null_window.c.o: C_COMPILER__glfw_unscanned_Debug /Users/apple/Desktop/CGProject/external/glfw/src/null_window.c || cmake_object_order_depends_target_glfw
   DEFINES = -D_GLFW_COCOA
@@ -526,8 +470,6 @@ build external/glfw/src/CMakeFiles/glfw.dir/null_window.c.o: C_COMPILER__glfw_un
   INCLUDES = -I/Users/apple/Desktop/CGProject/external/glfw/include -I/Users/apple/Desktop/CGProject/external/glfw/src -I/Users/apple/Desktop/CGProject/cmake-build-debug/external/glfw/src
   OBJECT_DIR = external/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = external/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = external/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = external/glfw/src/libglfw3.pdb
 
 build external/glfw/src/CMakeFiles/glfw.dir/null_joystick.c.o: C_COMPILER__glfw_unscanned_Debug /Users/apple/Desktop/CGProject/external/glfw/src/null_joystick.c || cmake_object_order_depends_target_glfw
   DEFINES = -D_GLFW_COCOA
@@ -536,8 +478,6 @@ build external/glfw/src/CMakeFiles/glfw.dir/null_joystick.c.o: C_COMPILER__glfw_
   INCLUDES = -I/Users/apple/Desktop/CGProject/external/glfw/include -I/Users/apple/Desktop/CGProject/external/glfw/src -I/Users/apple/Desktop/CGProject/cmake-build-debug/external/glfw/src
   OBJECT_DIR = external/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = external/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = external/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = external/glfw/src/libglfw3.pdb
 
 build external/glfw/src/CMakeFiles/glfw.dir/cocoa_time.c.o: C_COMPILER__glfw_unscanned_Debug /Users/apple/Desktop/CGProject/external/glfw/src/cocoa_time.c || cmake_object_order_depends_target_glfw
   DEFINES = -D_GLFW_COCOA
@@ -546,8 +486,6 @@ build external/glfw/src/CMakeFiles/glfw.dir/cocoa_time.c.o: C_COMPILER__glfw_uns
   INCLUDES = -I/Users/apple/Desktop/CGProject/external/glfw/include -I/Users/apple/Desktop/CGProject/external/glfw/src -I/Users/apple/Desktop/CGProject/cmake-build-debug/external/glfw/src
   OBJECT_DIR = external/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = external/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = external/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = external/glfw/src/libglfw3.pdb
 
 build external/glfw/src/CMakeFiles/glfw.dir/posix_module.c.o: C_COMPILER__glfw_unscanned_Debug /Users/apple/Desktop/CGProject/external/glfw/src/posix_module.c || cmake_object_order_depends_target_glfw
   DEFINES = -D_GLFW_COCOA
@@ -556,8 +494,6 @@ build external/glfw/src/CMakeFiles/glfw.dir/posix_module.c.o: C_COMPILER__glfw_u
   INCLUDES = -I/Users/apple/Desktop/CGProject/external/glfw/include -I/Users/apple/Desktop/CGProject/external/glfw/src -I/Users/apple/Desktop/CGProject/cmake-build-debug/external/glfw/src
   OBJECT_DIR = external/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = external/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = external/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = external/glfw/src/libglfw3.pdb
 
 build external/glfw/src/CMakeFiles/glfw.dir/posix_thread.c.o: C_COMPILER__glfw_unscanned_Debug /Users/apple/Desktop/CGProject/external/glfw/src/posix_thread.c || cmake_object_order_depends_target_glfw
   DEFINES = -D_GLFW_COCOA
@@ -566,8 +502,6 @@ build external/glfw/src/CMakeFiles/glfw.dir/posix_thread.c.o: C_COMPILER__glfw_u
   INCLUDES = -I/Users/apple/Desktop/CGProject/external/glfw/include -I/Users/apple/Desktop/CGProject/external/glfw/src -I/Users/apple/Desktop/CGProject/cmake-build-debug/external/glfw/src
   OBJECT_DIR = external/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = external/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = external/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = external/glfw/src/libglfw3.pdb
 
 build external/glfw/src/CMakeFiles/glfw.dir/cocoa_init.m.o: C_COMPILER__glfw_unscanned_Debug /Users/apple/Desktop/CGProject/external/glfw/src/cocoa_init.m || cmake_object_order_depends_target_glfw
   DEFINES = -D_GLFW_COCOA
@@ -576,8 +510,6 @@ build external/glfw/src/CMakeFiles/glfw.dir/cocoa_init.m.o: C_COMPILER__glfw_uns
   INCLUDES = -I/Users/apple/Desktop/CGProject/external/glfw/include -I/Users/apple/Desktop/CGProject/external/glfw/src -I/Users/apple/Desktop/CGProject/cmake-build-debug/external/glfw/src
   OBJECT_DIR = external/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = external/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = external/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = external/glfw/src/libglfw3.pdb
 
 build external/glfw/src/CMakeFiles/glfw.dir/cocoa_joystick.m.o: C_COMPILER__glfw_unscanned_Debug /Users/apple/Desktop/CGProject/external/glfw/src/cocoa_joystick.m || cmake_object_order_depends_target_glfw
   DEFINES = -D_GLFW_COCOA
@@ -586,8 +518,6 @@ build external/glfw/src/CMakeFiles/glfw.dir/cocoa_joystick.m.o: C_COMPILER__glfw
   INCLUDES = -I/Users/apple/Desktop/CGProject/external/glfw/include -I/Users/apple/Desktop/CGProject/external/glfw/src -I/Users/apple/Desktop/CGProject/cmake-build-debug/external/glfw/src
   OBJECT_DIR = external/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = external/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = external/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = external/glfw/src/libglfw3.pdb
 
 build external/glfw/src/CMakeFiles/glfw.dir/cocoa_monitor.m.o: C_COMPILER__glfw_unscanned_Debug /Users/apple/Desktop/CGProject/external/glfw/src/cocoa_monitor.m || cmake_object_order_depends_target_glfw
   DEFINES = -D_GLFW_COCOA
@@ -596,8 +526,6 @@ build external/glfw/src/CMakeFiles/glfw.dir/cocoa_monitor.m.o: C_COMPILER__glfw_
   INCLUDES = -I/Users/apple/Desktop/CGProject/external/glfw/include -I/Users/apple/Desktop/CGProject/external/glfw/src -I/Users/apple/Desktop/CGProject/cmake-build-debug/external/glfw/src
   OBJECT_DIR = external/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = external/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = external/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = external/glfw/src/libglfw3.pdb
 
 build external/glfw/src/CMakeFiles/glfw.dir/cocoa_window.m.o: C_COMPILER__glfw_unscanned_Debug /Users/apple/Desktop/CGProject/external/glfw/src/cocoa_window.m || cmake_object_order_depends_target_glfw
   DEFINES = -D_GLFW_COCOA
@@ -606,8 +534,6 @@ build external/glfw/src/CMakeFiles/glfw.dir/cocoa_window.m.o: C_COMPILER__glfw_u
   INCLUDES = -I/Users/apple/Desktop/CGProject/external/glfw/include -I/Users/apple/Desktop/CGProject/external/glfw/src -I/Users/apple/Desktop/CGProject/cmake-build-debug/external/glfw/src
   OBJECT_DIR = external/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = external/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = external/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = external/glfw/src/libglfw3.pdb
 
 build external/glfw/src/CMakeFiles/glfw.dir/nsgl_context.m.o: C_COMPILER__glfw_unscanned_Debug /Users/apple/Desktop/CGProject/external/glfw/src/nsgl_context.m || cmake_object_order_depends_target_glfw
   DEFINES = -D_GLFW_COCOA
@@ -616,8 +542,6 @@ build external/glfw/src/CMakeFiles/glfw.dir/nsgl_context.m.o: C_COMPILER__glfw_u
   INCLUDES = -I/Users/apple/Desktop/CGProject/external/glfw/include -I/Users/apple/Desktop/CGProject/external/glfw/src -I/Users/apple/Desktop/CGProject/cmake-build-debug/external/glfw/src
   OBJECT_DIR = external/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = external/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = external/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = external/glfw/src/libglfw3.pdb
 
 
 # =============================================================================
@@ -633,9 +557,8 @@ build external/glfw/src/libglfw3.a: C_STATIC_LIBRARY_LINKER__glfw_Debug external
   OBJECT_DIR = external/glfw/src/CMakeFiles/glfw.dir
   POST_BUILD = :
   PRE_LINK = :
-  TARGET_COMPILE_PDB = external/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
   TARGET_FILE = external/glfw/src/libglfw3.a
-  TARGET_PDB = external/glfw/src/libglfw3.pdb
+  TARGET_PDB = glfw3.a.dbg
 
 
 #############################################
@@ -736,8 +659,6 @@ build external/glad/CMakeFiles/glad.dir/src/gl.c.o: C_COMPILER__glad_unscanned_D
   INCLUDES = -I/Users/apple/Desktop/CGProject/external/glad/./include
   OBJECT_DIR = external/glad/CMakeFiles/glad.dir
   OBJECT_FILE_DIR = external/glad/CMakeFiles/glad.dir/src
-  TARGET_COMPILE_PDB = external/glad/CMakeFiles/glad.dir/glad.pdb
-  TARGET_PDB = external/glad/libglad.pdb
 
 
 # =============================================================================
@@ -753,9 +674,8 @@ build external/glad/libglad.a: C_STATIC_LIBRARY_LINKER__glad_Debug external/glad
   OBJECT_DIR = external/glad/CMakeFiles/glad.dir
   POST_BUILD = :
   PRE_LINK = :
-  TARGET_COMPILE_PDB = external/glad/CMakeFiles/glad.dir/glad.pdb
   TARGET_FILE = external/glad/libglad.a
-  TARGET_PDB = external/glad/libglad.pdb
+  TARGET_PDB = glad.a.dbg
 
 
 #############################################
@@ -981,8 +901,6 @@ build external/tinyobjloader/CMakeFiles/tinyobjloader.dir/tiny_obj_loader.cc.o: 
   FLAGS = -g -std=c++17 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk -mmacosx-version-min=14.1 -fcolor-diagnostics
   OBJECT_DIR = external/tinyobjloader/CMakeFiles/tinyobjloader.dir
   OBJECT_FILE_DIR = external/tinyobjloader/CMakeFiles/tinyobjloader.dir
-  TARGET_COMPILE_PDB = external/tinyobjloader/CMakeFiles/tinyobjloader.dir/tinyobjloader.pdb
-  TARGET_PDB = external/tinyobjloader/libtinyobjloader.pdb
 
 
 # =============================================================================
@@ -998,9 +916,8 @@ build external/tinyobjloader/libtinyobjloader.a: CXX_STATIC_LIBRARY_LINKER__tiny
   OBJECT_DIR = external/tinyobjloader/CMakeFiles/tinyobjloader.dir
   POST_BUILD = :
   PRE_LINK = :
-  TARGET_COMPILE_PDB = external/tinyobjloader/CMakeFiles/tinyobjloader.dir/tinyobjloader.pdb
   TARGET_FILE = external/tinyobjloader/libtinyobjloader.a
-  TARGET_PDB = external/tinyobjloader/libtinyobjloader.pdb
+  TARGET_PDB = tinyobjloader.a.dbg
 
 
 #############################################
@@ -1087,8 +1004,6 @@ build external/imgui/CMakeFiles/imgui.dir/imgui.cpp.o: CXX_COMPILER__imgui_unsca
   INCLUDES = -I/Users/apple/Desktop/CGProject/external/glfw/include -I/Users/apple/Desktop/CGProject/external/glad/include
   OBJECT_DIR = external/imgui/CMakeFiles/imgui.dir
   OBJECT_FILE_DIR = external/imgui/CMakeFiles/imgui.dir
-  TARGET_COMPILE_PDB = external/imgui/CMakeFiles/imgui.dir/imgui.pdb
-  TARGET_PDB = external/imgui/libimgui.pdb
 
 build external/imgui/CMakeFiles/imgui.dir/imgui_demo.cpp.o: CXX_COMPILER__imgui_unscanned_Debug /Users/apple/Desktop/CGProject/external/imgui/imgui_demo.cpp || cmake_object_order_depends_target_imgui
   DEP_FILE = external/imgui/CMakeFiles/imgui.dir/imgui_demo.cpp.o.d
@@ -1096,8 +1011,6 @@ build external/imgui/CMakeFiles/imgui.dir/imgui_demo.cpp.o: CXX_COMPILER__imgui_
   INCLUDES = -I/Users/apple/Desktop/CGProject/external/glfw/include -I/Users/apple/Desktop/CGProject/external/glad/include
   OBJECT_DIR = external/imgui/CMakeFiles/imgui.dir
   OBJECT_FILE_DIR = external/imgui/CMakeFiles/imgui.dir
-  TARGET_COMPILE_PDB = external/imgui/CMakeFiles/imgui.dir/imgui.pdb
-  TARGET_PDB = external/imgui/libimgui.pdb
 
 build external/imgui/CMakeFiles/imgui.dir/imgui_draw.cpp.o: CXX_COMPILER__imgui_unscanned_Debug /Users/apple/Desktop/CGProject/external/imgui/imgui_draw.cpp || cmake_object_order_depends_target_imgui
   DEP_FILE = external/imgui/CMakeFiles/imgui.dir/imgui_draw.cpp.o.d
@@ -1105,8 +1018,6 @@ build external/imgui/CMakeFiles/imgui.dir/imgui_draw.cpp.o: CXX_COMPILER__imgui_
   INCLUDES = -I/Users/apple/Desktop/CGProject/external/glfw/include -I/Users/apple/Desktop/CGProject/external/glad/include
   OBJECT_DIR = external/imgui/CMakeFiles/imgui.dir
   OBJECT_FILE_DIR = external/imgui/CMakeFiles/imgui.dir
-  TARGET_COMPILE_PDB = external/imgui/CMakeFiles/imgui.dir/imgui.pdb
-  TARGET_PDB = external/imgui/libimgui.pdb
 
 build external/imgui/CMakeFiles/imgui.dir/imgui_impl_glfw.cpp.o: CXX_COMPILER__imgui_unscanned_Debug /Users/apple/Desktop/CGProject/external/imgui/imgui_impl_glfw.cpp || cmake_object_order_depends_target_imgui
   DEP_FILE = external/imgui/CMakeFiles/imgui.dir/imgui_impl_glfw.cpp.o.d
@@ -1114,8 +1025,6 @@ build external/imgui/CMakeFiles/imgui.dir/imgui_impl_glfw.cpp.o: CXX_COMPILER__i
   INCLUDES = -I/Users/apple/Desktop/CGProject/external/glfw/include -I/Users/apple/Desktop/CGProject/external/glad/include
   OBJECT_DIR = external/imgui/CMakeFiles/imgui.dir
   OBJECT_FILE_DIR = external/imgui/CMakeFiles/imgui.dir
-  TARGET_COMPILE_PDB = external/imgui/CMakeFiles/imgui.dir/imgui.pdb
-  TARGET_PDB = external/imgui/libimgui.pdb
 
 build external/imgui/CMakeFiles/imgui.dir/imgui_impl_opengl3.cpp.o: CXX_COMPILER__imgui_unscanned_Debug /Users/apple/Desktop/CGProject/external/imgui/imgui_impl_opengl3.cpp || cmake_object_order_depends_target_imgui
   DEP_FILE = external/imgui/CMakeFiles/imgui.dir/imgui_impl_opengl3.cpp.o.d
@@ -1123,8 +1032,6 @@ build external/imgui/CMakeFiles/imgui.dir/imgui_impl_opengl3.cpp.o: CXX_COMPILER
   INCLUDES = -I/Users/apple/Desktop/CGProject/external/glfw/include -I/Users/apple/Desktop/CGProject/external/glad/include
   OBJECT_DIR = external/imgui/CMakeFiles/imgui.dir
   OBJECT_FILE_DIR = external/imgui/CMakeFiles/imgui.dir
-  TARGET_COMPILE_PDB = external/imgui/CMakeFiles/imgui.dir/imgui.pdb
-  TARGET_PDB = external/imgui/libimgui.pdb
 
 build external/imgui/CMakeFiles/imgui.dir/imgui_tables.cpp.o: CXX_COMPILER__imgui_unscanned_Debug /Users/apple/Desktop/CGProject/external/imgui/imgui_tables.cpp || cmake_object_order_depends_target_imgui
   DEP_FILE = external/imgui/CMakeFiles/imgui.dir/imgui_tables.cpp.o.d
@@ -1132,8 +1039,6 @@ build external/imgui/CMakeFiles/imgui.dir/imgui_tables.cpp.o: CXX_COMPILER__imgu
   INCLUDES = -I/Users/apple/Desktop/CGProject/external/glfw/include -I/Users/apple/Desktop/CGProject/external/glad/include
   OBJECT_DIR = external/imgui/CMakeFiles/imgui.dir
   OBJECT_FILE_DIR = external/imgui/CMakeFiles/imgui.dir
-  TARGET_COMPILE_PDB = external/imgui/CMakeFiles/imgui.dir/imgui.pdb
-  TARGET_PDB = external/imgui/libimgui.pdb
 
 build external/imgui/CMakeFiles/imgui.dir/imgui_widgets.cpp.o: CXX_COMPILER__imgui_unscanned_Debug /Users/apple/Desktop/CGProject/external/imgui/imgui_widgets.cpp || cmake_object_order_depends_target_imgui
   DEP_FILE = external/imgui/CMakeFiles/imgui.dir/imgui_widgets.cpp.o.d
@@ -1141,8 +1046,6 @@ build external/imgui/CMakeFiles/imgui.dir/imgui_widgets.cpp.o: CXX_COMPILER__img
   INCLUDES = -I/Users/apple/Desktop/CGProject/external/glfw/include -I/Users/apple/Desktop/CGProject/external/glad/include
   OBJECT_DIR = external/imgui/CMakeFiles/imgui.dir
   OBJECT_FILE_DIR = external/imgui/CMakeFiles/imgui.dir
-  TARGET_COMPILE_PDB = external/imgui/CMakeFiles/imgui.dir/imgui.pdb
-  TARGET_PDB = external/imgui/libimgui.pdb
 
 
 # =============================================================================
@@ -1158,9 +1061,8 @@ build external/imgui/libimgui.a: CXX_STATIC_LIBRARY_LINKER__imgui_Debug external
   OBJECT_DIR = external/imgui/CMakeFiles/imgui.dir
   POST_BUILD = :
   PRE_LINK = :
-  TARGET_COMPILE_PDB = external/imgui/CMakeFiles/imgui.dir/imgui.pdb
   TARGET_FILE = external/imgui/libimgui.a
-  TARGET_PDB = external/imgui/libimgui.pdb
+  TARGET_PDB = imgui.a.dbg
 
 
 #############################################
@@ -1246,16 +1148,12 @@ build external/stb/CMakeFiles/stb.dir/stb_image.cpp.o: CXX_COMPILER__stb_unscann
   FLAGS = -g -std=c++17 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk -mmacosx-version-min=14.1 -fcolor-diagnostics
   OBJECT_DIR = external/stb/CMakeFiles/stb.dir
   OBJECT_FILE_DIR = external/stb/CMakeFiles/stb.dir
-  TARGET_COMPILE_PDB = external/stb/CMakeFiles/stb.dir/stb.pdb
-  TARGET_PDB = external/stb/libstb.pdb
 
 build external/stb/CMakeFiles/stb.dir/stb_vorbis.c.o: C_COMPILER__stb_unscanned_Debug /Users/apple/Desktop/CGProject/external/stb/stb_vorbis.c || cmake_object_order_depends_target_stb
   DEP_FILE = external/stb/CMakeFiles/stb.dir/stb_vorbis.c.o.d
   FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk -mmacosx-version-min=14.1 -fcolor-diagnostics
   OBJECT_DIR = external/stb/CMakeFiles/stb.dir
   OBJECT_FILE_DIR = external/stb/CMakeFiles/stb.dir
-  TARGET_COMPILE_PDB = external/stb/CMakeFiles/stb.dir/stb.pdb
-  TARGET_PDB = external/stb/libstb.pdb
 
 
 # =============================================================================
@@ -1271,9 +1169,8 @@ build external/stb/libstb.a: CXX_STATIC_LIBRARY_LINKER__stb_Debug external/stb/C
   OBJECT_DIR = external/stb/CMakeFiles/stb.dir
   POST_BUILD = :
   PRE_LINK = :
-  TARGET_COMPILE_PDB = external/stb/CMakeFiles/stb.dir/stb.pdb
   TARGET_FILE = external/stb/libstb.a
-  TARGET_PDB = external/stb/libstb.pdb
+  TARGET_PDB = stb.a.dbg
 
 
 #############################################
@@ -1359,8 +1256,6 @@ build external/tinygltf/CMakeFiles/tinygltf.dir/tiny_gltf.cc.o: CXX_COMPILER__ti
   FLAGS = -g -std=c++11 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk -mmacosx-version-min=14.1 -fcolor-diagnostics
   OBJECT_DIR = external/tinygltf/CMakeFiles/tinygltf.dir
   OBJECT_FILE_DIR = external/tinygltf/CMakeFiles/tinygltf.dir
-  TARGET_COMPILE_PDB = external/tinygltf/CMakeFiles/tinygltf.dir/tinygltf.pdb
-  TARGET_PDB = external/tinygltf/libtinygltf.pdb
 
 
 # =============================================================================
@@ -1376,9 +1271,8 @@ build external/tinygltf/libtinygltf.a: CXX_STATIC_LIBRARY_LINKER__tinygltf_Debug
   OBJECT_DIR = external/tinygltf/CMakeFiles/tinygltf.dir
   POST_BUILD = :
   PRE_LINK = :
-  TARGET_COMPILE_PDB = external/tinygltf/CMakeFiles/tinygltf.dir/tinygltf.pdb
   TARGET_FILE = external/tinygltf/libtinygltf.a
-  TARGET_PDB = external/tinygltf/libtinygltf.pdb
+  TARGET_PDB = tinygltf.a.dbg
 
 
 #############################################
@@ -1558,14 +1452,14 @@ build external/tinyobjloader/all: phony external/tinyobjloader/libtinyobjloader.
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/BasicConfigVersion-SameMajorVersion.cmake.in /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeCCompiler.cmake.in /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeCCompilerABI.c /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeCInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeCXXCompiler.cmake.in /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeCXXCompilerABI.cpp /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeCXXInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeCommonLanguageInclude.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeCompilerIdDetection.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeDependentOption.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeDetermineCCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeDetermineCXXCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeDetermineCompileFeatures.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeDetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeDetermineCompilerABI.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeDetermineSystem.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeFindBinUtils.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeGenericSystem.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeInitializeConfigs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeLanguageInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakePackageConfigHelpers.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeParseImplicitIncludeInfo.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeParseImplicitLinkInfo.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeParseLibraryArchitecture.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeSystem.cmake.in /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeSystemSpecificInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeSystemSpecificInitialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeTestCCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeTestCXXCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeTestCompilerCommon.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CheckCSourceCompiles.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CheckIncludeFile.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CheckLibraryExists.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/ADSP-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/ARMCC-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/ARMClang-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/AppleClang-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/Borland-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/Bruce-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/CMakeCommonCompilerMacros.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/Clang-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/Clang-DetermineCompilerInternal.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/Comeau-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/Compaq-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/Compaq-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/Cray-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/Embarcadero-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/Fujitsu-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/FujitsuClang-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/GHS-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/GNU-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/GNU-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/GNU.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/HP-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/HP-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/IAR-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/IBMClang-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/IBMClang-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/Intel-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/IntelLLVM-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/LCC-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/LCC-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/MSVC-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/NVHPC-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/NVIDIA-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/PGI-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/PathScale-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/SCO-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/SDCC-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/SunPro-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/SunPro-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/TI-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/Tasking-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/TinyCC-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/VisualAge-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/VisualAge-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/Watcom-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/XL-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/XL-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/XLClang-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/XLClang-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/zOS-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/FindPackageHandleStandardArgs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/FindPackageMessage.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/FindThreads.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/GNUInstallDirs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Internal/CheckSourceCompiles.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Internal/FeatureTesting.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Platform/Apple-AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Platform/Apple-AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Platform/Apple-Clang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Platform/Apple-Clang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Platform/Apple-Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Platform/Darwin-Determine-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Platform/Darwin-Initialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Platform/Darwin.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Platform/UnixPaths.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/WriteBasicConfigVersionFile.cmake /Users/apple/Desktop/CGProject/CMakeLists.txt /Users/apple/Desktop/CGProject/external/glad/CMakeLists.txt /Users/apple/Desktop/CGProject/external/glfw/CMake/cmake_uninstall.cmake.in /Users/apple/Desktop/CGProject/external/glfw/CMake/glfw3.pc.in /Users/apple/Desktop/CGProject/external/glfw/CMake/glfw3Config.cmake.in /Users/apple/Desktop/CGProject/external/glfw/CMakeLists.txt /Users/apple/Desktop/CGProject/external/glfw/src/CMakeLists.txt /Users/apple/Desktop/CGProject/external/glm/CMakeLists.txt /Users/apple/Desktop/CGProject/external/glm/glm/CMakeLists.txt /Users/apple/Desktop/CGProject/external/imgui/CMakeLists.txt /Users/apple/Desktop/CGProject/external/stb/CMakeLists.txt /Users/apple/Desktop/CGProject/external/tinygltf/CMakeLists.txt /Users/apple/Desktop/CGProject/external/tinyobjloader/CMakeLists.txt /Users/apple/Desktop/CGProject/external/tinyobjloader/tinyobjloader-config.cmake.in /Users/apple/Desktop/CGProject/external/tinyobjloader/tinyobjloader.pc.in CMakeCache.txt CMakeFiles/3.27.8/CMakeCCompiler.cmake CMakeFiles/3.27.8/CMakeCXXCompiler.cmake CMakeFiles/3.27.8/CMakeSystem.cmake
+build build.ninja: RERUN_CMAKE | /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/BasicConfigVersion-SameMajorVersion.cmake.in /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeCInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeCXXInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeCommonLanguageInclude.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeDependentOption.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeGenericSystem.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeInitializeConfigs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeLanguageInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakePackageConfigHelpers.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeSystemSpecificInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeSystemSpecificInitialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CheckCSourceCompiles.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CheckIncludeFile.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CheckLibraryExists.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/CMakeCommonCompilerMacros.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/GNU.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/FindPackageHandleStandardArgs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/FindPackageMessage.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/FindThreads.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/GNUInstallDirs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Internal/CheckSourceCompiles.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Platform/Apple-AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Platform/Apple-AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Platform/Apple-Clang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Platform/Apple-Clang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Platform/Apple-Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Platform/Darwin-Initialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Platform/Darwin.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Platform/UnixPaths.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/WriteBasicConfigVersionFile.cmake /Users/apple/Desktop/CGProject/CMakeLists.txt /Users/apple/Desktop/CGProject/external/glad/CMakeLists.txt /Users/apple/Desktop/CGProject/external/glfw/CMake/cmake_uninstall.cmake.in /Users/apple/Desktop/CGProject/external/glfw/CMake/glfw3.pc.in /Users/apple/Desktop/CGProject/external/glfw/CMake/glfw3Config.cmake.in /Users/apple/Desktop/CGProject/external/glfw/CMakeLists.txt /Users/apple/Desktop/CGProject/external/glfw/src/CMakeLists.txt /Users/apple/Desktop/CGProject/external/glm/CMakeLists.txt /Users/apple/Desktop/CGProject/external/glm/glm/CMakeLists.txt /Users/apple/Desktop/CGProject/external/imgui/CMakeLists.txt /Users/apple/Desktop/CGProject/external/stb/CMakeLists.txt /Users/apple/Desktop/CGProject/external/tinygltf/CMakeLists.txt /Users/apple/Desktop/CGProject/external/tinyobjloader/CMakeLists.txt /Users/apple/Desktop/CGProject/external/tinyobjloader/tinyobjloader-config.cmake.in /Users/apple/Desktop/CGProject/external/tinyobjloader/tinyobjloader.pc.in CMakeCache.txt CMakeFiles/3.27.8/CMakeCCompiler.cmake CMakeFiles/3.27.8/CMakeCXXCompiler.cmake CMakeFiles/3.27.8/CMakeSystem.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/BasicConfigVersion-SameMajorVersion.cmake.in /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeCCompiler.cmake.in /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeCCompilerABI.c /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeCInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeCXXCompiler.cmake.in /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeCXXCompilerABI.cpp /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeCXXInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeCommonLanguageInclude.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeCompilerIdDetection.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeDependentOption.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeDetermineCCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeDetermineCXXCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeDetermineCompileFeatures.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeDetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeDetermineCompilerABI.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeDetermineSystem.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeFindBinUtils.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeGenericSystem.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeInitializeConfigs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeLanguageInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakePackageConfigHelpers.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeParseImplicitIncludeInfo.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeParseImplicitLinkInfo.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeParseLibraryArchitecture.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeSystem.cmake.in /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeSystemSpecificInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeSystemSpecificInitialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeTestCCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeTestCXXCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeTestCompilerCommon.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CheckCSourceCompiles.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CheckIncludeFile.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CheckLibraryExists.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/ADSP-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/ARMCC-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/ARMClang-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/AppleClang-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/Borland-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/Bruce-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/CMakeCommonCompilerMacros.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/Clang-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/Clang-DetermineCompilerInternal.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/Comeau-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/Compaq-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/Compaq-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/Cray-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/Embarcadero-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/Fujitsu-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/FujitsuClang-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/GHS-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/GNU-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/GNU-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/GNU.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/HP-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/HP-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/IAR-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/IBMClang-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/IBMClang-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/Intel-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/IntelLLVM-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/LCC-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/LCC-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/MSVC-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/NVHPC-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/NVIDIA-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/PGI-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/PathScale-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/SCO-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/SDCC-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/SunPro-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/SunPro-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/TI-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/Tasking-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/TinyCC-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/VisualAge-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/VisualAge-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/Watcom-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/XL-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/XL-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/XLClang-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/XLClang-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/zOS-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/FindPackageHandleStandardArgs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/FindPackageMessage.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/FindThreads.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/GNUInstallDirs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Internal/CheckSourceCompiles.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Internal/FeatureTesting.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Platform/Apple-AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Platform/Apple-AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Platform/Apple-Clang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Platform/Apple-Clang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Platform/Apple-Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Platform/Darwin-Determine-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Platform/Darwin-Initialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Platform/Darwin.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Platform/UnixPaths.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/WriteBasicConfigVersionFile.cmake /Users/apple/Desktop/CGProject/CMakeLists.txt /Users/apple/Desktop/CGProject/external/glad/CMakeLists.txt /Users/apple/Desktop/CGProject/external/glfw/CMake/cmake_uninstall.cmake.in /Users/apple/Desktop/CGProject/external/glfw/CMake/glfw3.pc.in /Users/apple/Desktop/CGProject/external/glfw/CMake/glfw3Config.cmake.in /Users/apple/Desktop/CGProject/external/glfw/CMakeLists.txt /Users/apple/Desktop/CGProject/external/glfw/src/CMakeLists.txt /Users/apple/Desktop/CGProject/external/glm/CMakeLists.txt /Users/apple/Desktop/CGProject/external/glm/glm/CMakeLists.txt /Users/apple/Desktop/CGProject/external/imgui/CMakeLists.txt /Users/apple/Desktop/CGProject/external/stb/CMakeLists.txt /Users/apple/Desktop/CGProject/external/tinygltf/CMakeLists.txt /Users/apple/Desktop/CGProject/external/tinyobjloader/CMakeLists.txt /Users/apple/Desktop/CGProject/external/tinyobjloader/tinyobjloader-config.cmake.in /Users/apple/Desktop/CGProject/external/tinyobjloader/tinyobjloader.pc.in CMakeCache.txt CMakeFiles/3.27.8/CMakeCCompiler.cmake CMakeFiles/3.27.8/CMakeCXXCompiler.cmake CMakeFiles/3.27.8/CMakeSystem.cmake: phony
+build /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/BasicConfigVersion-SameMajorVersion.cmake.in /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeCInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeCXXInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeCommonLanguageInclude.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeDependentOption.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeGenericSystem.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeInitializeConfigs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeLanguageInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakePackageConfigHelpers.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeSystemSpecificInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CMakeSystemSpecificInitialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CheckCSourceCompiles.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CheckIncludeFile.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/CheckLibraryExists.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/CMakeCommonCompilerMacros.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Compiler/GNU.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/FindPackageHandleStandardArgs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/FindPackageMessage.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/FindThreads.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/GNUInstallDirs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Internal/CheckSourceCompiles.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Platform/Apple-AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Platform/Apple-AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Platform/Apple-Clang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Platform/Apple-Clang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Platform/Apple-Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Platform/Darwin-Initialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Platform/Darwin.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/Platform/UnixPaths.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/WriteBasicConfigVersionFile.cmake /Users/apple/Desktop/CGProject/CMakeLists.txt /Users/apple/Desktop/CGProject/external/glad/CMakeLists.txt /Users/apple/Desktop/CGProject/external/glfw/CMake/cmake_uninstall.cmake.in /Users/apple/Desktop/CGProject/external/glfw/CMake/glfw3.pc.in /Users/apple/Desktop/CGProject/external/glfw/CMake/glfw3Config.cmake.in /Users/apple/Desktop/CGProject/external/glfw/CMakeLists.txt /Users/apple/Desktop/CGProject/external/glfw/src/CMakeLists.txt /Users/apple/Desktop/CGProject/external/glm/CMakeLists.txt /Users/apple/Desktop/CGProject/external/glm/glm/CMakeLists.txt /Users/apple/Desktop/CGProject/external/imgui/CMakeLists.txt /Users/apple/Desktop/CGProject/external/stb/CMakeLists.txt /Users/apple/Desktop/CGProject/external/tinygltf/CMakeLists.txt /Users/apple/Desktop/CGProject/external/tinyobjloader/CMakeLists.txt /Users/apple/Desktop/CGProject/external/tinyobjloader/tinyobjloader-config.cmake.in /Users/apple/Desktop/CGProject/external/tinyobjloader/tinyobjloader.pc.in CMakeCache.txt CMakeFiles/3.27.8/CMakeCCompiler.cmake CMakeFiles/3.27.8/CMakeCXXCompiler.cmake CMakeFiles/3.27.8/CMakeSystem.cmake: phony
 
 
 #############################################

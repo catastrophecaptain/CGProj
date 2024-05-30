@@ -1,3 +1,6 @@
+#ifndef SHOOTER_HPP
+#define SHOOTER_HPP
+
 #include <object.hpp>
 #include <base/model.h>
 #include <memory>
@@ -22,3 +25,5 @@ public:
     bool _is_shooting = false;
     // bool _is_loaded = false;
 };
+
+#endif // SHOOTER_HPP
