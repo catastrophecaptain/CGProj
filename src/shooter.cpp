@@ -12,6 +12,10 @@ Shooter::Shooter(Engine *engine, glm::vec3 scale, glm::vec3 position, glm::quat 
     _model_transform.rotation = rotation;
     change_stage(_engine->_stage);
     _bounding_box = BoundingBox{glm::vec3(-3.0f, -45.0f, -3.0f), glm::vec3(3.0f, 40.0f, 3.0f)};
+    for (int i = 0; i < _old_cnt; i++)
+    {
+        _transform_old.push_back(_model_transform);
+    }
 }
 void Shooter::init(std::vector<std::string> _material_path, std::vector<std::string> _model_path)
 {
@@ -126,24 +130,24 @@ void Shooter::renew()
     //     _camera->transform.rotation = glm::angleAxis(glm::radians(cameraRotateSpeed * (-_input.mouse.move.yNow + _input.mouse.move.yOld)), _camera->transform.getRight()) * _camera->transform.rotation;
     // }
     std::cout << _transform.position.x << " " << _transform.position.y << " " << _transform.position.z << std::endl;
-    _transform_old = _transform;
+    _transform_old.push_back(_transform);
+    _transform_old.erase(_transform_old.begin());
     bool _is_landed = false;
-    _transform.position.y-=10.0;
-    for(auto it:_engine->_objects)
+    _transform.position.y -= 10.0;
+    for (auto it : _engine->_objects)
     {
-        for(auto box:it->getBoxs())
+        for (auto box : it->getBoxs())
         {
-            for(auto segmant:getSegments())
+            for (auto segmant : getSegments())
             {
-                if(it->getCategory()==Category::MAP&&_engine->checkCollision(box,segmant))
+                if (it->getCategory() == Category::MAP && _engine->checkCollision(box, segmant))
                 {
-                    _is_landed=true;
+                    _is_landed = true;
                 }
-
             }
         }
     }
-    _transform=_transform_old;
+    _transform = _transform_old.back();
     if (_is_landed)
     {
         _up_speed = _up_speed < 0 ? 0 : _up_speed;
@@ -207,7 +211,7 @@ void Shooter::renew()
             {
                 std::cout << "mouse left" << std::endl;
                 frame_shoot();
-                Bullet *bullet = new Bullet(_engine, _transform_old.position, _transform_old.getFront(), 10000.0);
+                Bullet *bullet = new Bullet(_engine, _transform_old.back().position, _transform_old.back().getFront(), 10000.0);
             }
             if (_engine->_input.keyboard.keyStates[GLFW_KEY_SPACE] != GLFW_RELEASE && _is_landed)
             {
@@ -215,10 +219,10 @@ void Shooter::renew()
             }
             if (!_is_landed)
             {
-                
+
                 _up_speed -= _gravity * _engine->_deltaTime;
             }
-                _transform.position.y += _up_speed * _engine->_deltaTime;
+            _transform.position.y += _up_speed * _engine->_deltaTime;
         }
         renew_camera();
     }
@@ -258,9 +262,9 @@ std::vector<Segment> Shooter::getSegments()
     std::vector<Segment> segments;
     glm::vec3 vertex_1[8];
     Transform _transform_1{_transform};
-    Transform _transform_old_1{_transform_old};
-    _transform_1.rotation=glm::quat{1.0,0.0,0.0,0.0};
-    _transform_old_1.rotation=glm::quat{1.0,0.0,0.0,0.0};
+    Transform _transform_old_1{_transform_old.back()};
+    _transform_1.rotation = glm::quat{1.0, 0.0, 0.0, 0.0};
+    _transform_old_1.rotation = glm::quat{1.0, 0.0, 0.0, 0.0};
     vertex_1[0] = _transform_1.getLocalMatrix() * glm::vec4(_bounding_box.min, 1.0f);
     vertex_1[1] = _transform_1.getLocalMatrix() * glm::vec4(_bounding_box.max, 1.0f);
     vertex_1[2] = _transform_1.getLocalMatrix() * glm::vec4(_bounding_box.min.x, _bounding_box.min.y, _bounding_box.max.z, 1.0f);
@@ -303,8 +307,56 @@ void Shooter::collidedBy(Object *other)
     case Category::MAP:
     {
         std::cout << "collided by map" << std::endl;
-        _transform.position = _transform_old.position;
-        std::cout<<_engine->_t_min<<std::endl;
+        glm::vec3 position = _transform.position;
+        bool solve = false;
+        for (int i = 0; i < 3; i++)
+        {
+
+            _transform.position[i] = _transform_old.back().position[i];
+            solve=true;
+            for (auto box : other->getBoxs())
+            {
+                for (auto segmant : getSegments())
+                {
+                    if (_engine->checkCollision(box, segmant))
+                    {
+                        solve = false;
+                    }
+                }
+            }
+            if (!solve)
+            {
+                _transform.position = position;
+            }else
+            {
+                break;
+            }
+        }
+        if (solve)
+        {
+            break;
+        }
+        for (int i = 0; i < 3; i++)
+        {
+            _transform.position = _transform_old.back().position;
+            _transform.position[i] = position[i];
+            for (auto box : other->getBoxs())
+            {
+                for (auto segmant : getSegments())
+                {
+                    if (!_engine->checkCollision(box, segmant))
+                    {
+                        solve = true;
+                    }
+                }
+            }
+        }
+        if (solve)
+        {
+            break;
+        }
+        _transform.position = _transform_old[_old_cnt / 2].position;
+        std::cout << _engine->_t_min << std::endl;
     }
     case Category::SHOOTER:
     {

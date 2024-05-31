@@ -32,7 +32,8 @@ public:
     std::vector<std::unique_ptr<ImageTexture2D>> _material;
     bool _is_shooting = false;
     Transform _model_transform;
-    Transform _transform_old;
+    std::vector<Transform> _transform_old;
+    int _old_cnt=10;
     BoundingBox _bounding_box;
     bool _is_end = false;
     bool _is_view_mode = true;
