@@ -193,11 +193,11 @@ void Shooter::renew()
             }
             if (_engine->_input.mouse.scroll.xOffset != 0)
             {
-                _engine->_camera->fovy *= std::pow(1.01, _engine->_input.mouse.scroll.xOffset);
+                _engine->_camera->fovy *= std::pow(1.01, -_engine->_input.mouse.scroll.xOffset);
             }
             if (_engine->_input.mouse.scroll.yOffset != 0)
             {
-                _engine->_camera->fovy *= std::pow(1.01, _engine->_input.mouse.scroll.yOffset);
+                _engine->_camera->fovy *= std::pow(1.01, -_engine->_input.mouse.scroll.yOffset);
             }
         }
         else
