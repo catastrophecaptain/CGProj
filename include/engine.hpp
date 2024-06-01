@@ -5,6 +5,10 @@
 #include "base/glsl_program.h"
 #include <vector>
 #include <memory>
+#include <stdio.h>
+#include <Windows.h>
+#include <mmsystem.h>
+#pragma comment (lib,“WinMM.lib”)
 class Bullet;
 class Ghost;
 class Shooter;
