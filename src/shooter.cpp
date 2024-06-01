@@ -311,6 +311,7 @@ void Shooter::collidedBy(Object *other)
         std::cout<<"collided by ghost"<<std::endl;
         if (!_is_end)
         {
+            std::cout<<"You are dead"<<std::endl;
             _engine->_stage = EngineStage::END;
         }
         break;
