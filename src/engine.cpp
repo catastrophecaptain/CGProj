@@ -23,7 +23,7 @@ Engine::~Engine()
 };
 void Engine::start()
 {
-if (0 == PlaySound("../media/sound/Harmonious.wav", NULL, SND_FILENAME | SND_ASYNC))
+    if (0 == PlaySound("../media/sound/Harmonious.wav", NULL, SND_FILENAME | SND_ASYNC | SND_LOOP))
 	{
 		printf("playsound false");
 	}
