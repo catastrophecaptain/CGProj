@@ -68,6 +68,8 @@ void Shooter::frame_shoot_control()
         if (_is_shooting)
         {
             _model_current_index = 1;
+            mciSendString("open ../media/sound/shoot.wav alias shoot", NULL, 0, NULL);
+            mciSendString("play shoot", NULL, 0, NULL);
             _is_shooting = false;
         }
     }
@@ -78,10 +80,14 @@ void Shooter::frame_shoot_control()
             _model_current_index = 1;
             _is_shooting = false;
         }
+        else{
+            _model_current_index++;
+        }
     }
     else if (_model_current_index == 9)
     {
         _model_current_index = 0;
+        mciSendString("stop shoot", NULL, 0, NULL); // 停止音乐播放
     }
     else
     {
@@ -225,6 +231,18 @@ void Shooter::renew()
             _transform.position.y += _up_speed * _engine->_deltaTime;
         }
         renew_camera();
+    }
+    static bool is_play = false;
+    if(!_is_end&&!_is_view_mode&&_is_landed&&glm::length(_transform.position-_transform_old.back().position)>0.1){
+        if(!is_play){
+            mciSendString("open ../media/sound/walk.wav alias walk", NULL, 0, NULL);
+            mciSendString("play walk", NULL, 0, NULL);
+            is_play=true;
+        }
+    }
+    else{
+        mciSendString("stop walk", NULL, 0, NULL);
+        is_play=false;
     }
 }
 void Shooter::change_stage(EngineStage stage)
