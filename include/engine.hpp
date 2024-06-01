@@ -54,6 +54,7 @@ public:
     std::unique_ptr<PointLight> _light_point;
     std::unique_ptr<AmbientLight> _light_ambient;
     std::vector<Object *> _objects_to_delete;
+    std::vector<Object *> _objects_to_add;
     Command *_command = nullptr;
     // shooter和ghost
     Shooter* shooter;
