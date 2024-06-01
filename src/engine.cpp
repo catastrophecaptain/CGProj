@@ -23,10 +23,10 @@ Engine::~Engine()
 };
 void Engine::start()
 {
-    // if (0 == PlaySound("../media/sound/Harmonious.wav", NULL, SND_FILENAME | SND_ASYNC | SND_LOOP))
-	// {
-	// 	printf("playsound false");
-	// }
+    if (0 == PlaySound("../media/sound/Harmonious.wav", NULL, SND_FILENAME | SND_ASYNC | SND_LOOP))
+	{
+		printf("playsound false");
+	}
     glfwSetInputMode(_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     _input.mouse.move.xNow = _input.mouse.move.xOld = 0.5f * _windowWidth;
     _input.mouse.move.yNow = _input.mouse.move.yOld = 0.5f * _windowHeight;
