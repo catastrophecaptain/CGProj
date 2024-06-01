@@ -4,6 +4,7 @@
 std::unique_ptr<Model> Ghost::_model;
 std::unique_ptr<ImageTexture2D> Ghost::_material;
 float Ghost::_speed=0.1f;
+int Ghost::_dead=0;
 Ghost::Ghost(Engine *engine, glm::vec3 scale, glm::vec3 position, bool is_add, std::string _material_path, std::string _model_path) : Object(engine, Category::GHOST)
 {
     if (is_add)
@@ -89,7 +90,6 @@ void Ghost::collidedBy(Object *other)
     //     glm::vec3 position((x - 250.0f) * 0.8f, fmod(y, 40.0f) + 20.0f, (z - 250.0f) * 2.5f);
     //     Ghost *ghost = new Ghost(this, scale, position);
     if (other->getCategory() == Category::BULLET)
-
     {
         // if (!_is_to_delete)
         // {
@@ -114,7 +114,8 @@ void Ghost::collidedBy(Object *other)
             //     _engine->_objects_to_add.push_back(ghost);
             // }
             // _is_to_delete = true;
-            std::srand(std::time(0));
+            std::srand(std::time(0)+_dead);
+            _dead++;
             int x = rand() % 500;
             int y = rand() % 500;
             int z = rand() % 500;

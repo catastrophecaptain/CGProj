@@ -27,6 +27,7 @@ public:
     bool _is_loaded = false;
     bool _is_to_delete = false;
     float _range_radius = 100.0f; // 如果shooter走进这个范围内，ghost就开始向shooter移动
+    static int _dead;
 };
 
 #endif // GHOST_HPP
