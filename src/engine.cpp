@@ -78,10 +78,10 @@ void Engine::renew()
     }
     _objects_to_add.clear();
     _objects_to_delete.clear();
+    _command->handleInput();
     glClearColor(_clearColor.r, _clearColor.g, _clearColor.b, _clearColor.a);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glEnable(GL_DEPTH_TEST);
-    _command->handleInput();
     for (auto object : _objects)
     {
         object->renew();

@@ -11,6 +11,7 @@ Shooter::Shooter(Engine *engine, glm::vec3 scale, glm::vec3 position, glm::quat 
     _model_transform.position = position;
     _model_transform.rotation = rotation;
     change_stage(_engine->_stage);
+    original_position = position+glm::vec3(0,10,0);
     _bounding_box = BoundingBox{glm::vec3(-5.0f, -45.0f, -5.0f), glm::vec3(5.0f, 0.0f, 5.0f)};
     for (int i = 0; i < _old_cnt; i++)
     {
@@ -192,11 +193,11 @@ void Shooter::renew()
             }
             if (_engine->_input.mouse.scroll.xOffset != 0)
             {
-                _engine->_camera->fovy *= std::pow(1.01, _engine->_input.mouse.scroll.xOffset);
+                _engine->_camera->fovy *= std::pow(1.01, -_engine->_input.mouse.scroll.xOffset);
             }
             if (_engine->_input.mouse.scroll.yOffset != 0)
             {
-                _engine->_camera->fovy *= std::pow(1.01, _engine->_input.mouse.scroll.yOffset);
+                _engine->_camera->fovy *= std::pow(1.01, -_engine->_input.mouse.scroll.yOffset);
             }
         }
         else
@@ -233,6 +234,10 @@ void Shooter::renew()
                 _up_speed -= _gravity * _engine->_deltaTime;
             }
             _transform.position.y += _up_speed * _engine->_deltaTime;
+        }
+        if (_engine->_input.keyboard.keyStates[GLFW_KEY_R] != GLFW_RELEASE)
+        {
+            _transform.position = original_position;
         }
         renew_camera();
     }
@@ -402,12 +407,15 @@ void Shooter::collidedBy(Object *other)
             break;
         }
         _transform.position = _transform_old[_old_cnt / 2].position;
-        // _transform_old.back().position = _transform.position;
         std::cout << _engine->_t_min << std::endl;
     }
     case Category::SHOOTER:
     {
         break;
     }
+    }
+    if (_engine->_input.keyboard.keyStates[GLFW_KEY_R] != GLFW_RELEASE)
+    {
+        _transform.position = original_position;
     }
 }
