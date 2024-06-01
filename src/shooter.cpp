@@ -40,26 +40,29 @@ void Shooter::init(std::vector<std::string> _material_path, std::vector<std::str
 }
 void Shooter::plot()
 {
-    normalizingShader(_shader_index, &_model_transform);
-    auto shader = _engine->_shaders[_shader_index].get();
-    // todo
-    glm::mat4 static_matrix;
-    static_matrix[0] = glm::vec4(1, 0, 0, 0);
-    static_matrix[1] = glm::vec4(0, 1, 0, 0);
-    static_matrix[2] = glm::vec4(0, 0, 1, 0);
-    static_matrix[3] = glm::vec4(0, 0, -10, 1);
-    shader->use();
-    shader->setUniformMat4("view", static_matrix);
-    shader->setUniformInt("mapKd", 0);
-    shader->setUniformVec3("material.ks", glm::vec3(0.2, 0.2, 0.2));
-    shader->setUniformVec3("material.ka", glm::vec3(0.2, 0.2, 0.2));
-    shader->setUniformFloat("material.ns", 314);
-    shader->setUniformVec3("scale", glm::vec3(2.0f, 2.0f, 2.0f));
-    _material[0]->bind(0);
-    _model[_model_current_index * 2]->draw();
-    _material[1]->bind(0);
-    _model[_model_current_index * 2 + 1]->draw();
-    frame_shoot_control();
+    if (!_is_view_mode)
+    {
+        normalizingShader(_shader_index, &_model_transform);
+        auto shader = _engine->_shaders[_shader_index].get();
+        // todo
+        glm::mat4 static_matrix;
+        static_matrix[0] = glm::vec4(1, 0, 0, 0);
+        static_matrix[1] = glm::vec4(0, 1, 0, 0);
+        static_matrix[2] = glm::vec4(0, 0, 1, 0);
+        static_matrix[3] = glm::vec4(0, 0, -10, 1);
+        shader->use();
+        shader->setUniformMat4("view", static_matrix);
+        shader->setUniformInt("mapKd", 0);
+        shader->setUniformVec3("material.ks", glm::vec3(0.2, 0.2, 0.2));
+        shader->setUniformVec3("material.ka", glm::vec3(0.2, 0.2, 0.2));
+        shader->setUniformFloat("material.ns", 314);
+        shader->setUniformVec3("scale", glm::vec3(2.0f, 2.0f, 2.0f));
+        _material[0]->bind(0);
+        _model[_model_current_index * 2]->draw();
+        _material[1]->bind(0);
+        _model[_model_current_index * 2 + 1]->draw();
+        frame_shoot_control();
+    }
 }
 void Shooter::frame_shoot_control()
 {
@@ -80,7 +83,8 @@ void Shooter::frame_shoot_control()
             _model_current_index = 1;
             _is_shooting = false;
         }
-        else{
+        else
+        {
             _model_current_index++;
         }
     }
@@ -233,16 +237,19 @@ void Shooter::renew()
         renew_camera();
     }
     static bool is_play = false;
-    if(!_is_end&&!_is_view_mode&&_is_landed&&glm::length(_transform.position-_transform_old.back().position)>0.1){
-        if(!is_play){
+    if (!_is_end && !_is_view_mode && _is_landed && glm::length(_transform.position - _transform_old.back().position) > 0.1)
+    {
+        if (!is_play)
+        {
             mciSendString("open ../media/sound/walk.wav alias walk", NULL, 0, NULL);
             mciSendString("play walk", NULL, 0, NULL);
-            is_play=true;
+            is_play = true;
         }
     }
-    else{
+    else
+    {
         mciSendString("stop walk", NULL, 0, NULL);
-        is_play=false;
+        is_play = false;
     }
 }
 void Shooter::change_stage(EngineStage stage)
@@ -278,45 +285,48 @@ std::vector<Box> Shooter::getBoxs()
 std::vector<Segment> Shooter::getSegments()
 {
     std::vector<Segment> segments;
-    glm::vec3 vertex_1[20];
-    Transform _transform_1{_transform};
-    Transform _transform_old_1{_transform_old.back()};
-    _transform_1.rotation = glm::quat{1.0, 0.0, 0.0, 0.0};
-    _transform_old_1.rotation = glm::quat{1.0, 0.0, 0.0, 0.0};
-    vertex_1[0] = _transform_1.getLocalMatrix() * glm::vec4(_bounding_box.min, 1.0f);
-    vertex_1[1] = _transform_1.getLocalMatrix() * glm::vec4(_bounding_box.max, 1.0f);
-    vertex_1[2] = _transform_1.getLocalMatrix() * glm::vec4(_bounding_box.min.x, _bounding_box.min.y, _bounding_box.max.z, 1.0f);
-    vertex_1[3] = _transform_1.getLocalMatrix() * glm::vec4(_bounding_box.min.x, _bounding_box.max.y, _bounding_box.min.z, 1.0f);
-    vertex_1[4] = _transform_1.getLocalMatrix() * glm::vec4(_bounding_box.min.x, _bounding_box.max.y, _bounding_box.max.z, 1.0f);
-    vertex_1[5] = _transform_1.getLocalMatrix() * glm::vec4(_bounding_box.max.x, _bounding_box.min.y, _bounding_box.min.z, 1.0f);
-    vertex_1[6] = _transform_1.getLocalMatrix() * glm::vec4(_bounding_box.max.x, _bounding_box.min.y, _bounding_box.max.z, 1.0f);
-    vertex_1[7] = _transform_1.getLocalMatrix() * glm::vec4(_bounding_box.max.x, _bounding_box.max.y, _bounding_box.min.z, 1.0f);
-    vertex_1[8] = (vertex_1[0] + vertex_1[2]) / 2.0f;
-    vertex_1[9] = (vertex_1[0] + vertex_1[3]) / 2.0f;
-    vertex_1[10] = (vertex_1[0] + vertex_1[5]) / 2.0f;
-    vertex_1[11] = (vertex_1[1] + vertex_1[4]) / 2.0f;
-    vertex_1[12] = (vertex_1[1] + vertex_1[6]) / 2.0f;
-    vertex_1[13] = (vertex_1[1]+ vertex_1[7]) / 2.0f;
-    vertex_1[14] = (vertex_1[1] + vertex_1[8]) / 2.0f;
-    glm::vec3 vertex_2[20];
-    vertex_2[0] = _transform_old_1.getLocalMatrix() * glm::vec4(_bounding_box.min, 1.0f);
-    vertex_2[1] = _transform_old_1.getLocalMatrix() * glm::vec4(_bounding_box.max, 1.0f);
-    vertex_2[2] = _transform_old_1.getLocalMatrix() * glm::vec4(_bounding_box.min.x, _bounding_box.min.y, _bounding_box.max.z, 1.0f);
-    vertex_2[3] = _transform_old_1.getLocalMatrix() * glm::vec4(_bounding_box.min.x, _bounding_box.max.y, _bounding_box.min.z, 1.0f);
-    vertex_2[4] = _transform_old_1.getLocalMatrix() * glm::vec4(_bounding_box.min.x, _bounding_box.max.y, _bounding_box.max.z, 1.0f);
-    vertex_2[5] = _transform_old_1.getLocalMatrix() * glm::vec4(_bounding_box.max.x, _bounding_box.min.y, _bounding_box.min.z, 1.0f);
-    vertex_2[6] = _transform_old_1.getLocalMatrix() * glm::vec4(_bounding_box.max.x, _bounding_box.min.y, _bounding_box.max.z, 1.0f);
-    vertex_2[7] = _transform_old_1.getLocalMatrix() * glm::vec4(_bounding_box.max.x, _bounding_box.max.y, _bounding_box.min.z, 1.0f);
-    vertex_2[8] = (vertex_2[0] + vertex_2[2]) / 2.0f;
-    vertex_2[9] = (vertex_2[0] + vertex_2[3]) / 2.0f;
-    vertex_2[10] = (vertex_2[0] + vertex_2[5]) / 2.0f;
-    vertex_2[11] = (vertex_2[1] + vertex_2[4]) / 2.0f;
-    vertex_2[12] = (vertex_2[1] + vertex_2[6]) / 2.0f;
-    vertex_2[13] = (vertex_2[1]+ vertex_2[7]) / 2.0f;
-    vertex_2[14] = (vertex_2[1] + vertex_2[8]) / 2.0f;
-    for (int i = 0; i < 14; i++)
+    if (!_is_view_mode)
     {
-        segments.push_back(Segment{vertex_1[i], vertex_2[i]});
+        glm::vec3 vertex_1[20];
+        Transform _transform_1{_transform};
+        Transform _transform_old_1{_transform_old.back()};
+        _transform_1.rotation = glm::quat{1.0, 0.0, 0.0, 0.0};
+        _transform_old_1.rotation = glm::quat{1.0, 0.0, 0.0, 0.0};
+        vertex_1[0] = _transform_1.getLocalMatrix() * glm::vec4(_bounding_box.min, 1.0f);
+        vertex_1[1] = _transform_1.getLocalMatrix() * glm::vec4(_bounding_box.max, 1.0f);
+        vertex_1[2] = _transform_1.getLocalMatrix() * glm::vec4(_bounding_box.min.x, _bounding_box.min.y, _bounding_box.max.z, 1.0f);
+        vertex_1[3] = _transform_1.getLocalMatrix() * glm::vec4(_bounding_box.min.x, _bounding_box.max.y, _bounding_box.min.z, 1.0f);
+        vertex_1[4] = _transform_1.getLocalMatrix() * glm::vec4(_bounding_box.min.x, _bounding_box.max.y, _bounding_box.max.z, 1.0f);
+        vertex_1[5] = _transform_1.getLocalMatrix() * glm::vec4(_bounding_box.max.x, _bounding_box.min.y, _bounding_box.min.z, 1.0f);
+        vertex_1[6] = _transform_1.getLocalMatrix() * glm::vec4(_bounding_box.max.x, _bounding_box.min.y, _bounding_box.max.z, 1.0f);
+        vertex_1[7] = _transform_1.getLocalMatrix() * glm::vec4(_bounding_box.max.x, _bounding_box.max.y, _bounding_box.min.z, 1.0f);
+        vertex_1[8] = (vertex_1[0] + vertex_1[2]) / 2.0f;
+        vertex_1[9] = (vertex_1[0] + vertex_1[3]) / 2.0f;
+        vertex_1[10] = (vertex_1[0] + vertex_1[5]) / 2.0f;
+        vertex_1[11] = (vertex_1[1] + vertex_1[4]) / 2.0f;
+        vertex_1[12] = (vertex_1[1] + vertex_1[6]) / 2.0f;
+        vertex_1[13] = (vertex_1[1] + vertex_1[7]) / 2.0f;
+        vertex_1[14] = (vertex_1[1] + vertex_1[8]) / 2.0f;
+        glm::vec3 vertex_2[20];
+        vertex_2[0] = _transform_old_1.getLocalMatrix() * glm::vec4(_bounding_box.min, 1.0f);
+        vertex_2[1] = _transform_old_1.getLocalMatrix() * glm::vec4(_bounding_box.max, 1.0f);
+        vertex_2[2] = _transform_old_1.getLocalMatrix() * glm::vec4(_bounding_box.min.x, _bounding_box.min.y, _bounding_box.max.z, 1.0f);
+        vertex_2[3] = _transform_old_1.getLocalMatrix() * glm::vec4(_bounding_box.min.x, _bounding_box.max.y, _bounding_box.min.z, 1.0f);
+        vertex_2[4] = _transform_old_1.getLocalMatrix() * glm::vec4(_bounding_box.min.x, _bounding_box.max.y, _bounding_box.max.z, 1.0f);
+        vertex_2[5] = _transform_old_1.getLocalMatrix() * glm::vec4(_bounding_box.max.x, _bounding_box.min.y, _bounding_box.min.z, 1.0f);
+        vertex_2[6] = _transform_old_1.getLocalMatrix() * glm::vec4(_bounding_box.max.x, _bounding_box.min.y, _bounding_box.max.z, 1.0f);
+        vertex_2[7] = _transform_old_1.getLocalMatrix() * glm::vec4(_bounding_box.max.x, _bounding_box.max.y, _bounding_box.min.z, 1.0f);
+        vertex_2[8] = (vertex_2[0] + vertex_2[2]) / 2.0f;
+        vertex_2[9] = (vertex_2[0] + vertex_2[3]) / 2.0f;
+        vertex_2[10] = (vertex_2[0] + vertex_2[5]) / 2.0f;
+        vertex_2[11] = (vertex_2[1] + vertex_2[4]) / 2.0f;
+        vertex_2[12] = (vertex_2[1] + vertex_2[6]) / 2.0f;
+        vertex_2[13] = (vertex_2[1] + vertex_2[7]) / 2.0f;
+        vertex_2[14] = (vertex_2[1] + vertex_2[8]) / 2.0f;
+        for (int i = 0; i < 14; i++)
+        {
+            segments.push_back(Segment{vertex_1[i], vertex_2[i]});
+        }
     }
     return segments;
 }
@@ -326,10 +336,10 @@ void Shooter::collidedBy(Object *other)
     {
     case Category::GHOST:
     {
-        std::cout<<"collided by ghost"<<std::endl;
+        std::cout << "collided by ghost" << std::endl;
         if (!_is_end)
         {
-            std::cout<<"You are dead"<<std::endl;
+            std::cout << "You are dead" << std::endl;
             _engine->_stage = EngineStage::END;
         }
         break;
@@ -347,7 +357,7 @@ void Shooter::collidedBy(Object *other)
         {
 
             _transform.position[i] = _transform_old.back().position[i];
-            solve=true;
+            solve = true;
             for (auto box : other->getBoxs())
             {
                 for (auto segmant : getSegments())
@@ -361,7 +371,8 @@ void Shooter::collidedBy(Object *other)
             if (!solve)
             {
                 _transform.position = position;
-            }else
+            }
+            else
             {
                 break;
             }
@@ -374,7 +385,7 @@ void Shooter::collidedBy(Object *other)
         {
             _transform.position = _transform_old.back().position;
             _transform.position[i] = position[i];
-            solve=true;
+            solve = true;
             for (auto box : other->getBoxs())
             {
                 for (auto segmant : getSegments())
