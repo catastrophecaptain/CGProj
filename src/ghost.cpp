@@ -3,6 +3,7 @@
 #include <shooter.hpp>
 std::unique_ptr<Model> Ghost::_model;
 std::unique_ptr<ImageTexture2D> Ghost::_material;
+float Ghost::_speed=0.1f;
 Ghost::Ghost(Engine *engine, glm::vec3 scale, glm::vec3 position, bool is_add, std::string _material_path, std::string _model_path) : Object(engine, Category::GHOST)
 {
     if (is_add)
@@ -65,6 +66,7 @@ void Ghost::renew()
         _transform.position += _engine->_deltaTime * _speed * _move_dir;
     }
     _model->transform = _transform;
+    _speed=(_speed+0.0001<0.4)?_speed+0.0001:0.4;
 }
 std::vector<Box> Ghost::getBoxs()
 {
