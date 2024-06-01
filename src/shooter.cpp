@@ -11,7 +11,7 @@ Shooter::Shooter(Engine *engine, glm::vec3 scale, glm::vec3 position, glm::quat 
     _model_transform.position = position;
     _model_transform.rotation = rotation;
     change_stage(_engine->_stage);
-    original_position = position+glm::vec3(0,0,10);
+    original_position = position+glm::vec3(0,10,0);
     _bounding_box = BoundingBox{glm::vec3(-5.0f, -45.0f, -5.0f), glm::vec3(5.0f, 0.0f, 5.0f)};
     for (int i = 0; i < _old_cnt; i++)
     {
