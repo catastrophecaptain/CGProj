@@ -43,6 +43,7 @@ public:
     float _fovy_init= glm::radians(50.0f);
     float _up_speed = 600.0;
     float _up_speed_once = 600.0;
+    glm:: vec3 original_position;
 
 };
 
