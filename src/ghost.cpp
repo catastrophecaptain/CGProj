@@ -3,11 +3,11 @@
 #include <shooter.hpp>
 std::unique_ptr<Model> Ghost::_model;
 std::unique_ptr<ImageTexture2D> Ghost::_material;
-Ghost::Ghost(Engine *engine, glm::vec3 scale, glm::vec3 position,bool is_add, std::string _material_path, std::string _model_path) : Object(engine, Category::GHOST)
+Ghost::Ghost(Engine *engine, glm::vec3 scale, glm::vec3 position, bool is_add, std::string _material_path, std::string _model_path) : Object(engine, Category::GHOST)
 {
-    if(is_add)
+    if (is_add)
     {
-    engine->addObject(this);
+        engine->addObject(this);
     }
     init(_engine->_assetRootDir + _material_path, _engine->_assetRootDir + _model_path);
     _transform.scale = scale;
@@ -89,28 +89,35 @@ void Ghost::collidedBy(Object *other)
     if (other->getCategory() == Category::BULLET)
 
     {
-        if (!_is_to_delete)
-        {
-            _engine->_objects_to_delete.push_back(this);
-            _is_to_delete = true;
-            int cnt = 1;
+        // if (!_is_to_delete)
+        // {
+            // _engine->_objects_to_delete.push_back(this);
+            // _is_to_delete = true;
+            // int cnt = 1;
+            // std::srand(std::time(0));
+            // if (std::rand() % 100 < 10)
+            // {
+            //     cnt = 2;
+            // }
+            // std::cout << "new ghost" << std::endl;
+            // for (int i = 0; i < cnt; i++)
+            // {
+            //     int x = rand() % 500;
+            //     int y = rand() % 500;
+            //     int z = rand() % 500;
+            //     float ghost_scale = 6.0f;
+            //     glm::vec3 scale(ghost_scale, ghost_scale, ghost_scale);
+            //     glm::vec3 position((x - 250.0f) * 0.8f, fmod(y, 40.0f) + 20.0f, (z - 250.0f) * 2.5f);
+            //     Ghost *ghost = new Ghost(_engine, scale, position, false);
+            //     _engine->_objects_to_add.push_back(ghost);
+            // }
+            // _is_to_delete = true;
             std::srand(std::time(0));
-            if (std::rand() % 100 < 10)
-            {
-                cnt = 2;
-            }
-            std::cout << "new ghost" << std::endl;
-            for (int i = 0; i < cnt; i++)
-            {
-                int x = rand() % 500;
-                int y = rand() % 500;
-                int z = rand() % 500;
-                float ghost_scale = 6.0f;
-                glm::vec3 scale(ghost_scale, ghost_scale, ghost_scale);
-                glm::vec3 position((x - 250.0f) * 0.8f, fmod(y, 40.0f) + 20.0f, (z - 250.0f) * 2.5f);
-                Ghost *ghost = new Ghost(_engine, scale, position,false);
-                _engine->_objects_to_add.push_back(ghost);
-            }
-        }
+            int x = rand() % 500;
+            int y = rand() % 500;
+            int z = rand() % 500;
+            glm::vec3 position((x - 250.0f) * 0.8f, fmod(y, 40.0f) + 20.0f, (z - 250.0f) * 2.5f);
+            _transform.position = position;
+        // }
     }
 }

@@ -68,7 +68,7 @@ include_directories(${CMAKE_SOURCE_DIR}/base/include)
 # include_directories(${CMAKE_SOURCE_DIR}/external/assimp/include)
 add_executable(${PROJECT_NAME} ${SOURCE_FILES} ${BASE_SOURCE_FILES})
 set_target_properties(${PROJECT_NAME} PROPERTIES FOLDER "app")
-
+# set(CMAKE_EXE_LINKER_FLAGS "-static-libgcc -static-libstdc++ -static")
 # target_link_libraries(${PROJECT_NAME}  ${CMAKE_SOURCE_DIR}/external/assimp/lib/assimp-vc143-mt.lib)
 target_link_libraries(${PROJECT_NAME}  glfw)
 target_link_libraries(${PROJECT_NAME}  glad)

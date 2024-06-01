@@ -40,7 +40,7 @@ if (0 == PlaySound("../media/sound/Harmonious.wav", NULL, SND_FILENAME | SND_ASY
     Ambience *ambience = new Ambience(this);
     float shooter_scale = 8.0f;
     glm::vec3 scale = glm::vec3(shooter_scale, shooter_scale, shooter_scale);
-    glm::vec3 position = glm::vec3(0.0f, -1.0f, 7.0f);
+    glm::vec3 position = glm::vec3(0.0f, -1.1f, 7.0f);
     float angle = glm::radians(180.0f);
     glm::quat rotation = glm::angleAxis(angle, glm::vec3(0.0f, 1.0f, 0.0f));
     shooter = new Shooter(this, scale, position, rotation);
