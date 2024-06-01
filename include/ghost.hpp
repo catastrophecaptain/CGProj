@@ -21,7 +21,7 @@ public:
     static const int _shader_index = 0;
     static std::unique_ptr<ImageTexture2D> _material;
     // bool _is_loaded = false;
-    float _speed = 0.7f;
+    float _speed = 0.1f;
     glm::vec3 _move_dir = glm::vec3(0.0f);
     Transform _transform;
     bool _is_loaded = false;

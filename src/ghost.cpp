@@ -54,7 +54,7 @@ void Ghost::renew()
     _transform.rotation = glm::rotate(_transform.rotation, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
     if (_engine->_stage == EngineStage::RUN)
     {
-        if (sqrt(_deltaX * _deltaX + _deltaZ * _deltaZ) <= _range_radius)
+        if (1)//(sqrt(_deltaX * _deltaX + _deltaZ * _deltaZ) <= _range_radius)
         {
             _move_dir = _shooter_pos - _transform.position;
         }
@@ -116,7 +116,7 @@ void Ghost::collidedBy(Object *other)
             int x = rand() % 500;
             int y = rand() % 500;
             int z = rand() % 500;
-            glm::vec3 position((x - 250.0f) * 0.8f, fmod(y, 40.0f) + 20.0f, (z - 250.0f) * 2.5f);
+            glm::vec3 position((x - 250.0f) * 0.8f, fmod(y, 40.0f) + 80.0f, (z - 250.0f) * 2.5f);
             _transform.position = position;
         // }
     }
