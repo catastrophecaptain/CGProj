@@ -56,7 +56,7 @@ void Engine::start()
         float ghost_scale = 6.0f;
         glm::vec3 scale(ghost_scale, ghost_scale, ghost_scale);
         glm::vec3 position((x - 250.0f) * 0.8f, fmod(y, 40.0f) + 20.0f, (z - 250.0f) * 2.5f);
-        Ghost *ghost = new Ghost(this, scale, position);
+        Ghost *ghost = new Ghost(this, scale, position,true);
     }
     // _command->generateGhost();
     Map *map = new Map(this);
@@ -134,7 +134,7 @@ bool Engine::checkCollision(Box &box1, Segment &segment2)
     glm::vec3 start = segment2.start;
     glm::vec3 end = segment2.end;
     glm::vec3 segment = end - start;
-    if (glm::length(segment) < 0.1f)
+    if (glm::length(segment) < 0.00001f)
     {
         return false;
     }

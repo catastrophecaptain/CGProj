@@ -24,6 +24,7 @@ public:
     static float _speed ;
     glm::vec3 _move_dir = glm::vec3(0.0f);
     Transform _transform;
+    Transform _transform_old;
     bool _is_loaded = false;
     bool _is_to_delete = false;
     float _range_radius = 100.0f; // 如果shooter走进这个范围内，ghost就开始向shooter移动

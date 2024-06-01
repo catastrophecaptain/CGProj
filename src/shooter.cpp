@@ -12,7 +12,7 @@ Shooter::Shooter(Engine *engine, glm::vec3 scale, glm::vec3 position, glm::quat 
     _model_transform.rotation = rotation;
     change_stage(_engine->_stage);
     original_position = position+glm::vec3(0,10,0);
-    _bounding_box = BoundingBox{glm::vec3(-5.0f, -45.0f, -5.0f), glm::vec3(5.0f, 0.0f, 5.0f)};
+    _bounding_box = BoundingBox{glm::vec3(-8.0f, -45.0f, -8.0f), glm::vec3(8.0f, 5.0f, 8.0f)};
     for (int i = 0; i < _old_cnt; i++)
     {
         _transform_old.push_back(_model_transform);
@@ -284,7 +284,9 @@ void Shooter::renew_camera()
 std::vector<Box> Shooter::getBoxs()
 {
     std::vector<Box> boxs;
-    boxs.push_back(Box{_bounding_box.min, _bounding_box.max, _engine->_camera->transform});
+    Transform transform=_transform_old.back();
+    transform.rotation=glm::quat{1.0, 0.0, 0.0, 0.0};;
+    boxs.push_back(Box{_bounding_box.min, _bounding_box.max,transform});
     return boxs;
 }
 std::vector<Segment> Shooter::getSegments()

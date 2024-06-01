@@ -9,11 +9,12 @@ Ghost::Ghost(Engine *engine, glm::vec3 scale, glm::vec3 position, bool is_add, s
 {
     if (is_add)
     {
-        engine->addObject(this);
+        engine->addObject(this,true);
     }
     init(_engine->_assetRootDir + _material_path, _engine->_assetRootDir + _model_path);
     _transform.scale = scale;
     _transform.position = position;
+    _transform_old=_transform;
 }
 void Ghost::init(std::string _material_path, std::string _model_path)
 {
@@ -49,6 +50,7 @@ void Ghost::plot()
 }
 void Ghost::renew()
 {
+    _transform_old = _transform;
     glm::vec3 _shooter_pos = _engine->shooter->_transform.position;
     float _deltaX = _transform.position.x - _shooter_pos.x;
     float _deltaZ = _transform.position.z - _shooter_pos.z;
@@ -66,7 +68,6 @@ void Ghost::renew()
         }
         _transform.position += _engine->_deltaTime * _speed * _move_dir;
     }
-    _model->transform = _transform;
     _speed=(_speed+0.0001<0.4)?_speed+0.0001:0.4;
 }
 std::vector<Box> Ghost::getBoxs()
@@ -78,7 +79,48 @@ std::vector<Box> Ghost::getBoxs()
 }
 std::vector<Segment> Ghost::getSegments()
 {
-    return std::vector<Segment>();
+    BoundingBox box = _model->getBoundingBox();
+    std::vector<Segment> segments;
+    glm::vec3 vertex_1[20];
+    Transform _transform_1{_transform};
+    Transform _transform_old_1{_transform_old};
+    vertex_1[0] = _transform_1.getLocalMatrix() * glm::vec4(box.min, 1.0f);
+    vertex_1[1] = _transform_1.getLocalMatrix() * glm::vec4(box.max, 1.0f);
+    vertex_1[2] = _transform_1.getLocalMatrix() * glm::vec4(box.min.x, box.min.y, box.max.z, 1.0f);
+    vertex_1[3] = _transform_1.getLocalMatrix() * glm::vec4(box.min.x, box.max.y, box.min.z, 1.0f);
+    vertex_1[4] = _transform_1.getLocalMatrix() * glm::vec4(box.min.x, box.max.y, box.max.z, 1.0f);
+    vertex_1[5] = _transform_1.getLocalMatrix() * glm::vec4(box.max.x, box.min.y, box.min.z, 1.0f);
+    vertex_1[6] = _transform_1.getLocalMatrix() * glm::vec4(box.max.x, box.min.y, box.max.z, 1.0f);
+    vertex_1[7] = _transform_1.getLocalMatrix() * glm::vec4(box.max.x, box.max.y, box.min.z, 1.0f);
+    vertex_1[8] = (vertex_1[0] + vertex_1[2]) / 2.0f;
+    vertex_1[9] = (vertex_1[0] + vertex_1[3]) / 2.0f;
+    vertex_1[10] = (vertex_1[0] + vertex_1[5]) / 2.0f;
+    vertex_1[11] = (vertex_1[1] + vertex_1[4]) / 2.0f;
+    vertex_1[12] = (vertex_1[1] + vertex_1[6]) / 2.0f;
+    vertex_1[13] = (vertex_1[1] + vertex_1[7]) / 2.0f;
+    vertex_1[14] = (vertex_1[1] + vertex_1[8]) / 2.0f;
+    glm::vec3 vertex_2[20];
+    vertex_2[0] = _transform_old_1.getLocalMatrix() * glm::vec4(box.min, 1.0f);
+    vertex_2[1] = _transform_old_1.getLocalMatrix() * glm::vec4(box.max, 1.0f);
+    vertex_2[2] = _transform_old_1.getLocalMatrix() * glm::vec4(box.min.x, box.min.y, box.max.z, 1.0f);
+    vertex_2[3] = _transform_old_1.getLocalMatrix() * glm::vec4(box.min.x, box.max.y, box.min.z, 1.0f);
+    vertex_2[4] = _transform_old_1.getLocalMatrix() * glm::vec4(box.min.x, box.max.y, box.max.z, 1.0f);
+    vertex_2[5] = _transform_old_1.getLocalMatrix() * glm::vec4(box.max.x, box.min.y, box.min.z, 1.0f);
+    vertex_2[6] = _transform_old_1.getLocalMatrix() * glm::vec4(box.max.x, box.min.y, box.max.z, 1.0f);
+    vertex_2[7] = _transform_old_1.getLocalMatrix() * glm::vec4(box.max.x, box.max.y, box.min.z, 1.0f);
+    vertex_2[8] = (vertex_2[0] + vertex_2[2]) / 2.0f;
+    vertex_2[9] = (vertex_2[0] + vertex_2[3]) / 2.0f;
+    vertex_2[10] = (vertex_2[0] + vertex_2[5]) / 2.0f;
+    vertex_2[11] = (vertex_2[1] + vertex_2[4]) / 2.0f;
+    vertex_2[12] = (vertex_2[1] + vertex_2[6]) / 2.0f;
+    vertex_2[13] = (vertex_2[1] + vertex_2[7]) / 2.0f;
+    vertex_2[14] = (vertex_2[1] + vertex_2[8]) / 2.0f;
+    for (int i = 0; i < 14; i++)
+    {
+        segments.push_back(Segment{vertex_1[i], vertex_2[i]});
+    }
+    segments.push_back(Segment{_transform_1.position,_transform_old.position});
+    return segments;
 }
 void Ghost::collidedBy(Object *other)
 {
