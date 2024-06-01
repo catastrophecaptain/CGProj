@@ -10,7 +10,7 @@
 class Ghost : public Object
 {
 public:
-    Ghost(Engine *engine, glm::vec3 scale, glm::vec3 position, std::string _material_path = "texture/ghost/T_Ghost.png", std::string _model_path = "obj/ghost/ghost.obj");
+    Ghost(Engine *engine, glm::vec3 scale, glm::vec3 position,bool is_add=true, std::string _material_path = "texture/ghost/T_Ghost.png", std::string _model_path = "obj/ghost/ghost.obj");
     void init(std::string _material_path, std::string _model_path);
     void plot() override;
     void renew() override;

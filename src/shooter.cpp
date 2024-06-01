@@ -11,7 +11,7 @@ Shooter::Shooter(Engine *engine, glm::vec3 scale, glm::vec3 position, glm::quat 
     _model_transform.position = position;
     _model_transform.rotation = rotation;
     change_stage(_engine->_stage);
-    _bounding_box = BoundingBox{glm::vec3(-3.0f, -45.0f, -3.0f), glm::vec3(3.0f, 40.0f, 3.0f)};
+    _bounding_box = BoundingBox{glm::vec3(-5.0f, -45.0f, -5.0f), glm::vec3(5.0f, 0.0f, 5.0f)};
     for (int i = 0; i < _old_cnt; i++)
     {
         _transform_old.push_back(_model_transform);
@@ -260,7 +260,7 @@ std::vector<Box> Shooter::getBoxs()
 std::vector<Segment> Shooter::getSegments()
 {
     std::vector<Segment> segments;
-    glm::vec3 vertex_1[8];
+    glm::vec3 vertex_1[20];
     Transform _transform_1{_transform};
     Transform _transform_old_1{_transform_old.back()};
     _transform_1.rotation = glm::quat{1.0, 0.0, 0.0, 0.0};
@@ -273,7 +273,14 @@ std::vector<Segment> Shooter::getSegments()
     vertex_1[5] = _transform_1.getLocalMatrix() * glm::vec4(_bounding_box.max.x, _bounding_box.min.y, _bounding_box.min.z, 1.0f);
     vertex_1[6] = _transform_1.getLocalMatrix() * glm::vec4(_bounding_box.max.x, _bounding_box.min.y, _bounding_box.max.z, 1.0f);
     vertex_1[7] = _transform_1.getLocalMatrix() * glm::vec4(_bounding_box.max.x, _bounding_box.max.y, _bounding_box.min.z, 1.0f);
-    glm::vec3 vertex_2[8];
+    vertex_1[8] = (vertex_1[0] + vertex_1[2]) / 2.0f;
+    vertex_1[9] = (vertex_1[0] + vertex_1[3]) / 2.0f;
+    vertex_1[10] = (vertex_1[0] + vertex_1[5]) / 2.0f;
+    vertex_1[11] = (vertex_1[1] + vertex_1[4]) / 2.0f;
+    vertex_1[12] = (vertex_1[1] + vertex_1[6]) / 2.0f;
+    vertex_1[13] = (vertex_1[1]+ vertex_1[7]) / 2.0f;
+    vertex_1[14] = (vertex_1[1] + vertex_1[8]) / 2.0f;
+    glm::vec3 vertex_2[20];
     vertex_2[0] = _transform_old_1.getLocalMatrix() * glm::vec4(_bounding_box.min, 1.0f);
     vertex_2[1] = _transform_old_1.getLocalMatrix() * glm::vec4(_bounding_box.max, 1.0f);
     vertex_2[2] = _transform_old_1.getLocalMatrix() * glm::vec4(_bounding_box.min.x, _bounding_box.min.y, _bounding_box.max.z, 1.0f);
@@ -282,7 +289,14 @@ std::vector<Segment> Shooter::getSegments()
     vertex_2[5] = _transform_old_1.getLocalMatrix() * glm::vec4(_bounding_box.max.x, _bounding_box.min.y, _bounding_box.min.z, 1.0f);
     vertex_2[6] = _transform_old_1.getLocalMatrix() * glm::vec4(_bounding_box.max.x, _bounding_box.min.y, _bounding_box.max.z, 1.0f);
     vertex_2[7] = _transform_old_1.getLocalMatrix() * glm::vec4(_bounding_box.max.x, _bounding_box.max.y, _bounding_box.min.z, 1.0f);
-    for (int i = 0; i < 8; i++)
+    vertex_2[8] = (vertex_2[0] + vertex_2[2]) / 2.0f;
+    vertex_2[9] = (vertex_2[0] + vertex_2[3]) / 2.0f;
+    vertex_2[10] = (vertex_2[0] + vertex_2[5]) / 2.0f;
+    vertex_2[11] = (vertex_2[1] + vertex_2[4]) / 2.0f;
+    vertex_2[12] = (vertex_2[1] + vertex_2[6]) / 2.0f;
+    vertex_2[13] = (vertex_2[1]+ vertex_2[7]) / 2.0f;
+    vertex_2[14] = (vertex_2[1] + vertex_2[8]) / 2.0f;
+    for (int i = 0; i < 14; i++)
     {
         segments.push_back(Segment{vertex_1[i], vertex_2[i]});
     }
@@ -294,6 +308,7 @@ void Shooter::collidedBy(Object *other)
     {
     case Category::GHOST:
     {
+        std::cout<<"collided by ghost"<<std::endl;
         if (!_is_end)
         {
             _engine->_stage = EngineStage::END;
@@ -340,13 +355,14 @@ void Shooter::collidedBy(Object *other)
         {
             _transform.position = _transform_old.back().position;
             _transform.position[i] = position[i];
+            solve=true;
             for (auto box : other->getBoxs())
             {
                 for (auto segmant : getSegments())
                 {
-                    if (!_engine->checkCollision(box, segmant))
+                    if (_engine->checkCollision(box, segmant))
                     {
-                        solve = true;
+                        solve = false;
                     }
                 }
             }
@@ -356,6 +372,7 @@ void Shooter::collidedBy(Object *other)
             break;
         }
         _transform.position = _transform_old[_old_cnt / 2].position;
+        // _transform_old.back().position = _transform.position;
         std::cout << _engine->_t_min << std::endl;
     }
     case Category::SHOOTER:
