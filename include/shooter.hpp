@@ -24,6 +24,7 @@ public:
     std::vector<Box> getBoxs() override;
     std::vector<Segment> getSegments() override;
     void collidedBy(Object *other) override;
+    void outObj();
     Transform _transform;
     int _model_current_index = 0;
     int _frame_cnt = 10;

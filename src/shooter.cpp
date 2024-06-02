@@ -2,6 +2,7 @@
 #include <engine.hpp>
 #include "glm/gtc/matrix_transform.hpp"
 #include "bullet.hpp"
+#include <fstream>
 Shooter::Shooter(Engine *engine, glm::vec3 scale, glm::vec3 position, glm::quat rotation,
                  std::vector<std::string> _material_path, std::vector<std::string> _model_path) : Object(engine, Category::SHOOTER)
 {
@@ -11,7 +12,7 @@ Shooter::Shooter(Engine *engine, glm::vec3 scale, glm::vec3 position, glm::quat 
     _model_transform.position = position;
     _model_transform.rotation = rotation;
     change_stage(_engine->_stage);
-    original_position = position+glm::vec3(0,10,0);
+    original_position = position + glm::vec3(0, 10, 0);
     _bounding_box = BoundingBox{glm::vec3(-8.0f, -45.0f, -8.0f), glm::vec3(8.0f, 5.0f, 8.0f)};
     for (int i = 0; i < _old_cnt; i++)
     {
@@ -163,6 +164,10 @@ void Shooter::renew()
     {
         _up_speed = _up_speed < 0 ? 0 : _up_speed;
     }
+    if (_engine->_input.keyboard.keyStates[GLFW_KEY_O]!= GLFW_RELEASE)
+    {
+        outObj();
+    }
     if (!_is_end)
     {
         if (_engine->_input.mouse.move.xNow != _engine->_input.mouse.move.xOld)
@@ -284,9 +289,9 @@ void Shooter::renew_camera()
 std::vector<Box> Shooter::getBoxs()
 {
     std::vector<Box> boxs;
-    Transform transform=_transform_old.back();
-    transform.rotation=glm::quat{1.0, 0.0, 0.0, 0.0};;
-    boxs.push_back(Box{_bounding_box.min, _bounding_box.max,transform});
+    Transform transform = _transform_old.back();
+    transform.rotation = glm::quat{1.0, 0.0, 0.0, 0.0};
+    boxs.push_back(Box{_bounding_box.min, _bounding_box.max, transform});
     return boxs;
 }
 std::vector<Segment> Shooter::getSegments()
@@ -420,4 +425,63 @@ void Shooter::collidedBy(Object *other)
     {
         _transform.position = original_position;
     }
+}
+void Shooter::outObj()
+{
+    static int cnt = 0;
+    glm::mat4 static_matrix;
+    static_matrix[0] = glm::vec4(1, 0, 0, 0);
+    static_matrix[1] = glm::vec4(0, 1, 0, 0);
+    static_matrix[2] = glm::vec4(0, 0, 1, 0);
+    static_matrix[3] = glm::vec4(0, 0, -10, 1);
+    std::string filename = _engine->_assetRootDir + "out/gun" + std::to_string(cnt) + ".obj";
+    cnt++;
+    std::ofstream file(filename);
+    const std::vector<Vertex> &vertices = (_model[_model_current_index*2+1])->getVertices();
+    const std::vector<uint32_t> indices = (_model[_model_current_index*2+1])->getIndices();
+    if (!file.is_open())
+    {
+        std::cerr << "Failed to open file for writing: " << filename << std::endl;
+        return;
+    }
+    // "    fPosition = vec3(model * vec4(aPosition, 1.0f));\n"
+    // "    fNormal = mat3(transpose(inverse(model))) * aNormal;\n"
+    glm::mat4 model_apply = glm::inverse(_engine->_camera->getViewMatrix()) * static_matrix * _model_transform.getLocalMatrix();
+    glm::mat3 normal_apply = glm::mat3(transpose(inverse(glm::inverse(_engine->_camera->getViewMatrix()) * static_matrix * _model_transform.getLocalMatrix())));
+    file<<"o Gun"<<std::endl;
+    // 写入顶点位置
+    for (auto vertex : vertices)
+    {
+        vertex.position = glm::vec3((model_apply * glm::vec4(vertex.position, 1.0f)));
+        file << "v " << vertex.position.x << " " << vertex.position.y << " " << vertex.position.z << std::endl;
+    }
+
+    // 写入顶点纹理坐标
+    for (const auto &vertex : vertices)
+    {
+        file << "vt " << vertex.texCoord.x << " " << vertex.texCoord.y << std::endl;
+    }
+
+    // 写入顶点法线
+    for (auto vertex : vertices)
+    {
+        vertex.normal = normal_apply * vertex.normal;
+        file << "vn " << vertex.normal.x << " " << vertex.normal.y << " " << vertex.normal.z << std::endl;
+    }
+
+    // 写入面信息
+    for (size_t i = 0; i < indices.size(); i += 3)
+    {
+        // OBJ文件索引从1开始
+        uint32_t idx1 = indices[i] + 1;
+        uint32_t idx2 = indices[i + 1] + 1;
+        uint32_t idx3 = indices[i + 2] + 1;
+        // 假设每个顶点的位置、纹理坐标和法线索引是相同的
+        file << "f " << idx1 << "/" << idx1 << "/" << idx1 << " "
+             << idx2 << "/" << idx2 << "/" << idx2 << " "
+             << idx3 << "/" << idx3 << "/" << idx3 << std::endl;
+    }
+
+    file.close();
+    std::cout << "Model exported to " << filename << std::endl;
 }
