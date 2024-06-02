@@ -10,6 +10,12 @@ Map::Map(Engine *engine, std::string _material_path, std::string _model_path) : 
 }
 void Map::init(std::string _material_path, std::string _model_path)
 {
+    for (int i = 0; i < _plane_material_cnt; i++)
+    {
+        std::string material_path = _material_path + std::to_string(i) + ".png";
+        _plane_materials.push_back(std::unique_ptr<ImageTexture2D>(new ImageTexture2D(material_path)));
+    }
+
     tinyobj::attrib_t attrib;
     std::vector<tinyobj::shape_t> shapes;
     std::vector<tinyobj::material_t> materials;
@@ -41,7 +47,8 @@ void Map::init(std::string _material_path, std::string _model_path)
         std::vector<Vertex> vertices;
         std::vector<uint32_t> indices;
         std::unordered_map<Vertex, uint32_t> uniqueVertices;
-
+        std::cout << shape.name << std::endl;
+        bool is_plane = !(shape.name.compare("Plane"));
         for (const auto &index : shape.mesh.indices)
         {
             Vertex vertex{};
@@ -72,20 +79,36 @@ void Map::init(std::string _material_path, std::string _model_path)
 
             indices.push_back(uniqueVertices[vertex]);
         }
-        Model *temp = new Model(vertices, indices);
-        _models.push_back(std::unique_ptr<Model>(temp));
-        MapMaterial *temp2 = new MapMaterial();
-        temp2->ka.r = std::max(0.0,materials[shape.mesh.material_ids[0]].ambient[0]+(std::rand()%400-200)/1000.0);
-        temp2->ka.g = std::max(0.0,materials[shape.mesh.material_ids[0]].ambient[1]+(std::rand()%400-200)/1000.0);
-        temp2->ka.b = std::max(0.0,materials[shape.mesh.material_ids[0]].ambient[2]+(std::rand()%400-200)/1000.0);
-        temp2->kd.r = std::max(0.0,materials[shape.mesh.material_ids[0]].diffuse[0]+(std::rand()%400-200)/1000.0);
-        temp2->kd.g = std::max(0.0,materials[shape.mesh.material_ids[0]].diffuse[1]+(std::rand()%400-200)/1000.0);
-        temp2->kd.b = std::max(0.0,materials[shape.mesh.material_ids[0]].diffuse[2]+(std::rand()%400-200)/1000.0);
-        temp2->ks.r = std::max(0.0,materials[shape.mesh.material_ids[0]].specular[0]+(std::rand()%400-200)/1000.0);
-        temp2->ks.g = std::max(0.0,materials[shape.mesh.material_ids[0]].specular[1]+(std::rand()%400-200)/1000.0);
-        temp2->ks.b = std::max(0.0,materials[shape.mesh.material_ids[0]].specular[2]+(std::rand()%400-200)/1000.0);
-        temp2->ns = materials[shape.mesh.material_ids[0]].shininess;
-        _materials.push_back(std::unique_ptr<MapMaterial>(temp2));
+
+        if (is_plane)
+        {
+            // for (int i = 0; i < vertices.size(); i++)
+            // {
+            //     vertices[i].texCoord.x = std::rand() % 10 / 100.0f;
+            //     vertices[i].texCoord.y *= std::rand() % 10 / 100.0f;
+            // }
+            Model *temp = new Model(vertices, indices);
+            std::cout << "\n\nplane\n\n"
+                      << std::endl;
+            _plane_model = std::unique_ptr<Model>(temp);
+        }
+        else
+        {
+            Model *temp = new Model(vertices, indices);
+            _models.push_back(std::unique_ptr<Model>(temp));
+            MapMaterial *temp2 = new MapMaterial();
+            temp2->ka.r = std::max(0.0, materials[shape.mesh.material_ids[0]].ambient[0] + (std::rand() % 400 - 200) / 1000.0);
+            temp2->ka.g = std::max(0.0, materials[shape.mesh.material_ids[0]].ambient[1] + (std::rand() % 400 - 200) / 1000.0);
+            temp2->ka.b = std::max(0.0, materials[shape.mesh.material_ids[0]].ambient[2] + (std::rand() % 400 - 200) / 1000.0);
+            temp2->kd.r = std::max(0.0, materials[shape.mesh.material_ids[0]].diffuse[0] + (std::rand() % 400 - 200) / 1000.0);
+            temp2->kd.g = std::max(0.0, materials[shape.mesh.material_ids[0]].diffuse[1] + (std::rand() % 400 - 200) / 1000.0);
+            temp2->kd.b = std::max(0.0, materials[shape.mesh.material_ids[0]].diffuse[2] + (std::rand() % 400 - 200) / 1000.0);
+            temp2->ks.r = std::max(0.0, materials[shape.mesh.material_ids[0]].specular[0] + (std::rand() % 400 - 200) / 1000.0);
+            temp2->ks.g = std::max(0.0, materials[shape.mesh.material_ids[0]].specular[1] + (std::rand() % 400 - 200) / 1000.0);
+            temp2->ks.b = std::max(0.0, materials[shape.mesh.material_ids[0]].specular[2] + (std::rand() % 400 - 200) / 1000.0);
+            temp2->ns = materials[shape.mesh.material_ids[0]].shininess;
+            _materials.push_back(std::unique_ptr<MapMaterial>(temp2));
+        }
     }
 }
 void Map::plot()
@@ -107,6 +130,16 @@ void Map::plot()
         shader->setUniformFloat("material.ns", _materials[i]->ns);
         _models[i]->draw();
     }
+    normalizingShader(0, &(_transform));
+    auto shader2 = _engine->_shaders[0].get();
+    shader2->use();
+    shader2->setUniformInt("mapKd", 0);
+    shader2->setUniformVec3("material.ks", glm::vec3(0.2, 0.2, 0.2));
+    shader2->setUniformVec3("material.ka", glm::vec3(0.2, 0.2, 0.2));
+    shader2->setUniformFloat("material.ns", 314);
+    shader2->setUniformVec3("scale", glm::vec3(2.0f, 2.0f, 2.0f));
+    _plane_materials[_plane_material_index]->bind(0);
+    _plane_model->draw();
 }
 int Map::_shader_index = 1;
 void Map::setShaderIndex(int index)
@@ -119,7 +152,21 @@ std::vector<Box> Map::getBoxs()
     for (int i = 0; i < _models.size(); i++)
     {
         BoundingBox box = _models[i]->getBoundingBox();
-        boxs.push_back(Box(box.min, box.max,_models[i]->transform));
+        boxs.push_back(Box(box.min, box.max, _transform));
     }
+    BoundingBox box = _plane_model->getBoundingBox();
+    boxs.push_back(Box(box.min, box.max, _transform));
     return boxs;
+}
+void Map::renew()
+{
+    if (_engine->_input.keyboard.keyStates[GLFW_KEY_1] != GLFW_RELEASE)
+    {
+        _plane_material_index = 0;
+    }
+    if (_engine->_input.keyboard.keyStates[GLFW_KEY_2] != GLFW_RELEASE)
+    {
+        std::cout << "renew" << std::endl;
+        _plane_material_index = 1;
+    }
 }
