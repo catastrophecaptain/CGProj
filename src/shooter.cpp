@@ -425,6 +425,7 @@ void Shooter::collidedBy(Object *other)
         {
             break;
         }
+        _up_speed=0;
         _transform.position = _transform_old[_transform_old.size()-1].position;
         std::cout << _engine->_t_min << std::endl;
     }
