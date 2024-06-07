@@ -437,6 +437,7 @@ void Shooter::collidedBy(Object *other)
     {
         _transform.position = original_position;
     }
+    renew_camera();
 }
 void Shooter::outObj()
 {
