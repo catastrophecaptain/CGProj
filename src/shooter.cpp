@@ -141,7 +141,7 @@ void Shooter::renew()
     //     std::cout << "mouse move in y direction" << std::endl;
     //     _camera->transform.rotation = glm::angleAxis(glm::radians(cameraRotateSpeed * (-_input.mouse.move.yNow + _input.mouse.move.yOld)), _camera->transform.getRight()) * _camera->transform.rotation;
     // }
-    std::cout << _transform.position.x << " " << _transform.position.y << " " << _transform.position.z << std::endl;
+    // std::cout << _transform.position.x << " " << _transform.position.y << " " << _transform.position.z << std::endl;
     _transform_old.push_back(_transform);
     _transform_old.erase(_transform_old.begin());
     bool _is_landed = false;
