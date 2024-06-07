@@ -162,7 +162,7 @@ void Shooter::renew()
     _transform = _transform_old.back();
     if (_is_landed)
     {
-        _up_speed = _up_speed < 0 ? 0 : _up_speed;
+        _up_speed = 0;
     }
     if (_engine->_input.keyboard.keyStates[GLFW_KEY_O]!= GLFW_RELEASE)
     {
@@ -386,6 +386,10 @@ void Shooter::collidedBy(Object *other)
             }
             else
             {
+                if(i==1)
+                {
+                    _up_speed = 0;
+                }
                 break;
             }
         }
@@ -408,12 +412,20 @@ void Shooter::collidedBy(Object *other)
                     }
                 }
             }
+            if(solve)
+            {
+                if(i!=1)
+                {
+                    _up_speed = 0;
+                }
+                break;
+            }
         }
         if (solve)
         {
             break;
         }
-        _transform.position = _transform_old[_old_cnt / 2].position;
+        _transform.position = _transform_old[_transform_old.size()-1].position;
         std::cout << _engine->_t_min << std::endl;
     }
     case Category::SHOOTER:

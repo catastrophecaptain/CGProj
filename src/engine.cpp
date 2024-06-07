@@ -48,16 +48,16 @@ void Engine::start()
     std::uniform_int_distribution<> _num_generator(1, 500);
     std::random_device rd;
     std::mt19937 gen(rd());
-    for (int i = 0; i < num_ghosts; i++)
-    {
-        int x = _num_generator(gen);
-        int y = _num_generator(gen);
-        int z = _num_generator(gen);
-        float ghost_scale = 6.0f;
-        glm::vec3 scale(ghost_scale, ghost_scale, ghost_scale);
-        glm::vec3 position((x - 250.0f) * 0.8f, fmod(y, 40.0f) + 20.0f, (z - 250.0f) * 2.5f);
-        Ghost *ghost = new Ghost(this, scale, position,true);
-    }
+    // for (int i = 0; i < num_ghosts; i++)
+    // {
+    //     int x = _num_generator(gen);
+    //     int y = _num_generator(gen);
+    //     int z = _num_generator(gen);
+    //     float ghost_scale = 6.0f;
+    //     glm::vec3 scale(ghost_scale, ghost_scale, ghost_scale);
+    //     glm::vec3 position((x - 250.0f) * 0.8f, fmod(y, 40.0f) + 20.0f, (z - 250.0f) * 2.5f);
+    //     Ghost *ghost = new Ghost(this, scale, position,true);
+    // }
     // _command->generateGhost();
     Map *map = new Map(this);
 };
