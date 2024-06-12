@@ -22,6 +22,9 @@ Engine::~Engine()
         delete object;
     }
     delete _command;
+    ImGui_ImplOpenGL3_Shutdown();
+    ImGui_ImplGlfw_Shutdown();
+    ImGui::DestroyContext();
 };
 void Engine::start()
 {
@@ -69,6 +72,7 @@ void Engine::start()
     ImGui::StyleColorsDark();
     ImGui_ImplGlfw_InitForOpenGL(_window, true);
     ImGui_ImplOpenGL3_Init("#version 330");
+    startTime = glfwGetTime();
 };
 void Engine::getCommand()
 {
@@ -94,7 +98,10 @@ void Engine::renew()
     for (auto object : _objects)
     {
         object->renew();
-    }
+    }    
+    ImGui_ImplOpenGL3_NewFrame();
+    ImGui_ImplGlfw_NewFrame();
+    ImGui::NewFrame();
 };
 void Engine::check()
 {
@@ -123,6 +130,15 @@ void Engine::plot()
             object->plot();
         }
     }
+    playTime = glfwGetTime() - startTime;
+    ImGui::SetNextWindowSize(ImVec2(200, 100)); // 
+    ImGui::Begin("Score");                                         
+    ImGui::Text("Kill Count: %d", killCount);   
+    ImGui::Text("Top Kill Count: %d", topkill);           
+    ImGui::Text("Play Time: %f", playTime);  // 这里显示游玩时间，你需要替换playTime为你真实使用的变量     
+    ImGui::End();
+    ImGui::Render();
+    ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 };
 bool Engine::checkCollision(Object *fixed, Object *move)
 {
@@ -506,6 +522,8 @@ void Engine::restart(){
     if(glfwGetKey(_window, GLFW_KEY_R) == GLFW_PRESS&&_stage==EngineStage::END){
         _stage=EngineStage::START;
         shooter->change_stage(EngineStage::START);
+        if(killCount>topkill)topkill=killCount;
+        killCount=0;
     }
 }
 void Engine::toggleMusic()

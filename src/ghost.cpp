@@ -162,6 +162,7 @@ void Ghost::collidedBy(Object *other)
             int y = rand() % 500;
             int z = rand() % 500;
             glm::vec3 position((x - 250.0f) * 0.8f, fmod(y, 40.0f) + 80.0f, (z - 250.0f) * 2.5f);
+            _engine->killCount++;
             _transform.position = position;
         // }
     }

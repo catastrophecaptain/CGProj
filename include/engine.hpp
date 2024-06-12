@@ -52,6 +52,10 @@ public:
     void checkMusicToggle();
     bool musicplaying;
     bool mKeyReleased = true;
+    int killCount=0;
+    int topkill=0;
+    double startTime=0;
+    double playTime=0;
     std::vector<Object *> _objects;
     std::vector<Object *> _objects_move;
     std::vector<std::unique_ptr<GLSLProgram>> _shaders;
