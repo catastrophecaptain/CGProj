@@ -52,6 +52,7 @@ public:
     void checkMusicToggle();
     bool musicplaying;
     bool mKeyReleased = true;
+    bool kKeyReleased = true;
     int killCount=0;
     int topkill=0;
     double startTime=0;

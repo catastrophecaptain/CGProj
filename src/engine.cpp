@@ -485,10 +485,14 @@ void Engine::initlights()
 }
 void Engine::checkFullScreenToggle()
 {
-    if (glfwGetKey(_window, GLFW_KEY_F) == GLFW_PRESS)
+    if (glfwGetKey(_window, GLFW_KEY_F) == GLFW_RELEASE){
+        kKeyReleased=true;
+    }
+    else if (glfwGetKey(_window, GLFW_KEY_F) == GLFW_PRESS)
     {
         // F key has been pressed, toggle full screen mode
         toggleFullScreen();
+        kKeyReleased=false;
     }
 }
 void Engine::toggleFullScreen()
