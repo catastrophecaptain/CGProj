@@ -45,6 +45,13 @@ public:
     int addShader(const std::string &vertexShader, const std::string &fragmentShader);
     void initShaders();
     void initlights();
+    void checkFullScreenToggle();
+    void toggleFullScreen();
+    void restart();
+    void toggleMusic();
+    void checkMusicToggle();
+    bool musicplaying;
+    bool mKeyReleased = true;
     std::vector<Object *> _objects;
     std::vector<Object *> _objects_move;
     std::vector<std::unique_ptr<GLSLProgram>> _shaders;

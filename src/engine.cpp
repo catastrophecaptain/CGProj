@@ -8,6 +8,8 @@
 #include "shooter.hpp"
 #include "ghost.hpp"
 #include "map.hpp"
+#include "imgui.h"
+#include "imgui_impl_opengl3.h"
 Engine::Engine(const Options &options) : Application(options)
 {
     _command = new Command(this);
@@ -23,10 +25,11 @@ Engine::~Engine()
 };
 void Engine::start()
 {
-    // if (0 == PlaySound("../media/sound/Harmonious.wav", NULL, SND_FILENAME | SND_ASYNC | SND_LOOP))
-	// {
-	// 	printf("playsound false");
-	// }
+    if (0 == PlaySound("../media/sound/Harmonious.wav", NULL, SND_FILENAME | SND_ASYNC | SND_LOOP | SND_NODEFAULT))
+	{
+		printf("playsound false");
+	}
+    musicplaying=true;
     glfwSetInputMode(_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     _input.mouse.move.xNow = _input.mouse.move.xOld = 0.5f * _windowWidth;
     _input.mouse.move.yNow = _input.mouse.move.yOld = 0.5f * _windowHeight;
@@ -48,18 +51,24 @@ void Engine::start()
     std::uniform_int_distribution<> _num_generator(1, 500);
     std::random_device rd;
     std::mt19937 gen(rd());
-    // for (int i = 0; i < num_ghosts; i++)
-    // {
-    //     int x = _num_generator(gen);
-    //     int y = _num_generator(gen);
-    //     int z = _num_generator(gen);
-    //     float ghost_scale = 6.0f;
-    //     glm::vec3 scale(ghost_scale, ghost_scale, ghost_scale);
-    //     glm::vec3 position((x - 250.0f) * 0.8f, fmod(y, 40.0f) + 20.0f, (z - 250.0f) * 2.5f);
-    //     Ghost *ghost = new Ghost(this, scale, position,true);
-    // }
+    for (int i = 0; i < num_ghosts; i++)
+    {
+        int x = _num_generator(gen);
+        int y = _num_generator(gen);
+        int z = _num_generator(gen);
+        float ghost_scale = 6.0f;
+        glm::vec3 scale(ghost_scale, ghost_scale, ghost_scale);
+        glm::vec3 position((x - 250.0f) * 0.8f, fmod(y, 40.0f) + 20.0f, (z - 250.0f) * 2.5f);
+        Ghost *ghost = new Ghost(this, scale, position,true);
+    }
     // _command->generateGhost();
     Map *map = new Map(this);
+    IMGUI_CHECKVERSION(); 
+    ImGui::CreateContext();
+    ImGuiIO& io = ImGui::GetIO(); (void)io;
+    ImGui::StyleColorsDark();
+    ImGui_ImplGlfw_InitForOpenGL(_window, true);
+    ImGui_ImplOpenGL3_Init("#version 330");
 };
 void Engine::getCommand()
 {
@@ -103,7 +112,10 @@ void Engine::check()
     }
 };
 void Engine::plot()
-{
+{   
+    checkFullScreenToggle();
+    restart();
+    checkMusicToggle();
     for (auto object : _objects)
     {
         if (object->_is_plot)
@@ -454,4 +466,71 @@ void Engine::initlights()
     _light_point->kc = 1.0f;
     _light_point->kl = 0.0f;
     _light_point->kq = 1.0f;
+}
+void Engine::checkFullScreenToggle()
+{
+    if (glfwGetKey(_window, GLFW_KEY_F) == GLFW_PRESS)
+    {
+        // F key has been pressed, toggle full screen mode
+        toggleFullScreen();
+    }
+}
+void Engine::toggleFullScreen()
+{
+    static int savedWidth = 0, savedHeight = 0, savedPosX = 0, savedPosY = 0;  
+    static int isFullscreen = 0;
+
+    if (!isFullscreen)
+    {
+        // Store the old window size and position
+        glfwGetWindowSize(_window, &savedWidth, &savedHeight);
+        glfwGetWindowPos(_window, &savedPosX, &savedPosY);
+
+        const GLFWvidmode * mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+
+        // Set the window size to the monitor (full screen)
+        glfwSetWindowMonitor(_window, glfwGetPrimaryMonitor(), 0, 0,
+                             mode->width, mode->height, mode->refreshRate);
+
+        isFullscreen = 1;
+    }
+    else
+    {
+        // restore old window size and position
+        glfwSetWindowMonitor(_window, NULL, savedPosX, savedPosY,
+                             savedWidth, savedHeight, 0);
+        isFullscreen = 0;
+    }
+}
+void Engine::restart(){
+    if(glfwGetKey(_window, GLFW_KEY_R) == GLFW_PRESS&&_stage==EngineStage::END){
+        _stage=EngineStage::START;
+        shooter->change_stage(EngineStage::START);
+    }
+}
+void Engine::toggleMusic()
+{
+    if (musicplaying) 
+    {
+        PlaySound(NULL, 0, 0);
+        musicplaying = false;
+    } 
+    else 
+    {
+        PlaySound("../media/sound/Harmonious.wav", NULL, SND_FILENAME | SND_ASYNC | SND_LOOP | SND_NODEFAULT);
+        musicplaying = true;
+    }
+}
+void Engine::checkMusicToggle()
+{
+    if (glfwGetKey(_window, GLFW_KEY_M) == GLFW_RELEASE)
+    {
+         mKeyReleased = true;
+    }
+    
+    if (mKeyReleased && glfwGetKey(_window, GLFW_KEY_M) == GLFW_PRESS)
+    {
+        toggleMusic();
+        mKeyReleased = false;
+    }
 }
