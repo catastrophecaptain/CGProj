@@ -8,3 +8,4 @@ external/assimp/lib/*
 cmake-build-debug/*
 .idea/
 .vs/
+!media.zip
